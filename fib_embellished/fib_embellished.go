@@ -25,11 +25,7 @@ func main() {
 	//
 	for ni := -10; ni < 21; ni++ {
 		result, flag := fib(ni)
-		if flag {
-			fmt.Printf("%d\t%d\ttrue\n", ni, result)
-		} else {
-			fmt.Printf("%d\t%d\tfalse\n", ni, result)
-		}
+		fmt.Printf("%d\t%d\t%t\n", ni, result, flag)
 	}
 }
 
