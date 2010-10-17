@@ -51,6 +51,8 @@ func main() {
 	fa(arc)			// Note, different function needed (signature)
 	fap(&arc)		// ....
 	//
+	// ------------------------------------------------------------------------
+	//
 	// Array Literal, implied length of 5.
 	//
 	// This fails to compile:
@@ -63,5 +65,19 @@ func main() {
 	// ..... cannot use ard (type [5]int) as type []int in function argument
 	// ..... cannot use &ard (type *[5]int) as type *[]int in function argument
 	//
+	// ------------------------------------------------------------------------
+	fmt.Printf("%d\n", len(arb))
+	//
+	// Loop through array - one
+	//
+	for i := 0; i < len(arb); i++ {
+		fmt.Printf("%d\n", arb[i])
+	}
+	//
+	// Loop through array - two
+	//
+	for _, narb := range arb {
+		fmt.Printf("%d\n", narb)
+	}
 }
 
