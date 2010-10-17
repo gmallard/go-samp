@@ -45,7 +45,7 @@ func main() {
 	f(arb)
 	fp(&arb)
 	//
-	// Array Literal
+	// This is actually/technically a slice literal, not an array literal.
 	//
 	var arc = []int{ 1, 2, 3, 4, 5 }
 	fa(arc)			// Note, different function needed (signature)
