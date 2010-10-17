@@ -4,7 +4,8 @@ dirs = arrays \
 	fib_embellished \
 	fib_userop \
 	hello \
-	oltesta
+	oltesta \
+	testppack \
 
 .PHONY: $(dirs)
 
