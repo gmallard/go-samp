@@ -1,5 +1,6 @@
 
-dirs = fib \
+dirs = arrays \
+	fib \
 	fib_embellished \
 	fib_userop \
 	hello \
