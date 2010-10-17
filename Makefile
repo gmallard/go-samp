@@ -5,6 +5,7 @@ dirs = arrays \
 	fib_userop \
 	hello \
 	oltesta \
+	slices \
 	testppack \
 
 .PHONY: $(dirs)
