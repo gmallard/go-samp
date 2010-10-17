@@ -40,6 +40,11 @@ func main() {
 	//
 	slc := slice[4:6]
 	prtsl_int(slc)
+	// Range is over 'len', not 'cap'
+	for _, nse := range slc {
+		fmt.Printf("Next: %d\n", nse)
+	}
+	fmt.Println()
 	//
 	var s25 = make([]int, 25)
 	prtsl_int(s25)
