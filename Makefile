@@ -4,6 +4,7 @@ dirs = arrays \
 	fib_embellished \
 	fib_userop \
 	hello \
+	maps \
 	oltesta \
 	slices \
 	testppack \
