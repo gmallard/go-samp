@@ -1,5 +1,5 @@
-GC=8g
-LD=8l
+GC = $(GOGC)
+LD = $(GOLD)
 TARG=main
 
 O_FILES=\
