@@ -7,6 +7,7 @@ dirs = arrays \
 	maps \
 	oltesta \
 	slices \
+	ranges \
 	testppack \
 
 .PHONY: $(dirs)
