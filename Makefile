@@ -13,6 +13,7 @@ dirs = arrays \
 	struct \
 	ranges \
 	testppack \
+	type_String \
 
 .PHONY: $(dirs) clean
 
