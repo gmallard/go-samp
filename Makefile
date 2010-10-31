@@ -3,6 +3,7 @@ dirs = arrays \
 	fib \
 	fib_embellished \
 	fib_userop \
+	fileread \
 	hello \
 	maps \
 	methods \
