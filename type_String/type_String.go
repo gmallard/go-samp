@@ -39,6 +39,7 @@ func main() {
 	var day = Tuesday;
 	fmt.Print(day.String())
 	fmt.Println()
+	fmt.Println(0, Sunday, 1, Monday)
   fmt.Println("End .....")
 }
 
