@@ -5,6 +5,7 @@ dirs = arrays \
 	fib_userop \
 	hello \
 	maps \
+	methods \
 	oltesta \
 	slices \
 	struct \
