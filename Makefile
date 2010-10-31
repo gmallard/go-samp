@@ -7,10 +7,11 @@ dirs = arrays \
 	maps \
 	oltesta \
 	slices \
+	struct \
 	ranges \
 	testppack \
 
-.PHONY: $(dirs)
+.PHONY: $(dirs) clean
 
 all: $(dirs)
 
