@@ -7,6 +7,7 @@ dirs = arrays \
 	maps \
 	methods \
 	oltesta \
+	showgo \
 	slices \
 	struct \
 	ranges \
