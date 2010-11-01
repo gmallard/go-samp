@@ -5,6 +5,7 @@ dirs = arrays \
 	fib_userop \
 	fileread \
 	hello \
+	interface_01 \
 	maps \
 	methods \
 	numconv \
