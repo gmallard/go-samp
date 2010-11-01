@@ -14,6 +14,7 @@ dirs = arrays \
 	ranges \
 	testppack \
 	type_String \
+	vector_01 \
 
 .PHONY: $(dirs) clean
 
