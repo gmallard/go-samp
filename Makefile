@@ -7,6 +7,7 @@ dirs = arrays \
 	hello \
 	maps \
 	methods \
+	numconv \
 	oltesta \
 	showgo \
 	slices \
