@@ -1,5 +1,6 @@
 
-dirs = arrays \
+dirs = 	testppack \
+	arrays \
 	fib \
 	fib_embellished \
 	fib_userop \
@@ -14,16 +15,22 @@ dirs = arrays \
 	slices \
 	struct \
 	ranges \
-	testppack \
 	type_String \
 	vector_01 \
 
-.PHONY: $(dirs) clean
+.PHONY: $(dirs) clean gomake
 
 all: $(dirs)
 
 $(dirs):
 		$(MAKE) -C $@
+
+gomake:
+	cd gomake; \
+	gotest; \
+	gomake install; \
+	$(MAKE) clean; \
+	cd ..
 
 clean:
 	@for i in $(dirs); do \
