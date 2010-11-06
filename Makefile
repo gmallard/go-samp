@@ -7,6 +7,7 @@ dirs = 	testppack \
 	fileread \
 	hello \
 	interface_01 \
+	interface_02 \
 	maps \
 	methods \
 	numconv \
