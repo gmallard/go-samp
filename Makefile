@@ -19,19 +19,23 @@ dirs = 	testppack \
 	type_String \
 	vector_01 \
 
-.PHONY: $(dirs) clean gomake
+packlist =	gomake \
+
+.PHONY: $(dirs) $(packlist) packages clean 
 
 all: $(dirs)
 
 $(dirs):
 		$(MAKE) -C $@
 
-gomake:
-	cd gomake; \
-	gotest; \
+packages:
+	@for i in $(packlist); do \
+	echo $$i; \
+	cd $$i; \
 	gomake install; \
 	$(MAKE) clean; \
-	cd ..
+	cd ..; \
+	done
 
 clean:
 	@for i in $(dirs); do \
