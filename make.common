@@ -2,6 +2,12 @@ GC = $(GOGC)
 LD = $(GOLD)
 TARG=main
 
+here = $(shell pwd)
+bottom = $(shell basename $(here))
+
+O_FILES= $(XO_FILES) \
+	$(bottom).8
+
 all:
 	make $(TARG)
 
