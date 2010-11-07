@@ -22,24 +22,39 @@ type AbsInterface interface {
 	Abs() float // receiver is implied
 }
 
-/*
-type MyFloat float
-// This does *NOT* cpmpile ???
-func (f MyFloat) Abs() float {
-	if f < 0.0 { return -f }
-	return f
-}
-*/
 
+type MyFloat float
+
+// This does *NOT* cpmpile ....
+//
+// func (f MyFloat) Abs() float {
+// 	if f < 0.0 { return -f }
+//	return f
+// }
+//
+
+// This does.
+func (f MyFloat) Abs() float {
+	if f < 0.0 { return float(-f) }
+	return float(f)
+}
 
 func main() {
   fmt.Println("Start .....")
 
 	var ai AbsInterface;
+
 	pp := new(Point);
+	fmt.Println(pp.Abs()); // method call
+
 	ai = pp; // OK: *Point has Abs()
+	fmt.Println(ai.Abs()); // method call
+
 	// ai = 7.; // compile-time err: float has no Abs()
-	// ai = MyFloat(-7.)	// ??
+
+	ai = MyFloat(-7.)	// OK, MyFloat has Abs()
+	fmt.Println(ai.Abs()); // method call
+
 	ai = &Point{ 3, 4 };
 	fmt.Println(ai.Abs()); // method call
 
