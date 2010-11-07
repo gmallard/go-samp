@@ -5,6 +5,7 @@ dirs = 	testppack \
 	fib_embellished \
 	fib_userop \
 	fileread \
+	func_ret \
 	hello \
 	hello_small \
 	interface_01 \

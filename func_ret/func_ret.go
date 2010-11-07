@@ -1,0 +1,62 @@
+package main
+
+import (
+	"fmt"
+	"math"
+)
+
+//
+// There are a number of examples in the gocourceday#
+// PDF files (supplied with the go distribution) that will not compile.
+//
+// One example (gocourseday1.pdf, page 45) is:
+//
+/* ----------------------------
+func MySqrt(f float) (v float, ok bool) {
+	if f >= 0 { 
+		v,ok = math.Sqrt(f),true 
+	} else {
+		v,ok = 0,false 
+	}
+	return v,ok
+}
+------------------------------ */
+
+//
+// The general problem is the use of 'float' and the math.* methods actually
+// take and return 'float64' types.  
+// When the 'math' packages changed from 'float'
+// to 'float64' is unknown to the author.
+//
+// One work around is to just change all 'float' types to 'float64'.  This
+// may or may not be what you actually want!
+//
+func MySqrt(f float64) (v float64, ok bool) {
+	if f >= 0 { 
+		v,ok = math.Sqrt(f),true 
+	} else {
+		v,ok = 0,false 
+	}
+	return v,ok
+}
+//
+// And there are other, more or less suitable work arounds as well.
+//
+
+func main() {
+  fmt.Println("Start....")
+
+	var fa float64 = 1.234567
+	var rv float64
+	var ok bool
+
+	rv, ok = MySqrt(fa)
+	fmt.Printf("SQR01: %g\t%t\n", rv, ok)
+
+	fa = -1.234567
+	rv, ok = MySqrt(fa)
+	fmt.Printf("SQR02: %g\t%t\n", rv, ok)
+
+  fmt.Println("End....")
+}
+
