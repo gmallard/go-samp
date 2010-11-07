@@ -6,6 +6,7 @@ dirs = 	testppack \
 	fib_userop \
 	fileread \
 	hello \
+	hello_small \
 	interface_01 \
 	interface_02 \
 	maps \
