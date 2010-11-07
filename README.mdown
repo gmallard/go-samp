@@ -1,0 +1,44 @@
+Project go-samp, Samples of Simple go Language Programs
+=======================================================
+This is a collection of extremely simple examples of using the _go_ 
+programming language.
+
+These samples are inspired primarily by the _GoCourseDay#.pdf_ files in
+the _go_ distrubution.  And some additional experiments.
+
+Prerequisites
+-------------
+
+In essence, you need a working _go_ environment, and a few small aditions.
+
+You need certain basic functions available to you in order to build and run
+these _go_ programs.
+
+These include:
+
+* the _go_ compiler and linker
+* make
+* an appropriate C compiler, e.g. _gcc_
+
+If you are not familiar with _go_, and want to install it and learn the 
+language, see: 
+
+	http://golang.org
+
+In order to use the _make_ system for these samples, you will need to have
+several environment variables defined.  These environment variables define
+the executable name for the _go_ cpmpiler and linker.  For example:
+
+* export GOGC=8g
+* export GOLD=8l
+
+Adjust those as necessary for your system.
+
+Install
+-------
+
+* clone or fork
+* _cd_ to your base git repo directory
+* make package
+* make
+
