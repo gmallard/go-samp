@@ -1,6 +1,9 @@
 GC = $(GOGC)
 LD = $(GOLD)
-TARG=main
+
+ifndef TARG
+TARG = main
+endif
 
 here = $(shell pwd)
 bottom = $(shell basename $(here))
