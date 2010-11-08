@@ -43,6 +43,18 @@ func MySqrt(f float64) (v float64, ok bool) {
 // And there are other, more or less suitable work arounds as well.
 //
 
+// Return with no values
+func MySqrt2(f float64) (v float64, ok bool) {
+	if f >= 0 { v,ok = math.Sqrt(f),true }
+	return // no values, returns default: v, ok
+}
+
+// Return with no values
+func MySqrt3(f float64) (v float64, ok bool) {
+	if f < 0 { return } // error case
+	return math.Sqrt(f),true
+}
+// ----------------
 func main() {
   fmt.Println("Start....")
 
@@ -56,6 +68,12 @@ func main() {
 	fa = -1.234567
 	rv, ok = MySqrt(fa)
 	fmt.Printf("SQR02: %g\t%t\n", rv, ok)
+
+	fa = 1.234567
+	rv, ok = MySqrt2(fa)
+	fmt.Printf("SQR201: %g\t%t\n", rv, ok)
+	rv, ok = MySqrt3(fa)
+	fmt.Printf("SQR301: %g\t%t\n", rv, ok)
 
   fmt.Println("End....")
 }
