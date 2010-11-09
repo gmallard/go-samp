@@ -4,7 +4,8 @@ This is a collection of extremely simple examples of using the _go_
 programming language.
 
 These samples are inspired primarily by the _GoCourseDay#.pdf_ files in
-the _go_ distrubution.  And some additional experiments.
+the _go_ distrubution.  And some additional experiments.  In particular
+experiments triggered by documentation provided in the go distribution.
 
 Prerequisites
 -------------

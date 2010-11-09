@@ -8,6 +8,7 @@ dirs = 	testppack \
 	func_ret \
 	hello \
 	hello_small \
+	httpserv \
 	interface_01 \
 	interface_02 \
 	maps \
