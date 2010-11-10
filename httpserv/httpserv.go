@@ -17,9 +17,32 @@ import (
 // b) the codelab directory
 //
 
+
+type srvrinfo struct {
+	wtr http.ResponseWriter
+	req *http.Request
+}
+
+func showInfo(si srvrinfo) {
+	fmt.Fprintf(si.wtr, "Method: |%s|<br />", si.req.Method)
+	//
+	fmt.Fprintf(si.wtr, "Raw URL: |%s|<br />", si.req.URL.Raw)
+	fmt.Fprintf(si.wtr, "Scheme: |%s|<br />", si.req.URL.Scheme)
+	fmt.Fprintf(si.wtr, "Raw Authority: |%s|<br />", si.req.URL.RawAuthority)
+	fmt.Fprintf(si.wtr, "Host: |%s|<br />", si.req.URL.Host)
+	fmt.Fprintf(si.wtr, "Raw Path: |%s|<br />", si.req.URL.RawPath)
+	fmt.Fprintf(si.wtr, "Path: |%s|<br />", si.req.URL.Path)
+	fmt.Fprintf(si.wtr, "Opaque Path: |%t|<br />", si.req.URL.OpaquePath)
+	fmt.Fprintf(si.wtr, "Raw Query: |%s|<br />", si.req.URL.RawQuery)
+	fmt.Fprintf(si.wtr, "Fragment: |%s|<br />", si.req.URL.Fragment)
+}
+
 func HelloServer(rwtr http.ResponseWriter, req *http.Request) {
 	io.WriteString(rwtr, "Hello, World!!!!!!<br />")
-	fmt.Fprintf(rwtr, "Method: %s<br />", req.Method)
+	//
+	var parms = srvrinfo{rwtr, req}
+	showInfo(parms)
+	//
 	io.WriteString(rwtr, "Later ....<br />")
 }
 
