@@ -1,6 +1,7 @@
 
 dirs = 	testppack \
 	arrays \
+	chansyn \
 	fib \
 	fib_embellished \
 	fib_userop \
