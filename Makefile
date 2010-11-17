@@ -6,6 +6,7 @@ dirs = 	testppack \
 	fib_userop \
 	fileread \
 	func_ret \
+	gortns01 \
 	hello \
 	hello_small \
 	httpserv \
@@ -15,10 +16,10 @@ dirs = 	testppack \
 	methods \
 	numconv \
 	oltesta \
+	ranges \
 	showgo \
 	slices \
 	struct \
-	ranges \
 	type_String \
 	vector_01 \
 
