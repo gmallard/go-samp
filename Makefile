@@ -16,6 +16,7 @@ dirs = 	testppack \
 	interface_02 \
 	maps \
 	methods \
+	multisrc \
 	numconv \
 	oltesta \
 	ranges \
