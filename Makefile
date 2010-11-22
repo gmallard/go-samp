@@ -3,6 +3,7 @@ dirs = 	testppack \
 	arrays \
 	chansyn \
 	chanasyn \
+	chantest \
 	fib \
 	fib_embellished \
 	fib_userop \
