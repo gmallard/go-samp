@@ -8,15 +8,18 @@ endif
 here = $(shell pwd)
 bottom = $(shell basename $(here))
 
-O_FILES= $(XO_FILES) \
+O_FILES= \
 	$(bottom).8
 
 all:
 	make $(TARG)
 
-$(TARG): $(O_FILES)
+$(TARG): $(XO_FILES) $(O_FILES)
 	$(LD) -o $@ $(O_FILES)
 	@echo "Done. Executable is: $@"
+
+$(XO_FILES): %.8: %.go
+	$(GC) -c $<
 
 $(O_FILES): %.8: %.go
 	$(GC) -c $<
