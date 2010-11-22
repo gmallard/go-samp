@@ -5,19 +5,15 @@ import (
   "time"
 )
 
-func testchan(ac chan int) {
-	go func() {
-		time.Sleep(5 * 1e9)
-		x, ok := <-ac
-		fmt.Printf("received %d %t\n", x, ok)
-	}();
-	//
-	val := 10
-	fmt.Println("sending", val)
-	ok := ac <- val
-	fmt.Printf("sent %d %t\n", val, ok)
-	time.Sleep(10 * 1e9)
+func worker(c chan int) {
+	fmt.Println("worker starts ...")
+	var x int = -1
+	var ok bool = false
+	time.Sleep(5 * 1e9)
+	x, ok = <-c
+	fmt.Printf("received %d %t\n", x, ok)
 }
+
 //
 // Tests to see if a channel will block.
 //
@@ -25,6 +21,7 @@ func main() {
   fmt.Println("Start ....")
 	fmt.Println("===========")
 	//
+	var tosend int = 1
 	c := make(chan int)
 	go func() {
 		time.Sleep(5*1e9)
@@ -32,17 +29,24 @@ func main() {
 		fmt.Println("received", x)
 	}();
 	//
-	fmt.Println("sending", 10)
-	c <- 10
-	fmt.Println("sent", 10)
+	fmt.Println("sending", tosend)
+	c <- tosend
+	fmt.Println("sent1", tosend)
 	//
 	fmt.Println("===========")
+	tosend = 2
 	unbuf := make(chan int)
-	testchan(unbuf) // Behavior seems ??? odd ...
+	go worker(unbuf) //
+	unbuf <- tosend
+	fmt.Println("sent2", tosend)
 	//
 	fmt.Println("===========")
+	tosend = 3
 	buf := make(chan int, 1)
-	testchan(buf)
+	go worker(buf) //
+	ok := buf <- tosend
+	fmt.Println("sent3", tosend, ok)
+	time.Sleep(6 * 1e9)
 	//
   fmt.Println("End ....")
 }
