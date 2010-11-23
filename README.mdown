@@ -40,6 +40,6 @@ Install
 
 * clone or fork
 * _cd_ to your base git repo directory
-* make package
+* make packages
 * make
 

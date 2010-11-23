@@ -4,6 +4,7 @@ dirs = 	testppack \
 	chansyn \
 	chanasyn \
 	chansvr1 \
+	chansvr2 \
 	chantest \
 	fib \
 	fib_embellished \
