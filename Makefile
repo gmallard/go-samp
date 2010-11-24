@@ -28,6 +28,7 @@ dirs = 	testppack \
 	struct \
 	tcp01 \
 	tcp02 \
+	tcp03 \
 	type_String \
 	vector_01 \
 
