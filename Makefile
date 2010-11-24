@@ -29,6 +29,7 @@ dirs = 	testppack \
 	tcp01 \
 	tcp02 \
 	tcp03 \
+	tcp04 \
 	type_String \
 	vector_01 \
 
