@@ -26,6 +26,8 @@ dirs = 	testppack \
 	showgo \
 	slices \
 	struct \
+	tcp01 \
+	tcp02 \
 	type_String \
 	vector_01 \
 
