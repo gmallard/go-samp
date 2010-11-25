@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-  "time"
+	"time"
 )
 
 func worker(c chan int) {
@@ -18,16 +18,16 @@ func worker(c chan int) {
 // Tests to see if a channel will block.
 //
 func main() {
-  fmt.Println("Start ....")
+	fmt.Println("Start ....")
 	fmt.Println("===========")
 	//
 	var tosend int = 1
 	c := make(chan int)
 	go func() {
-		time.Sleep(5*1e9)
+		time.Sleep(5 * 1e9)
 		x := <-c
 		fmt.Println("received", x)
-	}();
+	}()
 	//
 	fmt.Println("sending", tosend)
 	c <- tosend
@@ -48,6 +48,5 @@ func main() {
 	fmt.Println("sent3", tosend, ok)
 	time.Sleep(6 * 1e9)
 	//
-  fmt.Println("End ....")
+	fmt.Println("End ....")
 }
-

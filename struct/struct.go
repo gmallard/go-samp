@@ -1,12 +1,18 @@
 package main
+
 import "fmt"
 // Structs: semple declaration of data fields.  Like C.  Memory layout.
 
 // basic section:
 // A variable is a struct
-var point struct { x, y float }
+var point struct {
+	x, y float
+}
 // More usual
-type Point struct { x, y float }
+type Point struct {
+	x, y float
+}
+
 var pa Point
 // Or a pointer
 var paPtr *Point = new(Point)
@@ -22,27 +28,40 @@ type B struct {
 }
 //
 type C struct {
-	x float;
-	int;
-	string;
+	x float
+	int
+	string
 }
 
 // conflicts section:
 //
-type CCSA struct { a int }
-type CCSB struct { a, b int }
-type CCSC struct { CCSA; CCSB }
+type CCSA struct {
+	a int
+}
+type CCSB struct {
+	a, b int
+}
+type CCSC struct {
+	CCSA
+	CCSB
+}
+
 var c CCSC
-type CCSD struct { CCSB; b float }
+
+type CCSD struct {
+	CCSB
+	b float
+}
+
 var d CCSD
 
 // literals section
 //
 var la = CCSA{123}
-var lb = CCSB{456,789}
+var lb = CCSB{456, 789}
 // Note: full definition of inners structs is required
-var lc = CCSC{CCSA{4}, CCSB{5,6}}
-var ld = CCSD{CCSB{6,7}, 1.618}
+var lc = CCSC{CCSA{4}, CCSB{5, 6}}
+var ld = CCSD{CCSB{6, 7}, 1.618}
 
 func basics() {
 	//
@@ -81,40 +100,40 @@ func basics() {
 func anons() {
 	// Acts like B has four fields
 	// Note: literals need detail
-	b := B{ A{ 1, 2 }, 3.0, 4.0 };
-	fmt.Println(b.ax, b.ay, b.bx, b.by);
-	fmt.Println(b.A);
+	b := B{A{1, 2}, 3.0, 4.0}
+	fmt.Println(b.ax, b.ay, b.bx, b.by)
+	fmt.Println(b.A)
 	// Access by type name .....
-	c := C{ 3.5, 7, "hello" };
+	c := C{3.5, 7, "hello"}
 	fmt.Println(c.x, c.int, c.string)
 }
 
 func conflicts() {
 	//
-	fmt.Println(c);
-	fmt.Printf("CB: %d\n", c.b)	// c.b has no conflict
+	fmt.Println(c)
+	fmt.Printf("CB: %d\n", c.b) // c.b has no conflict
 	// fmt.Printf("CA: %d\n", c.a)	// Compile error, ambiguous
-	fmt.Printf("cCA: %d\n", c.CCSA.a)	// OK
-	fmt.Printf("cBA: %d\n", c.CCSB.a)	// OK
+	fmt.Printf("cCA: %d\n", c.CCSA.a) // OK
+	fmt.Printf("cBA: %d\n", c.CCSB.a) // OK
 	//
-	fmt.Printf("DB: %g\n", d.b)	// d.b has no conflict, it's the float
-	fmt.Printf("DBB: %d\n", d.CCSB.b)	// d.CCSB.b has no conflict
+	fmt.Printf("DB: %g\n", d.b)       // d.b has no conflict, it's the float
+	fmt.Printf("DBB: %d\n", d.CCSB.b) // d.CCSB.b has no conflict
 }
 
 func literals() {
 	//
-	fmt.Println(la);
+	fmt.Println(la)
 	fmt.Printf("la.a: %d\n", la.a)
 	//
-	fmt.Println(lb);
+	fmt.Println(lb)
 	fmt.Printf("lb.a: %d lb.b%d\n", lb.a, lb.b)
 	//
-	fmt.Println(lc);
+	fmt.Println(lc)
 	fmt.Printf("lc.A.a: %d\n", lc.CCSA.a)
 	fmt.Printf("lc.B.a: %d\n", lc.CCSB.a)
 	fmt.Printf("lc.b: %d\n", lc.b)
 	//
-	fmt.Println(ld);
+	fmt.Println(ld)
 	fmt.Printf("ld.B.a: %d\n", ld.CCSB.a)
 	fmt.Printf("ld.B.b: %d\n", ld.CCSB.b)
 	fmt.Printf("ld.b: %g\n", ld.b)
@@ -122,11 +141,10 @@ func literals() {
 
 //
 func main() {
-  fmt.Println("Start .....")
+	fmt.Println("Start .....")
 	basics()
 	anons()
 	conflicts()
 	literals()
-  fmt.Println("End .....")
+	fmt.Println("End .....")
 }
-

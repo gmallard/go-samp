@@ -9,7 +9,7 @@ func getData(tcpConn *net.TCPConn, done chan bool) {
 	for {
 		var buffer = make([]byte, 256)
 		bytesRead, err := tcpConn.Read(buffer)
-		if (err != nil) {
+		if err != nil {
 			fmt.Printf("Error = %v\n", err)
 			break
 		}
@@ -22,7 +22,7 @@ func getData(tcpConn *net.TCPConn, done chan bool) {
 	}
 	//
 	err := tcpConn.Close()
-	if (err != nil) {
+	if err != nil {
 		fmt.Printf("Error = %v\n", err)
 		panic("wtf05")
 	}
@@ -31,12 +31,12 @@ func getData(tcpConn *net.TCPConn, done chan bool) {
 }
 
 func main() {
-  fmt.Println("Start .....")
+	fmt.Println("Start .....")
 	//
 	// Get a TCP Address
 	//
 	tcpAddress, err := net.ResolveTCPAddr("localhost:45678")
-	if (err != nil) {
+	if err != nil {
 		fmt.Printf("Error = %v\n", err)
 		panic("wtf01")
 	}
@@ -45,7 +45,7 @@ func main() {
 	// Get a TCP Listener
 	//
 	listener, err := net.ListenTCP("tcp", tcpAddress)
-	if (err != nil) {
+	if err != nil {
 		fmt.Printf("Error = %v\n", err)
 		panic("wtf02")
 	}
@@ -55,7 +55,7 @@ func main() {
 	//
 	for {
 		tcpConn, err := listener.AcceptTCP()
-		if (err != nil) {
+		if err != nil {
 			fmt.Printf("Error = %v\n", err)
 			panic("wtf03")
 		}
@@ -66,11 +66,10 @@ func main() {
 	// <- waitFor
 	//
 	err = listener.Close()
-	if (err != nil) {
+	if err != nil {
 		fmt.Printf("Error = %v\n", err)
 		panic("wtf06")
 	}
 	//
-  fmt.Println("End .....")
+	fmt.Println("End .....")
 }
-

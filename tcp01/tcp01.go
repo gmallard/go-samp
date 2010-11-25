@@ -6,12 +6,12 @@ import (
 )
 
 func main() {
-  fmt.Println("Start .....")
+	fmt.Println("Start .....")
 	//
 	// Get a TCP Address
 	//
 	tcpAddress, err := net.ResolveTCPAddr("localhost:45678")
-	if (err != nil) {
+	if err != nil {
 		fmt.Printf("Error = %v\n", err)
 		panic("wtf01")
 	}
@@ -20,7 +20,7 @@ func main() {
 	// Get a TCP Listener
 	//
 	listener, err := net.ListenTCP("tcp", tcpAddress)
-	if (err != nil) {
+	if err != nil {
 		fmt.Printf("Error = %v\n", err)
 		panic("wtf02")
 	}
@@ -29,7 +29,7 @@ func main() {
 	// Accept a connection.
 	//
 	tcpConn, err := listener.AcceptTCP()
-	if (err != nil) {
+	if err != nil {
 		fmt.Printf("Error = %v\n", err)
 		panic("wtf03")
 	}
@@ -37,7 +37,7 @@ func main() {
 	//
 	var buffer = make([]byte, 256)
 	bytesRead, err := tcpConn.Read(buffer)
-	if (err != nil) {
+	if err != nil {
 		fmt.Printf("Error = %v\n", err)
 		panic("wtf04")
 	}
@@ -47,17 +47,16 @@ func main() {
 	fmt.Println("Data Read", data)
 	//
 	err = tcpConn.Close()
-	if (err != nil) {
+	if err != nil {
 		fmt.Printf("Error = %v\n", err)
 		panic("wtf05")
 	}
 	//
 	err = listener.Close()
-	if (err != nil) {
+	if err != nil {
 		fmt.Printf("Error = %v\n", err)
 		panic("wtf06")
 	}
 	//
-  fmt.Println("End .....")
+	fmt.Println("End .....")
 }
-

@@ -1,6 +1,6 @@
 package main
 //
-import ( 
+import (
 	"fmt"
 	"numbers"
 )
@@ -12,4 +12,3 @@ func main() {
 	v := numbers.Double(6)
 	fmt.Printf("6 doubled: %d\n", v)
 }
-

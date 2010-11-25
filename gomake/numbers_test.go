@@ -35,4 +35,3 @@ func TestDouble(t *testing.T) {
 		}
 	}
 }
-

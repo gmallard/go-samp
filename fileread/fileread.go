@@ -10,11 +10,11 @@ import (
 )
 
 func main() {
-  fmt.Println("Start....")
+	fmt.Println("Start....")
 
 	// Open
 	// f is *File.
-	f, err := os.Open("./data.txt",os.O_RDONLY, 0644)
+	f, err := os.Open("./data.txt", os.O_RDONLY, 0644)
 	if err != nil {
 		fmt.Printf("\nOpen Error => %s\n\n", err)
 		os.Exit(1)
@@ -25,11 +25,11 @@ func main() {
 	reader := bufio.NewReader(f) //Buffered reader
 	for true {
 		line, errr := reader.ReadString('\n')
-		if (errr == os.EOF) {
+		if errr == os.EOF {
 			break
 		}
 		line = strings.Replace(line, "\n", "", -1) // chomp, sort of ....
-		if (line == "") {
+		if line == "" {
 			break
 		}
 		fmt.Printf("Next Line Read: |%s|\n", line)
@@ -42,6 +42,5 @@ func main() {
 		os.Exit(1)
 	}
 	//
-  fmt.Println("End....")
+	fmt.Println("End....")
 }
-

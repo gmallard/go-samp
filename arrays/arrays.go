@@ -35,21 +35,21 @@ func main() {
 	//
 	// Declared array
 	//
-	var ar [3] int
+	var ar [3]int
 	f(ar)
 	fp(&ar)
 	//
 	// Array Literal
 	//
-	var arb = [3]int{ 1, 2, 3 }
+	var arb = [3]int{1, 2, 3}
 	f(arb)
 	fp(&arb)
 	//
 	// This is actually/technically a slice literal, not an array literal.
 	//
-	var arc = []int{ 1, 2, 3, 4, 5 }
-	fa(arc)			// Note, different function needed (signature)
-	fap(&arc)		// ....
+	var arc = []int{1, 2, 3, 4, 5}
+	fa(arc)   // Note, different function needed (signature)
+	fap(&arc) // ....
 	//
 	// ------------------------------------------------------------------------
 	//
@@ -80,4 +80,3 @@ func main() {
 		fmt.Printf("%d\n", narb)
 	}
 }
-

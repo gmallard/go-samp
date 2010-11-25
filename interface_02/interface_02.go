@@ -1,7 +1,9 @@
 package main
+
 import (
 	"fmt"
 )
+
 type MyFloat float
 
 //
@@ -11,7 +13,9 @@ type MyFloat float
 // After some thinking, I guess this is what is (might be?) intended:
 //
 func (f MyFloat) Abs() MyFloat {
-	if f < 0.0 { return -f }
+	if f < 0.0 {
+		return -f
+	}
 	return f
 }
 //
@@ -19,12 +23,14 @@ func (f MyFloat) Abs() MyFloat {
 // approach/technique.  Perhaps it is what is intended in the PDF.
 //
 func (f MyFloat) Abs2() float {
-	if f < 0.0 { return float(-f) }
+	if f < 0.0 {
+		return float(-f)
+	}
 	return float(f)
 }
 //
 func main() {
-  fmt.Println("Start .....")
+	fmt.Println("Start .....")
 	var mfa MyFloat
 	fmt.Printf("%v\n", mfa)
 
@@ -38,7 +44,7 @@ func main() {
 	fmt.Printf("Abs: %v\n", mfa.Abs())
 
 	// Sanity check
-	var ftrya float;
+	var ftrya float
 	fmt.Printf("TryA: %v\n", ftrya)
 
 	// Coerced conversion
@@ -57,6 +63,5 @@ func main() {
 	fmt.Printf("MFC: %v\n", mfc)
 
 	//
-  fmt.Println("End .....")
+	fmt.Println("End .....")
 }
-

@@ -14,9 +14,9 @@ import "fmt"
 
 type Day int
 
-var dayName = []string {
+var dayName = []string{
 	"Sunday", "Monday", "Tuesday", "Wednesday",
-	"Thursday", "Friday", "Saturday", 
+	"Thursday", "Friday", "Saturday",
 }
 
 func (day Day) String() string {
@@ -24,22 +24,21 @@ func (day Day) String() string {
 }
 
 const (
-	Sunday Day = iota;
-	Monday;
-	Tuesday;
-	Wednesday;
-	Thursday;
-	Friday;
-	Saturday;
+	Sunday Day = iota
+	Monday
+	Tuesday
+	Wednesday
+	Thursday
+	Friday
+	Saturday
 )
 
 func main() {
-  fmt.Println("Start .....")
+	fmt.Println("Start .....")
 	//
-	var day = Tuesday;
+	var day = Tuesday
 	fmt.Print(day.String())
 	fmt.Println()
 	fmt.Println(0, Sunday, 1, Monday)
-  fmt.Println("End .....")
+	fmt.Println("End .....")
 }
-

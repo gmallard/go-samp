@@ -9,7 +9,7 @@ func main() {
 	//
 	// Create a map using a literal.  Access a particular vlaue using the key.
 	//
-  var m = map[string]float { "1":1, "pi":3.1415 }
+	var m = map[string]float{"1": 1, "pi": 3.1415}
 	fmt.Printf("%g\n", m["pi"])
 	//
 	// Add a key and value.
@@ -24,16 +24,16 @@ func main() {
 	//
 	// Determine if a key is present in the map.
 	//
-	value, present = m["1"]									// value is there
-	fmt.Printf("%g\t%t\n", value, present)	// present=true
-	value, present = m["6"]									// value is not there
-	fmt.Printf("%g\t%t\n", value, present)	// present=false
+	value, present = m["1"]                // value is there
+	fmt.Printf("%g\t%t\n", value, present) // present=true
+	value, present = m["6"]                // value is not there
+	fmt.Printf("%g\t%t\n", value, present) // present=false
 	//
 	// Show how not using the ", OK" format works.
 	//
 	fmt.Println()
-	crash := m["nothere"]			// Examples said crash.  Different I suppose.
-	fmt.Printf("%g\n", crash)	// Gives zero value for type
+	crash := m["nothere"]     // Examples said crash.  Different I suppose.
+	fmt.Printf("%g\n", crash) // Gives zero value for type
 	//
 	// Loop over all map members/elements.
 	//
@@ -53,11 +53,10 @@ func main() {
 	//
 	// Delete a element/member.
 	//
-	value, present = m["2"]									// value is there
-	fmt.Printf("%g\t%t\n", value, present)	// present=true
-	m["2"] = 0, false;		// Delete, use the zero value for the values, and false
-	value, present = m["2"]									// value is not there
-	fmt.Printf("%g\t%t\n", value, present)	// present=false
+	value, present = m["2"]                // value is there
+	fmt.Printf("%g\t%t\n", value, present) // present=true
+	m["2"] = 0, false                      // Delete, use the zero value for the values, and false
+	value, present = m["2"]                // value is not there
+	fmt.Printf("%g\t%t\n", value, present) // present=false
 	fmt.Println()
 }
-

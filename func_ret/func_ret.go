@@ -32,12 +32,12 @@ func MySqrt(f float) (v float, ok bool) {
 // may or may not be what you actually want!
 //
 func MySqrt(f float64) (v float64, ok bool) {
-	if f >= 0 { 
-		v,ok = math.Sqrt(f),true 
+	if f >= 0 {
+		v, ok = math.Sqrt(f), true
 	} else {
-		v,ok = 0,false 
+		v, ok = 0, false
 	}
-	return v,ok
+	return v, ok
 }
 //
 // And there are other, more or less suitable work arounds as well.
@@ -45,18 +45,22 @@ func MySqrt(f float64) (v float64, ok bool) {
 
 // Return with no values
 func MySqrt2(f float64) (v float64, ok bool) {
-	if f >= 0 { v,ok = math.Sqrt(f),true }
+	if f >= 0 {
+		v, ok = math.Sqrt(f), true
+	}
 	return // no values, returns default: v, ok
 }
 
 // Return with no values
 func MySqrt3(f float64) (v float64, ok bool) {
-	if f < 0 { return } // error case
-	return math.Sqrt(f),true
+	if f < 0 {
+		return
+	} // error case
+	return math.Sqrt(f), true
 }
 // ----------------
 func main() {
-  fmt.Println("Start....")
+	fmt.Println("Start....")
 
 	var fa float64 = 1.234567
 	var rv float64
@@ -75,6 +79,5 @@ func main() {
 	rv, ok = MySqrt3(fa)
 	fmt.Printf("SQR301: %g\t%t\n", rv, ok)
 
-  fmt.Println("End....")
+	fmt.Println("End....")
 }
-

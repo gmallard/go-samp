@@ -10,12 +10,12 @@ import (
 // premature end to the example.
 //
 func IsReady(what string, minutes int64) {
-	time.Sleep(minutes * 60*1e9)
+	time.Sleep(minutes * 60 * 1e9)
 	fmt.Println(what, "is ready")
 }
 
 func main() {
-  fmt.Println("Starting .....")
+	fmt.Println("Starting .....")
 	//
 	go IsReady("tea", 6)
 	go IsReady("coffee", 2)
@@ -25,6 +25,5 @@ func main() {
 	time.Sleep(6.25 * 60 * 1e9)
 
 	//
-  fmt.Println("Ending .....")
+	fmt.Println("Ending .....")
 }
-

@@ -10,9 +10,13 @@ b) use of := in functions
 
 */
 func fib(i int) (result int, flag bool) {
-	if i < 0 { return i, false }
+	if i < 0 {
+		return i, false
+	}
 	result, flag = i, true
-	if i <= 1 { return }
+	if i <= 1 {
+		return
+	}
 	//
 	resm1, flagm1 := fib(i - 1)
 	resm2, flagm2 := fib(i - 2)
@@ -28,4 +32,3 @@ func main() {
 		fmt.Printf("%d\t%d\t%t\n", ni, result, flag)
 	}
 }
-

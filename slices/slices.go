@@ -18,9 +18,9 @@ func appendToSlice(i int, sl []int) []int {
 	// Exceeding capacity should be handled, but is not:
 	// if len(sl) == cap(sl) { error(...) }
 	//
-	n := len(sl);		// Current len
-	sl = sl[0:n+1]; // extend length by 1
-	sl[n] = i;			// store caller's value
+	n := len(sl)     // Current len
+	sl = sl[0 : n+1] // extend length by 1
+	sl[n] = i        // store caller's value
 	return sl
 }
 
@@ -69,11 +69,10 @@ func main() {
 	// var a = &ar[5:7] // reference to subarray {5,6}
 	// fmt.Println(a)
 	//
-	var sl = make([]int, 0, 100)	// len 0, cap 100
+	var sl = make([]int, 0, 100) // len 0, cap 100
 	prtsl_int(sl)
-	sl = appendToSlice(123, sl)	
+	sl = appendToSlice(123, sl)
 	prtsl_int(sl)
-	sl = appendToSlice(456, sl)	
+	sl = appendToSlice(456, sl)
 	prtsl_int(sl)
 }
-

@@ -5,12 +5,12 @@ import (
 	"container/vector"
 )
 
-func procf(af interface {}) {
+func procf(af interface{}) {
 	fmt.Printf("ProcN: %g\n", af)
 }
 
 func main() {
-  fmt.Println("Start ...")
+	fmt.Println("Start ...")
 	//
 	var v = new(vector.Vector)
 	var f float = 1234.5
@@ -33,13 +33,14 @@ func main() {
 		fmt.Printf("ELTn: %g\n", v.At(i))
 	}
 	//
-	v.Do(procf)	// Call for all elements
+	v.Do(procf) // Call for all elements
 	//
-	if y != 1234. {} // OK, compiles ( compile-time err in PDF ?? )
-	if y.(float) != 1234. {} // OK, compiles
+	if y != 1234. {
+	} // OK, compiles ( compile-time err in PDF ?? )
+	if y.(float) != 1234. {
+	} // OK, compiles
 	// if y.(int) != 1234 {} // run-time err ->
 	// panic: interface conversion: interface is float, not int
 	//
-  fmt.Println("Bye ...")
+	fmt.Println("Bye ...")
 }
-

@@ -5,7 +5,9 @@ import (
 	"math"
 )
 
-type Point struct { x, y float }
+type Point struct {
+	x, y float
+}
 //
 func (p *Point) Abs() float {
 	x64 := float64(p.x)
@@ -35,29 +37,30 @@ type MyFloat float
 
 // This does.
 func (f MyFloat) Abs() float {
-	if f < 0.0 { return float(-f) }
+	if f < 0.0 {
+		return float(-f)
+	}
 	return float(f)
 }
 
 func main() {
-  fmt.Println("Start .....")
+	fmt.Println("Start .....")
 
-	var ai AbsInterface;
+	var ai AbsInterface
 
-	pp := new(Point);
-	fmt.Println(pp.Abs()); // method call
+	pp := new(Point)
+	fmt.Println(pp.Abs()) // method call
 
-	ai = pp; // OK: *Point has Abs()
-	fmt.Println(ai.Abs()); // method call
+	ai = pp               // OK: *Point has Abs()
+	fmt.Println(ai.Abs()) // method call
 
 	// ai = 7.; // compile-time err: float has no Abs()
 
-	ai = MyFloat(-7.)	// OK, MyFloat has Abs()
-	fmt.Println(ai.Abs()); // method call
+	ai = MyFloat(-7.)     // OK, MyFloat has Abs()
+	fmt.Println(ai.Abs()) // method call
 
-	ai = &Point{ 3, 4 };
-	fmt.Println(ai.Abs()); // method call
+	ai = &Point{3, 4}
+	fmt.Println(ai.Abs()) // method call
 
-  fmt.Println("End .....")
+	fmt.Println("End .....")
 }
-

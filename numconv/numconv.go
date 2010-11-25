@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-  fmt.Println("Start .....")
+	fmt.Println("Start .....")
 	//
 	var f64 float64 = 1.23456
 	fmt.Printf("f64: %g\n", f64)
@@ -33,6 +33,5 @@ func main() {
 	f32 = float32(f64)
 	fmt.Printf("f32: %g\n", f32)
 	//
-  fmt.Println("End .....")
+	fmt.Println("End .....")
 }
-
