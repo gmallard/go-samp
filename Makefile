@@ -17,6 +17,7 @@ dirs = 	testppack \
 	httpserv \
 	interface_01 \
 	interface_02 \
+	loghello \
 	maps \
 	methods \
 	multisrc \
