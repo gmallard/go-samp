@@ -27,3 +27,6 @@ $(O_FILES): %.8: %.go
 clean:
 	rm -rf *.[$(OS)o] *.a [$(OS)].out _obj $(TARG) *.8
 
+format:
+	gofmt -w -spaces -tabwidth=2 *.go
+

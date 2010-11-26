@@ -1,7 +1,12 @@
+// Hello world, and pattern for project starts.
+
 package main
 
-import "fmt"
+import (
+	"fmt" //
+)
 
 func main() {
-	fmt.Printf("Hello, 世界\n")
+	fmt.Println("Start...")
+	fmt.Println("End...")
 }
