@@ -35,7 +35,7 @@ dirs = 	testppack \
 
 packlist =	gomake \
 
-.PHONY: $(dirs) $(packlist) packages clean 
+.PHONY: $(dirs) $(packlist) packages clean format
 
 all: $(dirs)
 
@@ -55,6 +55,14 @@ clean:
 	@for i in $(dirs); do \
 	echo $$i; \
 	cd $$i && $(MAKE) clean; \
+	cd ..; \
+	done
+
+
+format:
+	@for i in $(dirs); do \
+	echo $$i; \
+	cd $$i && gofmt -w -spaces -tabwidth=2 *.go; \
 	cd ..; \
 	done
 
