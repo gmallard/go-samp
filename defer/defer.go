@@ -1,4 +1,4 @@
-// Hello world, and pattern for project starts.
+// Demonstrate defer.
 
 package main
 
