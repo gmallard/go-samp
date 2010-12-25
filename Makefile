@@ -19,6 +19,7 @@ dirs = 	testppack \
 	httpserv \
 	interface_01 \
 	interface_02 \
+	list \
 	loghello \
 	maps \
 	methods \
