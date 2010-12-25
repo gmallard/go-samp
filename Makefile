@@ -20,6 +20,7 @@ dirs = 	testppack \
 	interface_01 \
 	interface_02 \
 	list \
+	list_struct \
 	loghello \
 	maps \
 	methods \
