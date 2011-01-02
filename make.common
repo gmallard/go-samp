@@ -1,5 +1,6 @@
 GC = $(GOGC)
 LD = $(GOLD)
+SUFF = $(GOSUFF)
 
 ifndef TARG
 TARG = main
@@ -9,7 +10,7 @@ here = $(shell pwd)
 bottom = $(shell basename $(here))
 
 O_FILES= \
-	$(bottom).8
+	$(bottom).$(SUFF)
 
 all:
 	make $(TARG)
@@ -18,14 +19,14 @@ $(TARG): $(XO_FILES) $(O_FILES)
 	$(LD) -o $@ $(O_FILES)
 	@echo "Done. Executable is: $@"
 
-$(XO_FILES): %.8: %.go
+$(XO_FILES): %.$(SUFF): %.go
 	$(GC) -c $<
 
-$(O_FILES): %.8: %.go
+$(O_FILES): %.$(SUFF): %.go
 	$(GC) -c $<
 
 clean:
-	rm -rf *.[$(OS)o] *.a [$(OS)].out _obj $(TARG) *.8
+	rm -rf *.[$(OS)o] *.a [$(OS)].out _obj $(TARG) *.$(SUFF)
 
 format:
 	gofmt -w -spaces -tabwidth=2 *.go

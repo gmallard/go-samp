@@ -1,6 +1,7 @@
+SUFF = $(GOSUFF)
 
 XO_FILES = \
-	included.8
+	included.$(SUFF)
 
 include ../make.common
 
