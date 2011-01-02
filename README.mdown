@@ -17,9 +17,9 @@ these _go_ programs.
 
 These include:
 
-* the _go_ compiler and linker
+* the _go_ compiler
+* the _go_ linker
 * make
-* an appropriate C compiler, e.g. _gcc_
 
 If you are not familiar with _go_, and want to install it and learn the 
 language, see: 
@@ -35,7 +35,7 @@ go suffix for that architecture.  For the 386 architecture an example is:
 * export GOLD=8l
 * export GOSUFF=8
 
-For the amd64 architecture, and example is:
+For the amd64 architecture, an example is:
 
 * export GOGC=6g
 * export GOLD=6l
@@ -46,7 +46,9 @@ Adjust those as necessary for your system.
 Install
 -------
 
-* clone or fork
+To install all these samples:
+
+* clone from or fork on github
 * _cd_ to your base git repo directory
 * make packages
 * make
