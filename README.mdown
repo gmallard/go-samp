@@ -28,7 +28,7 @@ language, see:
 
 In order to use the _make_ system for these samples, you will need to have
 several environment variables defined.  These environment variables define
-the executable name for the _go_ cpmpiler and linker as well as the standard
+the executable name for the _go_ compiler and linker as well as the standard
 go suffix for that architecture.  For the 386 architecture an example is:
 
 * export GOGC=8g
