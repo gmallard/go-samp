@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-type MyFloat float
+type MyFloat float32
 
 //
 // The gocourseday2.pdf shows this function definition as:
@@ -22,11 +22,11 @@ func (f MyFloat) Abs() MyFloat {
 // And then the experiments with variable 'ftryb' below suggested this 
 // approach/technique.  Perhaps it is what is intended in the PDF.
 //
-func (f MyFloat) Abs2() float {
+func (f MyFloat) Abs2() float32 {
 	if f < 0.0 {
-		return float(-f)
+		return float32(-f)
 	}
-	return float(f)
+	return float32(f)
 }
 //
 func main() {
@@ -44,12 +44,12 @@ func main() {
 	fmt.Printf("Abs: %v\n", mfa.Abs())
 
 	// Sanity check
-	var ftrya float
+	var ftrya float32
 	fmt.Printf("TryA: %v\n", ftrya)
 
 	// Coerced conversion
-	var ftryb float = 0.0
-	ftryb = float(mfa)
+	var ftryb float32 = 0.0
+	ftryb = float32(mfa)
 	fmt.Printf("TryB: %v\n", ftryb)
 
 	// And use if alternate Abs2() method

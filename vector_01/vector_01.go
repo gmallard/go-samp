@@ -13,7 +13,7 @@ func main() {
 	fmt.Println("Start ...")
 	//
 	var v = new(vector.Vector)
-	var f float = 1234.5
+	var f float32 = 1234.5
 	//
 	v.Push(f)
 	fmt.Printf("Len: %d\n", v.Len())
@@ -37,10 +37,10 @@ func main() {
 	//
 	if y != 1234. {
 	} // OK, compiles ( compile-time err in PDF ?? )
-	if y.(float) != 1234. {
+	if y.(float32) != 1234. {
 	} // OK, compiles
 	// if y.(int) != 1234 {} // run-time err ->
-	// panic: interface conversion: interface is float, not int
+	// panic: interface conversion: interface is float32, not int
 	//
 	fmt.Println("Bye ...")
 }

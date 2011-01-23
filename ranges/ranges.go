@@ -5,7 +5,7 @@ import "fmt"
 func main() {
 	fmt.Println("Start....")
 	//
-	m := map[string]float{"1": 1.0, "pi": 3.1415}
+	m := map[string]float32{"1": 1.0, "pi": 3.1415}
 	for key, value := range m {
 		fmt.Printf("key %s, value %g\n", key, value)
 	}

@@ -6,14 +6,14 @@ import (
 )
 
 type Point struct {
-	x, y float
+	x, y float32
 }
 //
-func (p *Point) Abs() float {
+func (p *Point) Abs() float32 {
 	x64 := float64(p.x)
 	y64 := float64(p.y)
 	r64 := math.Sqrt(x64*x64 + y64*y64)
-	return float(r64)
+	return float32(r64)
 }
 
 // Point implements this.
@@ -21,13 +21,14 @@ func (p *Point) Abs() float {
 // float64 does not.
 
 type AbsInterface interface {
-	Abs() float // receiver is implied
+	Abs() float32 // receiver is implied
 }
 
 
-type MyFloat float
+type MyFloat float32
 
 // This does *NOT* cpmpile ....
+// Even when 'float' was supported ....
 //
 // func (f MyFloat) Abs() float {
 // 	if f < 0.0 { return -f }
@@ -36,11 +37,11 @@ type MyFloat float
 //
 
 // This does.
-func (f MyFloat) Abs() float {
+func (f MyFloat) Abs() float32 {
 	if f < 0.0 {
-		return float(-f)
+		return float32(-f)
 	}
-	return float(f)
+	return float32(f)
 }
 
 func main() {

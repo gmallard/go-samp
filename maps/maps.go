@@ -4,12 +4,12 @@ import "fmt"
 
 func main() {
 	//
-	var value float
+	var value float32
 	var present bool
 	//
 	// Create a map using a literal.  Access a particular vlaue using the key.
 	//
-	var m = map[string]float{"1": 1, "pi": 3.1415}
+	var m = map[string]float32{"1": 1, "pi": 3.1415}
 	fmt.Printf("%g\n", m["pi"])
 	//
 	// Add a key and value.

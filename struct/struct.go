@@ -6,11 +6,11 @@ import "fmt"
 // basic section:
 // A variable is a struct
 var point struct {
-	x, y float
+	x, y float32
 }
 // More usual
 type Point struct {
-	x, y float
+	x, y float32
 }
 
 var pa Point
@@ -24,11 +24,11 @@ type A struct {
 }
 type B struct {
 	A
-	bx, by float
+	bx, by float32
 }
 //
 type C struct {
-	x float
+	x float32
 	int
 	string
 }
@@ -50,7 +50,7 @@ var c CCSC
 
 type CCSD struct {
 	CCSB
-	b float
+	b float32
 }
 
 var d CCSD
@@ -116,7 +116,7 @@ func conflicts() {
 	fmt.Printf("cCA: %d\n", c.CCSA.a) // OK
 	fmt.Printf("cBA: %d\n", c.CCSB.a) // OK
 	//
-	fmt.Printf("DB: %g\n", d.b)       // d.b has no conflict, it's the float
+	fmt.Printf("DB: %g\n", d.b)       // d.b has no conflict, it's the float32
 	fmt.Printf("DBB: %d\n", d.CCSB.b) // d.CCSB.b has no conflict
 }
 

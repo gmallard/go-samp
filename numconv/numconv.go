@@ -16,7 +16,7 @@ func main() {
 	var f32 float32 = 3.45678
 	fmt.Printf("f32: %g\n", f32)
 	//
-	var f float = 5.6789
+	var f float32 = 5.6789
 	fmt.Printf("f: %g\n", f)
 	//
 	f64 = float64(f32)
