@@ -10,7 +10,12 @@ func worker(c chan int) {
 	var x int = -1
 	var ok bool = false
 	time.Sleep(5 * 1e9)
-	x, ok = <-c
+  select {
+    case x = <- c:
+      ok = true
+    default:
+      ok = false
+  }
 	fmt.Printf("received %d %t\n", x, ok)
 }
 
@@ -44,7 +49,13 @@ func main() {
 	tosend = 3
 	buf := make(chan int, 1)
 	go worker(buf) //
-	ok := buf <- tosend
+  var ok bool = false
+  select {
+    case buf <- tosend:
+      ok = true
+    default:
+      ok = false      
+  }
 	fmt.Println("sent3", tosend, ok)
 	time.Sleep(6 * 1e9)
 	//
