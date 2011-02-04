@@ -10,7 +10,7 @@ experiments triggered by documentation provided in the go distribution.
 Prerequisites
 -------------
 
-In essence, you need a working _go_ environment, and a few small aditions.
+In essence, you need a working _go_ environment, and a few small additions.
 
 You need certain basic functions available to you in order to build and run
 these _go_ programs.
