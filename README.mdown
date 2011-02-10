@@ -24,7 +24,7 @@ These include:
 If you are not familiar with _go_, and want to install it and learn the 
 language, see: 
 
-	http://golang.org
+*	http://golang.org
 
 In order to use the _make_ system for these samples, you will need to have
 several environment variables defined.  These environment variables define
@@ -52,4 +52,11 @@ To install all these samples:
 * _cd_ to your base git repo directory
 * make packages
 * make
+
+Other Education Resources
+-------------------------
+
+* http://www.slideshare.net/alexander.uni.fiis/learning-go-01
+
+
 
