@@ -4,9 +4,16 @@ import (
 	"fmt"
 	"math"
 )
-
 //
-// There are a number of examples in the gocourceday#
+// As of Feb 2011, there is an additional difficulty with many of the
+// examples publushed in the gocourseday# PDFs (as well as many other
+// go examples).  This is:
+//
+// type 'float' has been totally removed from the language!
+//
+// ------------------------------
+//
+// There are a number of examples in the gocourseday#
 // PDF files (supplied with the go distribution) that will not compile.
 //
 // One example (gocourseday1.pdf, page 45) is:
@@ -58,6 +65,9 @@ func MySqrt3(f float64) (v float64, ok bool) {
 	} // error case
 	return math.Sqrt(f), true
 }
+// ----------------
+// Show function returns with multiple return values, and the use of
+// 'default' returns.
 // ----------------
 func main() {
 	fmt.Println("Start....")
