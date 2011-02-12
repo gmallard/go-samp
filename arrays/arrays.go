@@ -55,18 +55,24 @@ func main() {
 	//
 	// Array Literal, implied length of 5.
 	//
+	var ard = [...]int{1, 3, 5, 7, 9}
+	//
 	// This fails to compile:
 	//
-	// var ard = [...]int{ 1, 3, 5, 7, 9 }
 	// fa(ard)
-	// fap(&ard)
 	//
 	// with error messages:
 	// ..... cannot use ard (type [5]int) as type []int in function argument
+	//
+	// This fails to compile:
+	//
+	// fap(&ard)
+	//
+	// with error messages:
 	// ..... cannot use &ard (type *[5]int) as type *[]int in function argument
 	//
 	// ------------------------------------------------------------------------
-	fmt.Printf("%d\n", len(arb))
+	fmt.Printf("%d\n", len(ard))
 	//
 	// Loop through array - one
 	//
