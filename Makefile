@@ -11,6 +11,7 @@ dirs = 	testppack \
 	fib_embellished \
 	fib_userop \
 	fileread \
+  force_type \
 	func_lit \
 	func_ret \
 	gortns01 \
