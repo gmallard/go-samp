@@ -13,19 +13,19 @@ b) use of := in functions
 //     ...,-8, 5,-3, 2,-1, 1, 0, 1, 1, 2, 3, 5, 8,...
 //
 func fib(i int) (result int, flag bool) {
-  // The basics:  0 and 1
+	// The basics:  0 and 1
 	if i == 0 || i == 1 {
 		return i, true
 	}
-  // For negative integers.
-  if i < 0 {
-    posfib, ok := fib(-1 * i)
-    // See formulae at the above reference.
-    if (-1 * i + 1) % 2 != 0 {
-      return -posfib, ok
-    }
-    return posfib, ok
-  }
+	// For negative integers.
+	if i < 0 {
+		posfib, ok := fib(-1 * i)
+		// See formulae at the above reference.
+		if (-1*i+1)%2 != 0 {
+			return -posfib, ok
+		}
+		return posfib, ok
+	}
 	//
 	resm1, flagm1 := fib(i - 1)
 	resm2, flagm2 := fib(i - 2)
