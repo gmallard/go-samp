@@ -6,20 +6,29 @@ import (
 )
 //
 // gocourseday3.pdf - simple synchronous channel example.
+// Slightly embellished.
 //
 func main() {
 	fmt.Println("Start ....")
-
-	c := make(chan int)
+	//
+	syn_chan := make(chan int)		// Synchronous: no buffering specified
+	done_chan := make(chan bool)	// Also synchronous
 	go func() {
-		time.Sleep(60 * 1e9)
-		x := <-c
-		fmt.Println("received", x)
+		time.Sleep(2 * 1e9)
+		fmt.Println("receiver is up")
+		x := <-syn_chan							// Receive.  Will block until data received
+		fmt.Println("starting work, received", x)
+		time.Sleep(int64(x) * 1e9)					// Simulate work
+		fmt.Println("work complete")
+		done_chan <- true						// Signal done
 	}()
 	//
-	fmt.Println("sending", 10)
-	c <- 10
-	fmt.Println("sent", 10)
+	fmt.Println("sending", 5)
+	syn_chan <- 5								// Send.  Will block until a receive complete
+	fmt.Println("sent", 5)
+	fmt.Println("waiting for complete work")
+	done_flag := <-done_chan
+	fmt.Println("done is:", done_flag)
 	//
 	fmt.Println("End ....")
 }
