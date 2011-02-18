@@ -32,6 +32,7 @@ dirs = 	testppack \
 	showgo \
 	slices \
 	stringlens \
+	strings_utils \
 	struct \
 	tcp01 \
 	tcp02 \
