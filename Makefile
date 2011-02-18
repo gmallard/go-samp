@@ -7,6 +7,7 @@ dirs = 	testppack \
 	chansvr2 \
 	chantest \
   defer \
+  envshow \
 	fib \
 	fib_embellished \
 	fib_userop \
