@@ -27,6 +27,7 @@ dirs = 	testppack \
 	maps \
 	methods \
 	multisrc \
+	netcon \
 	numconv \
 	oltesta \
 	ranges \
