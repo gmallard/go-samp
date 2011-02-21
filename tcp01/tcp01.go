@@ -1,9 +1,33 @@
+//
 package main
 
 import (
 	"fmt"
 	"net"
 )
+
+//
+// 'Tested' using 'telnet'
+//
+func runReads(tcpConn *net.TCPConn) {
+	for {
+		var buffer = make([]byte, 256)
+		bytesRead, err := tcpConn.Read(buffer)
+		if err != nil {
+			fmt.Printf("Error = %v\n", err)
+			panic("wtf04")
+		}
+		//
+		fmt.Println("Bytes Read", bytesRead)
+		var data = string(buffer[0:bytesRead])
+		fmt.Printf("Data Read: |%q|\n", data)
+		// The \r in this data from telnet is a bit surprising ...
+		if data == "quit\r\n" {
+			fmt.Println("Breaking....")
+			break
+		}
+	}
+}
 
 func main() {
 	fmt.Println("Start .....")
@@ -35,16 +59,7 @@ func main() {
 	}
 	fmt.Printf("connection = %v\n", tcpConn)
 	//
-	var buffer = make([]byte, 256)
-	bytesRead, err := tcpConn.Read(buffer)
-	if err != nil {
-		fmt.Printf("Error = %v\n", err)
-		panic("wtf04")
-	}
-	//
-	fmt.Println("Bytes Read", bytesRead)
-	var data = string(buffer[0:bytesRead])
-	fmt.Println("Data Read", data)
+	runReads(tcpConn)
 	//
 	err = tcpConn.Close()
 	if err != nil {
