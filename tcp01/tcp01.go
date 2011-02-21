@@ -4,22 +4,23 @@ package main
 import (
 	"fmt"
 	"net"
+	"bufio"
 )
 
 //
 // 'Tested' using 'telnet'
 //
 func runReads(tcpConn *net.TCPConn) {
+	br := bufio.NewReader(tcpConn)
 	for {
-		var buffer = make([]byte, 256)
-		bytesRead, err := tcpConn.Read(buffer)
+		buffer, err := br.ReadBytes('\n')	// '\n' is delimiter
 		if err != nil {
 			fmt.Printf("Error = %v\n", err)
 			panic("wtf04")
 		}
 		//
-		fmt.Println("Bytes Read", bytesRead)
-		var data = string(buffer[0:bytesRead])
+		fmt.Printf("Bytes Read: %d\n", len(buffer))
+		var data = string(buffer)
 		fmt.Printf("Data Read: |%q|\n", data)
 		// The \r in this data from telnet is a bit surprising ...
 		if data == "quit\r\n" {
