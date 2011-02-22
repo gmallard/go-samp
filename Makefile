@@ -1,10 +1,11 @@
 
 dirs = 	testppack \
 	arrays \
-	chansyn \
+	chanrange \
 	chanasyn \
 	chansvr1 \
 	chansvr2 \
+	chansyn \
 	chantest \
   defer \
   envshow \
