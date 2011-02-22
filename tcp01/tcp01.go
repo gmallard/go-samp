@@ -8,6 +8,7 @@ import (
 )
 
 //
+// A TCP 'echo' example.
 // 'Tested' using 'telnet'
 //
 func runReads(tcpConn *net.TCPConn) {
@@ -22,6 +23,11 @@ func runReads(tcpConn *net.TCPConn) {
 		fmt.Printf("Bytes Read: %d\n", len(buffer))
 		var data = string(buffer)
 		fmt.Printf("Data Read: |%q|\n", data)
+
+		// This is now an 'echo' example.
+		out := "echo: " + data
+		tcpConn.Write([]byte(out))
+
 		// The \r in this data from telnet is a bit surprising ...
 		if data == "quit\r\n" {
 			fmt.Println("Breaking....")
