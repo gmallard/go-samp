@@ -9,15 +9,19 @@ import (
 
 //
 // A TCP 'echo' example.
+// Demonstrates using a timeout, and a 'graceful' shutdown if one occurs.
 // 'Tested' using 'telnet'
 //
-func runReads(tcpConn *net.TCPConn) {
+func runReads(tcpConn *net.TCPConn) (bool) {
 	br := bufio.NewReader(tcpConn)
 	for {
 		buffer, err := br.ReadBytes('\n')	// '\n' is delimiter
+		// If the read times out, this prints something like:
+		// Error = read tcp 127.0.0.1:57609: resource temporarily unavailable
 		if err != nil {
 			fmt.Printf("Error = %v\n", err)
-			panic("wtf04")
+			return false
+			// panic("wtf04")
 		}
 		//
 		fmt.Printf("Bytes Read: %d\n", len(buffer))
@@ -34,6 +38,7 @@ func runReads(tcpConn *net.TCPConn) {
 			break
 		}
 	}
+	return true
 }
 
 func main() {
@@ -66,7 +71,11 @@ func main() {
 	}
 	fmt.Printf("connection = %v\n", tcpConn)
 	//
-	runReads(tcpConn)
+	// Set a timeout value
+	tcpConn.SetReadTimeout(30 * 1e9) // 30 seconds
+	//
+	checkVal := runReads(tcpConn)
+	fmt.Println("CheckVal", checkVal)
 	//
 	err = tcpConn.Close()
 	if err != nil {
