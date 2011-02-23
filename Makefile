@@ -1,6 +1,7 @@
 
 dirs = 	testppack \
 	arrays \
+	chanloop \
 	chanrange \
 	chanasyn \
 	chansvr1 \
