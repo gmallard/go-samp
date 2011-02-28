@@ -6,7 +6,7 @@ import "fmt"
 
 type Mymss map[string]string
 
-func mapMerge(ma Mymss, mb Mymss, overlay bool) (Mymss) {
+func mapMerge(ma Mymss, mb Mymss, overlay bool) {
 	var present bool
 	for bk, bv := range mb {
 		if overlay {
@@ -18,7 +18,7 @@ func mapMerge(ma Mymss, mb Mymss, overlay bool) (Mymss) {
 			}
 		}
 	}
-	return ma
+	return
 }
 
 func main() {
@@ -36,11 +36,12 @@ func main() {
 		fmt.Printf("Key: %s, Value: %s\n", k, v)
 	}
 	//
-	merged := mapMerge(mss1, mss2, false)
+	mapMerge(mss1, mss2, false)
 	fmt.Println("merged1:")
-	for k, v := range merged {
+	for k, v := range mss1 {
 		fmt.Printf("Key: %s, Value: %s\n", k, v)
 	}
+
 	//
 	var mss3 = Mymss{"c": "cnew", "d": "dv", "e": "ev"}
 	fmt.Println("mss3:")
@@ -48,15 +49,17 @@ func main() {
 		fmt.Printf("Key: %s, Value: %s\n", k, v)
 	}
 	//
-	merged = mapMerge(mss1, mss3, false)
+	mss1 = Mymss{"a": "av", "b": "bv", "c": "cv"} // Reset
+	mapMerge(mss1, mss3, false)
 	fmt.Println("merged2:")
-	for k, v := range merged {
+	for k, v := range mss1 {
 		fmt.Printf("Key: %s, Value: %s\n", k, v)
 	}
 	//
-	merged = mapMerge(mss1, mss3, true)
+	mss1 = Mymss{"a": "av", "b": "bv", "c": "cv"} // Reset
+	mapMerge(mss1, mss3, true)
 	fmt.Println("merged3:")
-	for k, v := range merged {
+	for k, v := range mss1 {
 		fmt.Printf("Key: %s, Value: %s\n", k, v)
 	}
 	//
