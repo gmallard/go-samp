@@ -27,6 +27,7 @@ dirs = 	testppack \
 	list_struct \
 	loghello \
 	maps \
+	maps_ss \
 	methods \
 	multisrc \
 	netcon \
