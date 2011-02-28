@@ -28,6 +28,7 @@ dirs = 	testppack \
 	loghello \
 	maps \
 	maps_ss \
+	maps_merge \
 	methods \
 	multisrc \
 	netcon \
