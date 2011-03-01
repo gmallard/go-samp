@@ -40,6 +40,7 @@ dirs = 	testppack \
 	stringlens \
 	strings_utils \
 	struct \
+	switch_test \
 	tcp01 \
 	tcp02 \
 	tcp03 \
