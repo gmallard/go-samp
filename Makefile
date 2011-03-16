@@ -46,6 +46,7 @@ dirs = 	testppack \
 	tcp03 \
 	tcp04 \
 	type_String \
+	utfconv \
 	vector_01 \
 
 packlist =	gomake \
