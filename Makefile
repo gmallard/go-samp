@@ -49,6 +49,7 @@ dirs = 	testppack \
 	type_String \
 	utfconv \
 	vector_01 \
+	wgroupex \
 
 packlist =	gomake \
 
