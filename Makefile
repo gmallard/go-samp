@@ -73,15 +73,16 @@ packages:
 clean:
 	@for i in $(dirs); do \
 	echo $$i; \
+	curd=`pwd`; \
 	cd $$i && $(MAKE) clean; \
-	cd ..; \
+	cd $$curd; \
 	done
-
 
 format:
 	@for i in $(dirs); do \
 	echo $$i; \
+	curd=`pwd`; \
 	cd $$i && gofmt -w -spaces -tabwidth=2 *.go; \
-	cd ..; \
+	cd $$curd; \
 	done
 
