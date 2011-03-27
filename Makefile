@@ -49,7 +49,7 @@ dirs = 	testppack \
 	type_String \
 	utfconv \
 	vector_01 \
-	wgroupex \
+	gorsynchs/wgroupex \
 
 packlist =	gomake \
 
