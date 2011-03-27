@@ -50,6 +50,7 @@ dirs = 	testppack \
 	utfconv \
 	vector_01 \
 	gorsynchs/wgroupex \
+	gorsynchs/mutexex \
 
 packlist =	gomake \
 
