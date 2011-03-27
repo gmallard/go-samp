@@ -17,6 +17,9 @@ dirs = 	testppack \
   force_type \
 	func_lit \
 	func_ret \
+	gorsynchs/chanex \
+	gorsynchs/mutexex \
+	gorsynchs/wgroupex \
 	gortns01 \
 	hello \
 	hello_small \
@@ -49,8 +52,6 @@ dirs = 	testppack \
 	type_String \
 	utfconv \
 	vector_01 \
-	gorsynchs/wgroupex \
-	gorsynchs/mutexex \
 
 packlist =	gomake \
 
