@@ -11,7 +11,7 @@ import (
 
 func main() {
 	fmt.Println("Start...")
-	conn, err := net.Dial("tcp", "", "localhost:51613")
+	conn, err := net.Dial("tcp", "localhost:51613")
 	//
 	if err != nil {
 		fmt.Printf("Dial Error received: %v\n", err)
