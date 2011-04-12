@@ -14,7 +14,7 @@ func main() {
 
 	// Open
 	// f is *File.
-	f, err := os.Open("./data.txt", os.O_RDONLY, 0644)
+	f, err := os.OpenFile("./data.txt", os.O_RDONLY, 0644)
 	if err != nil {
 		fmt.Printf("\nOpen Error => %s\n\n", err)
 		os.Exit(1)
