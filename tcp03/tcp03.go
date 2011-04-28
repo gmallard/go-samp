@@ -35,7 +35,7 @@ func main() {
 	//
 	// Get a TCP Address
 	//
-	tcpAddress, err := net.ResolveTCPAddr("localhost:45678")
+	tcpAddress, err := net.ResolveTCPAddr("", "localhost:45678")
 	if err != nil {
 		fmt.Printf("Error = %v\n", err)
 		panic("wtf01")
