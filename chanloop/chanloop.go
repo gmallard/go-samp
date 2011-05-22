@@ -2,7 +2,7 @@ package main
 //
 import (
 	"fmt"
-//	"time"
+	//	"time"
 )
 //
 func runner(inc chan int, wc chan bool) {
@@ -13,15 +13,15 @@ func runner(inc chan int, wc chan bool) {
 			break
 		}
 		select {
-			case ival := <-inc:
-				fmt.Println("runner got value", ival)		
-			default:
-				fmt.Println("runner found nothing")
-				dobreak = true
+		case ival := <-inc:
+			fmt.Println("runner got value", ival)
+		default:
+			fmt.Println("runner found nothing")
+			dobreak = true
 		}
 	}
 	//
-	wc <- true	// we are done
+	wc <- true // we are done
 	fmt.Println("runner ending")
 }
 //

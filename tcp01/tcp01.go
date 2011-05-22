@@ -12,10 +12,10 @@ import (
 // Demonstrates using a timeout, and a 'graceful' shutdown if one occurs.
 // 'Tested' using 'telnet'
 //
-func runReads(tcpConn *net.TCPConn) (bool) {
+func runReads(tcpConn *net.TCPConn) bool {
 	br := bufio.NewReader(tcpConn)
 	for {
-		buffer, err := br.ReadBytes('\n')	// '\n' is delimiter
+		buffer, err := br.ReadBytes('\n') // '\n' is delimiter
 		// If the read times out, this prints something like:
 		// Error = read tcp 127.0.0.1:57609: resource temporarily unavailable
 		if err != nil {

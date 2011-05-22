@@ -14,7 +14,7 @@ func runner(inc chan int, wc chan bool) {
 			break
 		}
 	}
-	wc <- true	// we are done
+	wc <- true // we are done
 	fmt.Println("runner ending")
 }
 //

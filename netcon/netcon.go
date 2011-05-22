@@ -3,9 +3,9 @@
 package main
 
 import (
-	"fmt" //
-	"net" //
-	"os" //
+	"fmt"  //
+	"net"  //
+	"os"   //
 	"time" //
 )
 
@@ -18,7 +18,7 @@ func main() {
 		os.Exit(4)
 	}
 	//
-	time.Sleep(5 * 1e9)	// 5 seconds
+	time.Sleep(5 * 1e9) // 5 seconds
 	//
 	err = conn.Close()
 	if err != nil {
