@@ -50,6 +50,7 @@ dirs = 	testppack \
 	tcp03 \
 	tcp04 \
 	type_String \
+	unicloup \
 	utfconv \
 	vector_01 \
 
