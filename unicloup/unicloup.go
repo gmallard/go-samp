@@ -11,7 +11,19 @@ import (
 // http://stackoverflow.com/questions/6162484/why-does-modern-perl-avoid-utf-8-by-default/#6163129
 //
 // I also experimented with this using Ruby 1.9.3, the current tip of trunk.
-// Ruby seems to handle this even less gracefully than go does.
+// Ruby seems to handle this even less gracefully than go does, although
+// the Ruby documentation clearly says: String#upcase and String#downcase
+// operate on the 'ASCII range' only. Thus, the code:
+// "σ".upcase
+// does absolutely nothing.
+//
+// There is an interesting presentation on Unicode work by the PHP development
+// team here:
+// http://www.slideshare.net/andreizm/the-good-the-bad-and-the-ugly-what-happened-to-unicode-and-php-6
+// One of the interesting slides is number 53 where an example showing "Σ"
+// being 'lower case' converted to either "σ" or "ς".  The conclusions of
+// the slide deck are however, discouraging.
+// 
 //
 func main() {
 	fmt.Println("Start...")
