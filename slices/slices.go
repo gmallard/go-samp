@@ -8,7 +8,7 @@ From examples.
 // Print a slice of int's.
 //
 func prtsl_int(a []int) {
-	fmt.Printf("Size: %d, Capacity: %d\n", len(a), cap(a))
+	fmt.Printf("len: %d, cap: %d\n", len(a), cap(a))
 	fmt.Println(a)
 	fmt.Println()
 }
@@ -58,16 +58,12 @@ func main() {
 		fmt.Printf("Next: %d\n", n)
 	}
 	//
-	// var ar = [10]int {1,2,3,4,5,6,7,8,9,10}	// An array, not a slice
-	// fmt.Println(ar)
+  fmt.Println()
+	var ar = [10]int {1,2,3,4,5,6,7,8,9,10}	// An array, not a slice
+	fmt.Println(ar)
 	//
-	// Does not compile.  ?? Direct from GoCourseDay2.pdf ??
-	// var sld = &ar[3:5]		// Pointer to (slice ??)
-	// fmt.Println(sld)
-	// Direct C+P from the PDF:
-	// var ar = [10]int{0,1,2,3,4,5,6,7,8,9}
-	// var a = &ar[5:7] // reference to subarray {5,6}
-	// fmt.Println(a)
+	var sld = ar[3:5]		//
+	fmt.Println(sld)
 	//
 	var sl = make([]int, 0, 100) // len 0, cap 100
 	prtsl_int(sl)
