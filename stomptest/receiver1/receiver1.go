@@ -26,19 +26,10 @@ func main() {
 		// Handle error properly
 	}
 
-  // Send
-  eh := stomp.Header{"header_key": "header_value"} // Extra headers
-  for i := 0; i < 10; i++ {
-	  error = c.Send("/queue/gostomp/pub001", eh, "gostomp message #" + string(i))
-	  if error != nil {
-		  // Handle error properly
-	  }
-  }
-
 	// Receive phase
 	queue_name := "/queue/gostomp/pub001"
   headers := make(stomp.Header) // empty headers
-	error = c.Subscribe(queue_name, headers)
+	_, error = c.Subscribe(queue_name, headers)
 	if error != nil {
 		// Handle error properly
 	}
