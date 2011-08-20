@@ -6,14 +6,12 @@ import (
 	"fmt" //
   "stomp"
   "net"
-  "strconv"
 )
 
 func main() {
 	fmt.Println("Start...")
 
-  //
-  nmsgs := 10000
+  var printMsgs bool = true
 
   // create a net.Conn, and pass that into Connect
 	nc, error := net.Dial("tcp", "localhost:61613")
@@ -30,17 +28,29 @@ func main() {
 
   // Send
   eh := stomp.Header{"header_key": "header_value"} // Extra headers
-  for i := 1; i <= nmsgs; i++ {
-	  error = c.Send("/queue/gostomp/pub001", eh, "gostomp message #" + strconv.Itoa(i))
+  for i := 0; i < 10; i++ {
+	  error = c.Send("/queue/gostomp/pub001", eh, "gostomp message #" + string(i))
 	  if error != nil {
 		  // Handle error properly
 	  }
   }
 
-  error = c.Send("/queue/gostomp/pub001", eh, "***EOF***")
-  if error != nil {
-	  // Handle error properly
-  }
+	// Receive phase
+	queue_name := "/queue/gostomp/pub001"
+  headers := make(stomp.Header) // empty headers
+	error = c.Subscribe(queue_name, headers)
+	if error != nil {
+		// Handle error properly
+	}
+	for input := range c.Stompdata {
+    inmsg := string(input.Message.Data)
+    if printMsgs {
+  		fmt.Println("Next Receive: ", inmsg)
+    }
+		if inmsg == "***EOF***" {
+			break
+		}
+	}
 
   // Disconnect
   nh := stomp.Header{}
