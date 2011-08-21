@@ -12,6 +12,7 @@ func main() {
 	fmt.Println("Start...")
 
   var printMsgs bool = true
+	qname := "/queue/gostomp.srpub"
 
   // create a net.Conn, and pass that into Connect
 	nc, error := net.Dial("tcp", "localhost:61613")
@@ -27,9 +28,8 @@ func main() {
 	}
 
 	// Receive phase
-	queue_name := "/queue/gostomp/pub001"
   headers := make(stomp.Header) // empty headers
-	_, error = c.Subscribe(queue_name, headers)
+	_, error = c.Subscribe(qname, headers)
 	if error != nil {
 		// Handle error properly
 	}

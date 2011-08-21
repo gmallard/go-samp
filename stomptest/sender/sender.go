@@ -13,7 +13,8 @@ func main() {
 	fmt.Println("Start...")
 
   //
-  nmsgs := 10000
+  nmsgs := 1
+	qname := "/queue/gostomp.srpub"
 
   // create a net.Conn, and pass that into Connect
 	nc, error := net.Dial("tcp", "localhost:61613")
@@ -31,13 +32,13 @@ func main() {
   // Send
   eh := stomp.Header{"header_key": "header_value"} // Extra headers
   for i := 1; i <= nmsgs; i++ {
-	  error = c.Send("/queue/gostomp/pub001", eh, "gostomp message #" + strconv.Itoa(i))
+	  error = c.Send(qname, eh, "gostomp message #" + strconv.Itoa(i))
 	  if error != nil {
 		  // Handle error properly
 	  }
   }
 
-  error = c.Send("/queue/gostomp/pub001", eh, "***EOF***")
+  error = c.Send(qname, eh, "***EOF***")
   if error != nil {
 	  // Handle error properly
   }
