@@ -39,6 +39,7 @@ dirs = 	testppack \
 	oltesta \
 	ranges \
 	showgo \
+	showmac \
 	slices \
 	stringlens \
 	strings_utils \
