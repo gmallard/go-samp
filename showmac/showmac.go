@@ -5,8 +5,34 @@ package main
 import (
 	"fmt" //
 	"net"
+	"os"
+	"strings"
 )
 
+func getLocalMac() (result string, error os.Error) {
+	result = ""
+	error = nil
+	//
+	ifaces, error := net.Interfaces()
+	if error != nil {
+		return
+	}
+	for _, face := range ifaces {
+		// Eliminate local and possible Virtual Box interfaces
+		if face.Name == "lo" || strings.HasPrefix(face.Name, "vbox") {
+			continue
+		}
+		// Prefer known names for local interfaces
+		if strings.HasPrefix(face.Name, "eth") || strings.HasPrefix(face.Name, "en") {
+			result = face.HardwareAddr.String()
+			break
+		}
+		// Otherwise, take what we can get
+		result = face.HardwareAddr.String()
+	}
+	//
+	return
+}
 func main() {
 	// 
 	ifaces, err := net.Interfaces()
@@ -22,4 +48,10 @@ func main() {
 		fmt.Printf("MAC: %s\n", face.HardwareAddr)
 		fmt.Println("")
 	}
+	//
+	preferred, err := getLocalMac()
+	if err != nil {
+		panic("ooops 2")
+	}
+	fmt.Printf("Preferred MAC: %v\n", preferred)
 }
