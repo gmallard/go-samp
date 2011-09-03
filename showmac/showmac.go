@@ -33,6 +33,23 @@ func getLocalMac() (result string, error os.Error) {
 	//
 	return
 }
+
+func getAllMacs() (result string, error os.Error) {
+	result = ""
+	error = nil
+	//
+	ifaces, error := net.Interfaces()
+	if error != nil {
+		return
+	}
+	for _, face := range ifaces {
+		//
+		result += (face.HardwareAddr.String() + "~")
+	}
+	//
+	return
+}
+
 func main() {
 	// 
 	ifaces, err := net.Interfaces()
@@ -54,4 +71,10 @@ func main() {
 		panic("ooops 2")
 	}
 	fmt.Printf("Preferred MAC: %v\n", preferred)
+	//
+	allmacs, err := getAllMacs()
+	if err != nil {
+		panic("ooops 3")
+	}
+	fmt.Printf("All MACs: %v\n", allmacs)
 }
