@@ -53,6 +53,7 @@ dirs = 	testppack \
 	tcp04 \
 	type_String \
 	unicloup \
+	uniques \
 	utfconv \
 	vector_01 \
 
