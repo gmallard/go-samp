@@ -38,6 +38,7 @@ dirs = 	testppack \
 	numconv \
 	oltesta \
 	ranges \
+	shax \
 	showgo \
 	showmac \
 	slices \
