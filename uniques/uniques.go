@@ -40,7 +40,8 @@ func main() {
 	// Test with:
 	// ./uniques | sort | uniq | wc -l
 	
-	maxi := 1000000
+	maxi := 1000000	// one million
+	maxi *= 100 // one hundread million, this will run for a while ......
 	
 	for i := 1; i <= maxi; i++ {
 		n := fmt.Sprintf("%d", time.Nanoseconds())
