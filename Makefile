@@ -41,6 +41,7 @@ dirs = 	testppack \
 	shax \
 	showgo \
 	showmac \
+	showtime \
 	slices \
 	stringlens \
 	strings_utils \
