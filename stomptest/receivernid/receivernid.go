@@ -10,14 +10,16 @@ import (
   "stomp"
 	"strings"
 	"sync"
-//	"time"
+	"time"
 )
 
 var printMsgs bool = true
+var printHdrs bool = true
 var wg sync.WaitGroup
 var	qname = "/queue/gostomp.srpub"
-var	mq = 100
-var hap = "localhost:"
+var	mq = 500
+var host = "localhost"
+var hap = host + ":"
 
 var incrCtl sync.Mutex
 var numRecv int
@@ -29,25 +31,67 @@ func recMessages(c *stomp.Conn, q string) {
 	fmt.Printf("Start for q: %s\n", q)
 
 	// Receive phase
-  headers := stomp.Header{"destination": q}
+  headers := stomp.Header{"destination": q} // no ID here.  1.1 library should provide
 	fmt.Printf("qhdrs: %v\n", headers)
-	_, error = c.Subscribe(headers)
+	sc, error := c.Subscribe(headers)
 	if error != nil {
 		// Handle error properly
 		fmt.Printf("sub error: %v\n", error)
 	}
-	for input := range c.Stompdata {
+	first := true
+	firstSub := ""
+	for input := range sc {
     inmsg := string(input.Message.Data)
+    if printHdrs {
+  		fmt.Println("queue:", q, "Next Receive: ", input.Message.Header)
+    }
     if printMsgs {
   		fmt.Println("queue:", q, "Next Receive: ", inmsg)
     }
+
+		firstSub = input.Message.Header["subscription"]
+		if first {
+			if firstSub == "" {
+				panic("first subscription header is empty")
+			}
+			fmt.Println("queue:", q, "FirstSub: ", firstSub)
+			first = false
+		} else {
+			if firstSub != input.Message.Header["subscription"] {
+				panic(firstSub + " / " + input.Message.Header["subscription"])
+			}
+		}
+
+		time.Sleep(1e9 / 100)	// Crudely simulate message processing
+
 		incrCtl.Lock()
 		numRecv++
 		incrCtl.Unlock()
+
 		if strings.HasPrefix(inmsg, "***EOF***") {
-			fmt.Printf("goteof: %v %v\n", q, inmsg)
+			fmt.Println("queue:", q, "FirstSub:", firstSub, "goteof")
 			break
 		}
+		if !strings.HasPrefix(inmsg, q) {
+			fmt.Printf("bad prefix: %v, %v\n", q, inmsg)
+			panic("bad prefix ....")
+		}
+		// Poll for adhoc errors
+		select {
+			case v := <- c.Stompdata:
+				fmt.Printf("frameError: %v\n", v.Message)
+				fmt.Printf("frameError: [%v] [%v]\n", q, firstSub) 
+			default:
+				fmt.Println("Nothing to show")
+		}
+
+	}
+
+	// headers["subscription"] = firstSub	// Add ID to unsubscribe
+	error = c.Unsubscribe(headers)
+	if error != nil {
+		// Handle error properly
+		fmt.Printf("unsub error: %v\n", error)
 	}
 
 	wg.Done()
@@ -64,9 +108,14 @@ func main() {
 
   // Connect
 	ch := stomp.Header{"login": "getter", "passcode": "recv1234"}
+
+	//
+	ch["accept-version"] = "1.1"
+	ch["host"] = host
+
 	c, error := stomp.Connect(nc, ch)
 	if error != nil {
-		// Handle error properly
+		panic(error)
 	}
 
 	for i := 1; i <= mq; i++ {
@@ -75,28 +124,6 @@ func main() {
 		go recMessages(c, qname + qn)
 	}
 	wg.Wait()
-
-	select {
-		case v := <- c.Stompdata:
-			fmt.Printf("frame1: %s\n", v.Message.MsgFrame)
-			fmt.Printf("header1: %v\n", v.Message.Header)
-			fmt.Printf("data1: %s\n", string(v.Message.Data))
-		default:
-			fmt.Println("Nothing to show")
-	}
-
-	fmt.Println("unsubs: starts")
-
-	for i := 1; i <= mq; i++ {
-		qn := fmt.Sprintf("%d", i)
-		h := stomp.Header{"destination": qname + qn}
-		fmt.Printf("unsubhdr: %v\n", h)
-		error = c.Unsubscribe(h)
-		if error != nil {
-			// Handle error properly
-			fmt.Printf("unsub error: %v\n", error)
-		}
-	}
 
 	fmt.Printf("Num received: %d\n", numRecv)
 
@@ -132,5 +159,5 @@ func main() {
 		panic("too many gor")
 	}
 */
-	fmt.Println("End...")
+	fmt.Println("End... ngor:", mq)
 }
