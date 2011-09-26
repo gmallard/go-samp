@@ -12,16 +12,19 @@ var logger = log.New(os.Stdout, "SHOWTIME ", log.Ldate|log.Lmicroseconds|log.Lsh
 
 func runTicker(quit chan bool) {
 	ticker := time.NewTicker(1e9 * 3)
-tickerFor:
+	q := false
 	for {
 		logger.Println("loop start")
 		select {
 			case ct := <- ticker.C:
 				logger.Println(time.NanosecondsToLocalTime(ct))
-			case _ = <- quit:
+			case q = <- quit:
 				logger.Println("runTicker done")
 				ticker.Stop()
-				break tickerFor // no label -> for starts again
+				break
+		}
+		if q {
+			break
 		}
 	}
 	logger.Println("runTicker ends")
