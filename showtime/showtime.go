@@ -3,6 +3,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"time"
@@ -31,8 +32,9 @@ func runTicker(quit chan bool) {
 }
 
 func main() {
-
+	fmt.Println()
 	logger.Println("Start...")
+
 	logger.Println(time.LocalTime())
 
 	time.Sleep(1e9 * 10) // 10 secs
@@ -48,5 +50,11 @@ func main() {
 	donechan <- true
 
 	time.Sleep(1e9) // 1 sec
+
+	lt := time.NanosecondsToLocalTime(time.Nanoseconds())
+	ft := lt.Format(time.StampMicro)
+	logger.Println(ft)
+	logger.Println(time.NanosecondsToLocalTime(time.Nanoseconds()).Format(time.StampMicro))
+	fmt.Println(time.NanosecondsToLocalTime(time.Nanoseconds()).Format(time.StampMicro))
 	logger.Println("End...")
 }
