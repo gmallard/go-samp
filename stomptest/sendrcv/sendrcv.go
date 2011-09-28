@@ -19,6 +19,8 @@ import (
 // this is actually used for the heartbeat facility.  The panic occurs only
 // under some load and only with particular broker implementations.
 
+// The above problems resolved as of 09/28/2011.
+
 var wgsend sync.WaitGroup
 var wgrecv sync.WaitGroup
 var printMsgs bool = true
@@ -30,9 +32,14 @@ func recMessages(c *stomp.Conn, q string) {
 
 	// Receive phase
   headers := stomp.Header{"destination": q}
-	_, error = c.Subscribe(headers)
+	fmt.Println("start subscribe", q)
+	sc, error := c.Subscribe(headers)
+	fmt.Println("end subscribe", q)
 	if error != nil {
-		// Handle error properly
+		panic(error)
+	}
+	if sc != nil {
+		panic("sc is not nil")
 	}
 	for input := range c.Stompdata {
     inmsg := string(input.Message.Data)
@@ -43,6 +50,7 @@ func recMessages(c *stomp.Conn, q string) {
 			break
 		}
 	}
+	fmt.Println("quit for", q)
 	wgrecv.Done()
 }
 
@@ -60,7 +68,7 @@ func sendMessages(c *stomp.Conn, q string, n int, k int) {
 		}
 	  error = c.Send(eh, m)
 	  if error != nil {
-		  // Handle error properly
+			panic(error)
 	  }
   }
 
@@ -80,19 +88,19 @@ func BenchmarkMultipleGoRoutinesSend() {
   // create a net.Conn, and pass that into Connect
 	nc, error := net.Dial("tcp", handp)
 	if error != nil {
-		// Handle error properly
+		panic(error)
 	}
 
   // Connect
 	ch := stomp.Header{"login": "userid", "passcode": "abcd1234"}
 	c, error := stomp.Connect(nc, ch)
 	if error != nil {
-		// Handle error properly
+		panic(error)
 	}
 
-  nmsgs := 200
-	qname := "/queue/gostomp.srpub"
-	mq := 25	// Too many of these triggers the panic during RECEIVE
+  nmsgs := 1000
+	qname := "/queue/gostomp.sendrcv.seq"
+	mq := 100	//
 
 	for i := 1; i <= mq; i++ {
 		qn := fmt.Sprintf("%d", i)
@@ -106,7 +114,7 @@ func BenchmarkMultipleGoRoutinesSend() {
   nh := stomp.Header{}
 	error = c.Disconnect(nh)
 	if error != nil {
-		// Handle error properly
+		panic(error)
 	}
 
 	fmt.Println("Done with SENDs ....")
@@ -133,16 +141,17 @@ func BenchmarkMultipleGoRoutinesRecv() {
 	ch := stomp.Header{"login": "userid", "passcode": "abcd1234"}
 	c, error := stomp.Connect(nc2, ch)
 	if error != nil {
-		// Handle error properly
+		panic(error)
 	}
 
 	fmt.Println("Done with RECEIVE stomp.Connect ....")
 
-	qname := "/queue/gostomp.srpub"
-	mq := 25	// Too many of these triggers the panic during RECEIVE
+	qname := "/queue/gostomp.sendrcv.seq"
+	mq := 100	//
 
 	for i := 1; i <= mq; i++ {
 		qn := fmt.Sprintf("%d", i)
+		fmt.Println("adding", qname + qn)
 		wgrecv.Add(1)
 		go recMessages(c, qname + qn)
 	}
@@ -152,7 +161,7 @@ func BenchmarkMultipleGoRoutinesRecv() {
   nh := stomp.Header{}
 	error = c.Disconnect(nh)
 	if error != nil {
-		// Handle error properly
+		panic(error)
 	}
 
 }

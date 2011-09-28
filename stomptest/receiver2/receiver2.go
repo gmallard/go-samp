@@ -16,7 +16,7 @@ import (
 var printMsgs bool = true
 var wg sync.WaitGroup
 var	qname = "/queue/gostomp.srpub"
-var	mq = 500
+var	mq = 100
 var host = "localhost"
 var hap = host + ":"
 

@@ -17,7 +17,7 @@ var wg sync.WaitGroup
 var printMsgs bool = true
 var  nmsgs = 10000
 var	qname = "/queue/gostomp.srpub"
-var	mq = 500
+var	mq = 100
 var host = "localhost"
 var hap = host + ":"
 
