@@ -26,6 +26,7 @@ dirs = 	testppack \
 	httpserv \
 	interface_01 \
 	interface_02 \
+	interface_03 \
 	list \
 	list_struct \
 	loghello \
