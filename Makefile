@@ -10,6 +10,7 @@ dirs = 	testppack \
 	chantest \
   defer \
   envshow \
+  errtest \
 	fib \
 	fib_embellished \
 	fib_userop \
