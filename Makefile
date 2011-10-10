@@ -44,6 +44,7 @@ dirs = 	testppack \
 	showgo \
 	showmac \
 	showtime \
+	sliceappt \
 	slices \
 	stringlens \
 	strings_utils \
