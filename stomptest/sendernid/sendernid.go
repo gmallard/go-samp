@@ -1,4 +1,4 @@
-// First gostomp demo
+// gostompgo demo
 
 package main
 
@@ -17,18 +17,18 @@ var wg sync.WaitGroup
 var printMsgs bool = true
 var  nmsgs = 1000
 var	qname = "/queue/gostomp.srpub"
-var	mq = 100
+var	mq = 50
 var host = "localhost"
 var hap = host + ":"
 
 
-func sendMessages(c *stomp.Conn, q string, n int, k int) {
+func sendMessages(c *stomp.Connection, q string, n int, k int) {
 
 	var error os.Error
 //	ks := q + fmt.Sprintf("%d", k)
 
   // Send
-  eh := stomp.Header{"destination": q} // Extra headers
+  eh := stomp.Headers{"destination", q} // Extra headers
   for i := 1; i <= n; i++ {
 		m := q + " gostomp message #" + strconv.Itoa(i)
 		if printMsgs {
@@ -61,11 +61,8 @@ func main() {
 	}
 
   // Connect
-	ch := stomp.Header{"login": "putter", "passcode": "send1234"}
-
-	//
-	ch["accept-version"] = "1.1"
-	ch["host"] = host
+	ch := stomp.Headers{"login", "putter", "passcode", "send1234",
+		"accept-version","1.1", "host",host}
 
 	c, error := stomp.Connect(nc, ch)
 	if error != nil {
@@ -82,7 +79,7 @@ func main() {
 	fmt.Println("done with wait")
 
   // Disconnect
-  nh := stomp.Header{}
+  nh := stomp.Headers{}
 	error = c.Disconnect(nh)
 	if error != nil {
 		fmt.Printf("discerr %v\n", error)
@@ -102,10 +99,8 @@ func main() {
 	fmt.Printf("egor: %v\n", ngor)
 
 	select {
-		case v := <- c.Stompdata:
-			fmt.Printf("frame2: %s\n", v.Message.MsgFrame)
-			fmt.Printf("header2: %v\n", v.Message.Header)
-			fmt.Printf("data2: %s\n", string(v.Message.Data))
+		case v := <- c.MessageData:
+			fmt.Printf("frame2: %v\n", v)
 		default:
 			fmt.Println("Nothing to show")
 	}

@@ -11,7 +11,7 @@ import (
 //	"sync"
 )
 
-var nmsgs = 100
+var nmsgs = 10
 var	qname = "/queue/gostomp.subrecv_examp"
 var host = "localhost"
 var hap = host + ":"
@@ -25,18 +25,15 @@ func main() {
 	}
 
   // Connect
-	ch := stomp.Header{"login": "putter", "passcode": "send1234"}
-
-	//
-	ch["accept-version"] = "1.1"
-	ch["host"] = host
+	ch := stomp.Headers{"login", "guest", "passcode", "guest",
+		"accept-version","1.1","host",host}
 
 	c, error := stomp.Connect(nc, ch)
 	if error != nil {
 		panic(error)
 	}
 
-	sh := stomp.Header{"destination": qname}
+	sh := stomp.Headers{"destination", qname}
 	for i := 1; i <= nmsgs; i++ {
 		msg := "subrecv message " + fmt.Sprintf("%d", i)
 		error = c.Send(sh, msg)
@@ -56,39 +53,37 @@ func main() {
 	for {
 		// Sanity check.  Any unanticipated ERROR frames?
 		select {
-			case v := <- c.Stompdata:
-				fmt.Printf("frame2: %s\n", v.Message.MsgFrame)
-				fmt.Printf("header2: %v\n", v.Message.Header)
-				fmt.Printf("data2: %s\n", string(v.Message.Data))
+			case v := <- c.MessageData:
+				fmt.Printf("frame1: %v\n", v)
 			default:
 				fmt.Println("Nothing to show - 1")
 		}
 		fmt.Println("Start receive ....")
 		d := <- sc
-		fmt.Printf("d: %v\n", d)
+		// fmt.Printf("d: %v\n", d)
 		if d.Error != nil {
 			panic(d.Error)
 		}
 		if i == 1 {
-			subid = d.Message.Header["subscription"]
+			subid = d.Message.Headers.Value("subscription")
 			fmt.Printf("Subscription is: %s\n", subid)
 		}
 		//
-		fmt.Printf("Received message: %s\n", string(d.Message.Data))
+		fmt.Printf("Received message: %s\n", d.Message.BodyString())
 		i++
 		if i > nmsgs {
 			break
 		}
 	}
 
-	uh := stomp.Header{"destination": qname, "id": subid}
+	uh := stomp.Headers{"destination", qname, "id", subid}
 	error = c.Unsubscribe(uh)
 	if error != nil {
 		panic(error)
 	}
 
   // Disconnect
-  nh := stomp.Header{}
+  nh := stomp.Headers{}
 	error = c.Disconnect(nh)
 	if error != nil {
 		panic(error)
@@ -96,10 +91,8 @@ func main() {
 
 	// Sanity check.  Any unanticipated ERROR frames?
 	select {
-		case v := <- c.Stompdata:
-			fmt.Printf("frame2: %s\n", v.Message.MsgFrame)
-			fmt.Printf("header2: %v\n", v.Message.Header)
-			fmt.Printf("data2: %s\n", string(v.Message.Data))
+		case v := <- c.MessageData:
+			fmt.Printf("frame2: %v\n", v)
 		default:
 			fmt.Println("Nothing to show - 2")
 	}
