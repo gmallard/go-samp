@@ -6,6 +6,8 @@ import (
 	"fmt" //
   "net"
   "os"
+	"rand"
+	"runtime"
   "strconv"
 	"stomp"
 	"sync"
@@ -22,6 +24,14 @@ var nmsgs = 500
 var	qname = "/queue/gostomp.sendrcv.seq"
 var	mq = 50	//
 
+var msg_build_ms int64 = 50 // max ms to build a message
+var msg_proc_ms int64 = 259 // max ms to process a message
+
+
+func getNanoSecondsFromMillis(m int64) (n int64) {
+	m = n * 1000000 // ms -> ns
+	return m
+}
 
 func recMessages(c *stomp.Conn, q string) {
 
@@ -35,6 +45,7 @@ func recMessages(c *stomp.Conn, q string) {
 	if error != nil {
 		panic(error)
 	}
+	k := 0
 	for input := range sc {
     inmsg := string(input.Message.Data)
     if printMsgs {
@@ -43,7 +54,12 @@ func recMessages(c *stomp.Conn, q string) {
 		if inmsg == "***EOF***" {
 			break
 		}
-		time.Sleep(1e9 / 4)
+		k++
+		if k % 10 == 0 {
+			fmt.Println("Receive:", q, "yields")
+			runtime.Gosched()	// yield
+		}
+		time.Sleep(rand.Int63n(getNanoSecondsFromMillis(msg_proc_ms)))
 	}
 	fmt.Println("quit for", q)
 	wgrecv.Done()
@@ -65,7 +81,11 @@ func sendMessages(c *stomp.Conn, q string, n int, k int) {
 	  if error != nil {
 			panic(error)
 	  }
-		time.Sleep(1e9 / 4)
+		if i % 10 == 0 {
+			fmt.Println("Send:", q, "yields")
+			runtime.Gosched()	// yield
+		}
+		time.Sleep(rand.Int63n(getNanoSecondsFromMillis(msg_build_ms)))
   }
 
   error = c.Send(eh, "***EOF***")
