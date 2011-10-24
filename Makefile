@@ -59,7 +59,6 @@ dirs = 	testppack \
 	unicloup \
 	uniques \
 	utfconv \
-	vector_01 \
 
 packlist =	gomake \
 
