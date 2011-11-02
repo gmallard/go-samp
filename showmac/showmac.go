@@ -5,11 +5,10 @@ package main
 import (
 	"fmt" //
 	"net"
-	"os"
 	"strings"
 )
 
-func getLocalMac() (result string, error os.Error) {
+func getLocalMac() (result string, error error) {
 	result = ""
 	error = nil
 	//
@@ -34,7 +33,7 @@ func getLocalMac() (result string, error os.Error) {
 	return
 }
 
-func getAllMacs() (result string, error os.Error) {
+func getAllMacs() (result string, error error) {
 	result = ""
 	error = nil
 	//

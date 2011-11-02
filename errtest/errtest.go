@@ -2,14 +2,12 @@
 
 package main
 
-import (
-	"fmt" //
-	"os"
-)
+import "fmt" //
+
 
 type Error string
 
-func (e Error) String() (string) {
+func (e Error) Error() string {
 	return string(e)
 }
 
@@ -18,11 +16,11 @@ const (
 	ERRB = Error("error B")
 )
 
-func badA() (os.Error) {
+func badA() error {
 	return ERRA
 }
 
-func badB() (os.Error) {
+func badB() error {
 	return ERRB
 }
 

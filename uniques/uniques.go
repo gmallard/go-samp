@@ -6,13 +6,11 @@ import (
 	"crypto/sha1"
 	"fmt" //
 	"net"
-	"os"
 	"rand"
 	"time"
 )
 
-
-func getAllMacs() (result string, error os.Error) {
+func getAllMacs() (result string, error error) {
 	result = ""
 	error = nil
 	//
@@ -28,7 +26,6 @@ func getAllMacs() (result string, error os.Error) {
 	return
 }
 
-
 func main() {
 	// fmt.Println("Start...")
 	a, e := getAllMacs()
@@ -36,13 +33,13 @@ func main() {
 		panic("allmacs error")
 	}
 	// fmt.Printf("%s\n", a)
-	
+
 	// Test with:
 	// ./uniques | sort | uniq | wc -l
-	
-	maxi := 1000000	// one million
-	maxi *= 100 // one hundread million, this will run for a while ......
-	
+
+	maxi := 1000000 // one million
+	maxi *= 100     // one hundread million, this will run for a while ......
+
 	for i := 1; i <= maxi; i++ {
 		n := fmt.Sprintf("%d", time.Nanoseconds())
 		r := fmt.Sprintf("%d", rand.Int63())

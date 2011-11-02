@@ -5,6 +5,7 @@ package main
 import (
 	"fmt"
 	"bufio"
+	"io"
 	"os"
 	"strings"
 )
@@ -25,7 +26,7 @@ func main() {
 	reader := bufio.NewReader(f) //Buffered reader
 	for true {
 		line, errr := reader.ReadString('\n')
-		if errr == os.EOF {
+		if errr == io.EOF {
 			break
 		}
 		line = strings.Replace(line, "\n", "", -1) // chomp, sort of ....
