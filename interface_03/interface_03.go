@@ -9,7 +9,7 @@ type hmap map[string]string
 type hstr []string
 
 func pickem(iv interface{}) {
-	switch w := iv.(type) {
+	switch iv.(type) {
 		case hmap:
 			fmt.Println("is hmap")
 		case hstr:
