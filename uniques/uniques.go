@@ -5,8 +5,8 @@ package main
 import (
 	"crypto/sha1"
 	"fmt" //
+	"math/rand"
 	"net"
-	"rand"
 	"time"
 )
 

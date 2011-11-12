@@ -23,10 +23,7 @@ func called(cd gdata) {
 	for i := 0; i < cd.loops; i++ {
 		wnum := i + 1
 		fmt.Printf("id %s, waitnum: %d\n", cd.id, wnum)
-		err := time.Sleep(int64(cd.sltime) * 1e9)
-		if err != nil {
-			// ??? 
-		}
+		time.Sleep(int64(cd.sltime) * 1e9)
 	}
 	doneChan <- true
 	fmt.Println(cd.id, "is done")

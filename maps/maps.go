@@ -55,7 +55,7 @@ func main() {
 	//
 	value, present = m["2"]                // value is there
 	fmt.Printf("%g\t%t\n", value, present) // present=true
-	m["2"] = 0, false                      // Delete, use the zero value for the values, and false
+	delete(m, "2")                         // Delete, use the zero value for the values, and false
 	value, present = m["2"]                // value is not there
 	fmt.Printf("%g\t%t\n", value, present) // present=false
 	fmt.Println()
