@@ -41,12 +41,12 @@ func main() {
 	maxi *= 100     // one hundread million, this will run for a while ......
 
 	for i := 1; i <= maxi; i++ {
-		n := fmt.Sprintf("%d", time.Nanoseconds())
+		n := fmt.Sprintf("%d", time.Now().UnixNano())
 		r := fmt.Sprintf("%d", rand.Int63())
 		s := sha1.New()
 		t := a + "|" + n + "|" + r
 		s.Write([]byte(t))
-		v := fmt.Sprintf("%x", s.Sum())
+		v := fmt.Sprintf("%x", s.Sum(nil))
 		//
 		fmt.Printf("%s\n", v)
 	}

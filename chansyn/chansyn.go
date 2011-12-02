@@ -18,7 +18,8 @@ func main() {
 		fmt.Println("receiver is up")
 		x := <-syn_chan // Receive.  Will block until data received
 		fmt.Println("starting work, received", x)
-		time.Sleep(int64(x) * 1e9) // Simulate work
+		tw := time.Duration(x * 1e9)
+		time.Sleep(tw) // Simulate work
 		fmt.Println("work complete")
 		done_chan <- true // Signal done
 	}()

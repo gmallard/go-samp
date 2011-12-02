@@ -10,7 +10,7 @@ import (
 // premature end to the example.
 //
 func IsReady(what string, minutes int64) {
-	time.Sleep(minutes * 60 * 1e9)
+	time.Sleep(time.Duration(minutes * 60 * 1e9))
 	fmt.Println(what, "is ready")
 }
 
@@ -22,7 +22,7 @@ func main() {
 	fmt.Println("I'm waiting....")
 
 	// Crude synchronize with the go routines.
-	time.Sleep(6.25 * 60 * 1e9)
+	time.Sleep(time.Duration(6.25 * 60 * 1e9))
 
 	//
 	fmt.Println("Ending .....")

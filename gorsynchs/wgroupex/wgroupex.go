@@ -24,7 +24,7 @@ func called(cd gdata) {
 	for i := 0; i < cd.loops; i++ {
 		wnum := i + 1
 		fmt.Printf("id %s, waitnum: %d\n", cd.id, wnum)
-		time.Sleep(int64(cd.sltime) * 1e9)
+		time.Sleep(time.Duration(int64(cd.sltime) * 1e9))
 	}
 	fmt.Println(cd.id, "is done")
 	wg.Done()
