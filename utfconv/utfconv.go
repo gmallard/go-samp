@@ -13,9 +13,9 @@ func ISO885915ToUTF8(c []byte) string {
 
 	// http://unicode.org/Public/MAPPINGS/ISO8859/8859-15.TXT 03-Mar-2004 14:06
 
-	u := make([]int, len(c))
+	u := make([]rune, len(c))
 	for i := 0; i < len(u); i++ {
-		r := int(c[i])
+		r := rune(c[i])
 		if r >= 0x80 {
 			switch r {
 			case 0xA4:
