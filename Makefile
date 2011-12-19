@@ -40,6 +40,7 @@ dirs = 	testppack \
 	numconv \
 	oltesta \
 	ranges \
+	rand_between \
 	shax \
 	showgo \
 	showmac \
