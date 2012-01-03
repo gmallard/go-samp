@@ -1,9 +1,10 @@
-// First gostomp demo
+// stompngo demo
 
 package main
 
 import (
 	"fmt" //
+  "log"
 	"net"
 	"os"
 	"runtime"
@@ -16,7 +17,7 @@ import (
 var printMsgs bool = true
 var printHdrs bool = true
 var wg sync.WaitGroup
-var qname = "/queue/gostomp.srpub"
+var qname = "/queue/stompngo.srpub"
 var mq = 2
 var host = "localhost"
 var hap = host + ":"
@@ -61,13 +62,10 @@ func recMessages(c *stomp.Connection, q string) {
 				panic(firstSub + " / " + input.Message.Headers.Value("subscription"))
 			}
 		}
-
 		time.Sleep(1e9 / 100) // Crudely simulate message processing
-
 		incrCtl.Lock()
 		numRecv++
 		incrCtl.Unlock()
-
 		if strings.HasPrefix(inmsg, "***EOF***") {
 			fmt.Println("queue:", q, "FirstSub:", firstSub, "goteof")
 			break
@@ -84,17 +82,13 @@ func recMessages(c *stomp.Connection, q string) {
 		default:
 			fmt.Println("Nothing to show")
 		}
-
 	}
-
 	uh := stomp.Headers{"id",firstSub,
     "destination", q}
 	error = c.Unsubscribe(uh)
 	if error != nil {
-		// Handle error properly
-		fmt.Printf("unsub error: %v\n", error)
+		log.Fatalf("unsub error: %v\n", error)
 	}
-
 	wg.Done()
 }
 
@@ -104,49 +98,33 @@ func main() {
 	// create a net.Conn, and pass that into Connect
 	nc, error := net.Dial("tcp", hap+os.Getenv("STOMP_PORT"))
 	if error != nil {
-		// Handle error properly
+		log.Fatal(error)
 	}
-
 	// Connect
 	ch := stomp.Headers{"login", "getter", "passcode", "recv1234"}
-
-	//
 	ch = ch.Add("accept-version","1.1")
 	ch = ch.Add("host",host)
-
 	c, error := stomp.Connect(nc, ch)
 	if error != nil {
-		panic(error)
+		log.Fatal(error)
 	}
-
 	for i := 1; i <= mq; i++ {
 		qn := fmt.Sprintf("%d", i)
 		wg.Add(1)
 		go recMessages(c, qname+qn)
 	}
 	wg.Wait()
-
 	fmt.Printf("Num received: %d\n", numRecv)
-
 	// Disconnect
 	nh := stomp.Headers{}
 	error = c.Disconnect(nh)
 	if error != nil {
-		fmt.Printf("discerr %v\n", error)
+		log.Fatalf("discerr %v\n", error)
 	}
-
 	fmt.Println("done nc.Close()")
 	nc.Close()
-
-	/*
-		fmt.Println("start sleep")
-		time.Sleep(1e9 / 10)	// 100 ms
-		fmt.Println("end sleep")
-	*/
-
 	ngor := runtime.Goroutines()
 	fmt.Printf("egor: %v\n", ngor)
-
 	select {
 	case v := <-c.MessageData:
 		fmt.Printf("frame2: %s\n", v.Message.Command)
@@ -155,10 +133,5 @@ func main() {
 	default:
 		fmt.Println("Nothing to show")
 	}
-	/*
-		if ngor > 1 {
-			panic("too many gor")
-		}
-	*/
-	fmt.Println("End... ngor:", mq)
+	fmt.Println("End... mq:", mq)
 }

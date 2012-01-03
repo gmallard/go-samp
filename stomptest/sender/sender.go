@@ -1,10 +1,11 @@
-// gostompgo demo
+// stompngo demo
 
 package main
 
 import (
 	"fmt" //
 	"net"
+  "log"
 	"os"
 	"runtime"
 	"stomp"
@@ -16,7 +17,7 @@ import (
 var wg sync.WaitGroup
 var printMsgs bool = true
 var nmsgs = 10
-var qname = "/queue/gostomp.srpub"
+var qname = "/queue/stompngo.srpub"
 var mq = 2
 var host = "localhost"
 var hap = host + ":"
@@ -24,7 +25,6 @@ var hap = host + ":"
 func sendMessages(c *stomp.Connection, q string, n int, k int) {
 
 	var error error
-	//	ks := q + fmt.Sprintf("%d", k)
 
 	// Send
 	eh := stomp.Headers{"destination", q} // Extra headers
@@ -35,7 +35,7 @@ func sendMessages(c *stomp.Connection, q string, n int, k int) {
 		}
 		error = c.Send(eh, m)
 		if error != nil {
-			fmt.Printf("send error: %v\n", error)
+			log.Fatal("send error: ", error)
 		}
 		//
 		time.Sleep(1e9 / 100) // Simulate message build
@@ -43,7 +43,7 @@ func sendMessages(c *stomp.Connection, q string, n int, k int) {
 
 	error = c.Send(eh, "***EOF*** "+q)
 	if error != nil {
-		// Handle error properly
+		log.Fatal("send error: ", error)
 	}
 	wg.Done()
 
@@ -53,10 +53,9 @@ func main() {
 	fmt.Println("Start...")
 
 	//
-	// create a net.Connection, and pass that into Connectionect
 	nc, error := net.Dial("tcp", hap+os.Getenv("STOMP_PORT"))
 	if error != nil {
-		// Handle error properly
+		log.Fatal(error)
 	}
 
 	// Connectionect
@@ -65,7 +64,7 @@ func main() {
 
 	c, error := stomp.Connect(nc, ch)
 	if error != nil {
-		panic(error)
+		log.Fatal(error)
 	}
 
 	for i := 1; i <= mq; i++ {
@@ -81,18 +80,13 @@ func main() {
 	nh := stomp.Headers{}
 	error = c.Disconnect(nh)
 	if error != nil {
-		fmt.Printf("discerr %v\n", error)
+		log.Fatal(error)
 	}
 
 	fmt.Println("done disconnect, start nc.Close()")
 	nc.Close()
 
 	fmt.Println("done nc.Close()")
-	/*
-		fmt.Println("start sleep")
-		time.Sleep(1e9 / 10)	// 100 ms
-		fmt.Println("end sleep")
-	*/
 
 	ngor := runtime.Goroutines()
 	fmt.Printf("egor: %v\n", ngor)
@@ -103,10 +97,5 @@ func main() {
 	default:
 		fmt.Println("Nothing to show")
 	}
-	/*
-		if ngor > 1 {
-			panic("too many gor")
-		}
-	*/
-	fmt.Println("End... ngor:", mq, " nmsgs:", nmsgs)
+	fmt.Println("End... mq:", mq, " nmsgs:", nmsgs)
 }
