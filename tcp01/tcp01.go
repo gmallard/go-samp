@@ -2,9 +2,10 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"net"
-	"bufio"
+  "time"
 )
 
 //
@@ -72,7 +73,10 @@ func main() {
 	fmt.Printf("connection = %v\n", tcpConn)
 	//
 	// Set a timeout value
-	tcpConn.SetReadTimeout(30 * 1e9) // 30 seconds
+  d := time.Duration(30 * 1e9) // 30 seconds
+  w := time.Now() // from now
+  w = w.Add(d)
+	tcpConn.SetReadDeadline(w) // Set the deadline
 	//
 	checkVal := runReads(tcpConn)
 	fmt.Println("CheckVal", checkVal)
