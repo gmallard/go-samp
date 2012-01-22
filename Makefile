@@ -22,6 +22,7 @@ dirs = 	testppack \
 	gorsynchs/mutexex \
 	gorsynchs/wgroupex \
 	gortns01 \
+	gt044 \
 	hello \
 	hello_small \
 	httpserv \
