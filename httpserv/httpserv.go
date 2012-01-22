@@ -3,45 +3,26 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"io"
 )
 
 //
-// A primitive attempt at the exercise in the GoCourseDay2.pdf.
+//  Modified for weekly 2012-01-20
 //
-// I had difficulties starting because the method signatures used in the PDF
-// examples are no longer valid.
-//
-// Along the way I found a bunch of other goodness in the distribution:
-// a) effective_go.html (appears up to date)
-// b) the codelab directory
-//
-
-
-type srvrinfo struct {
-	wtr http.ResponseWriter
-	req *http.Request
-}
-
-func showInfo(si srvrinfo) {
-	fmt.Fprintf(si.wtr, "Method: |%s|<br />", si.req.Method)
-	//
-	fmt.Fprintf(si.wtr, "Scheme: |%s|<br />", si.req.URL.Scheme)
-	fmt.Fprintf(si.wtr, "Scheme: |%s|<br />", si.req.URL.Opaque)
-	fmt.Fprintf(si.wtr, "Scheme: |%v|<br />", si.req.URL.User)
-	fmt.Fprintf(si.wtr, "Host: |%s|<br />", si.req.URL.Host)
-	fmt.Fprintf(si.wtr, "Path: |%s|<br />", si.req.URL.Path)
-	fmt.Fprintf(si.wtr, "Raw Query: |%s|<br />", si.req.URL.RawQuery)
-	fmt.Fprintf(si.wtr, "Fragment: |%s|<br />", si.req.URL.Fragment)
-}
 
 func HelloServer(rwtr http.ResponseWriter, req *http.Request) {
-	io.WriteString(rwtr, "Hello, World!!!!!!<br />")
+	fmt.Fprintf(rwtr, "Hello, World!!!!!!\n")
 	//
-	var parms = srvrinfo{rwtr, req}
-	showInfo(parms)
+	fmt.Fprintf(rwtr, "Method: |%s|\n", req.Method)
+	fmt.Fprintf(rwtr, "Scheme: |%s|\n", req.URL.Scheme)
+	fmt.Fprintf(rwtr, "Opaque: |%s|\n", req.URL.Opaque)
+	fmt.Fprintf(rwtr, "User: |%v|\n", req.URL.User)
+	fmt.Fprintf(rwtr, "Host: |%s|\n", req.URL.Host)
+	fmt.Fprintf(rwtr, "Path: |%s|\n", req.URL.Path)
+	fmt.Fprintf(rwtr, "Raw Query: |%s|\n", req.URL.RawQuery)
+	fmt.Fprintf(rwtr, "Fragment: |%s|\n", req.URL.Fragment)
+
 	//
-	io.WriteString(rwtr, "Later ....<br />")
+	fmt.Fprintf(rwtr, "Later ....\n")
 }
 
 func main() {
