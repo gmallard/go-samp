@@ -52,6 +52,7 @@ dirs = 	testppack \
 	strings_utils \
 	struct \
 	switch_test \
+	symlshow \
 	symltest \
 	tcp01 \
 	tcp02 \
