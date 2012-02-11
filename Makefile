@@ -63,29 +63,31 @@ dirs = 	testppack \
 	uniques \
 	utfconv \
 
-packlist =	gomake \
+
+packlist =	numbers \
 
 .PHONY: $(dirs) $(packlist) packages clean format
 
 all: $(dirs)
+	@for i in $(dirs); do \
+	echo $$i; \
+	curd=`pwd`; \
+	cd $$i && go build; \
+	cd $$curd; \
+	done
 
-$(dirs):
-		$(MAKE) -C $@
 
 packages:
 	@for i in $(packlist); do \
 	echo $$i; \
-	cd $$i; \
-	gomake install; \
-	$(MAKE) clean; \
-	cd ..; \
+	go install -v go-samp/$$i; \
 	done
 
 clean:
 	@for i in $(dirs); do \
 	echo $$i; \
 	curd=`pwd`; \
-	cd $$i && $(MAKE) clean; \
+	cd $$i && go clean; \
 	cd $$curd; \
 	done
 
