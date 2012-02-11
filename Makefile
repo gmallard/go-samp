@@ -51,7 +51,7 @@ dirs = 	testppack \
 	stringlens \
 	strings_utils \
 	struct \
-	switch_test \
+	switch_demo \
 	symlshow \
 	symltest \
 	tcp01 \
