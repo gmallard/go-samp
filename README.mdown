@@ -3,14 +3,17 @@ Project go-samp, Samples of Simple go Language Programs
 This is a collection of extremely simple examples of using the _go_ 
 programming language.
 
-These samples are inspired primarily by the _GoCourseDay#.pdf_ files in
-the _go_ distrubution.  And some additional experiments.  In particular
-experiments triggered by documentation provided in the go distribution.
+These samples were inspired primarily by the _GoCourseDay#.pdf_ files 
+previously available in the _go_ distrubution.  And some additional experiments.
+In particular experiments triggered by documentation provided in the go 
+distribution.
 
 Prerequisites
 -------------
 
 In essence, you need a working _go_ environment, and a few small additions.
+
+At the current HEAD of master, your go build should be at least: weekly.2012-02-07.
 
 You need certain basic functions available to you in order to build and run
 these _go_ programs.
@@ -26,22 +29,17 @@ language, see:
 
 *	http://golang.org
 
+Additional Setup
+----------------
+
 In order to use the _make_ system for these samples, you will need to have
-several environment variables defined.  These environment variables define
-the executable name for the _go_ compiler and linker as well as the standard
-go suffix for that architecture.  For the 386 architecture an example is:
+the $GOPATH environment variable properly defined.  See the go documentation
+for details.
 
-* export GOGC=8g
-* export GOLD=8l
-* export GOSUFF=8
+Although this system is still installed using make, the 'go' tool is used under the
+covers.  If you require previous versions, please examine previous tags.
 
-For the amd64 architecture, an example is:
-
-* export GOGC=6g
-* export GOLD=6l
-* export GOSUFF=6
-
-Adjust those as necessary for your system.
+Adjust $GOPATH as necessary for your system.
 
 Install
 -------
