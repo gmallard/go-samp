@@ -5,6 +5,9 @@ import (
 	"net"
 )
 
+// This example will timeout only after a TCP default amount of time:  system
+// dependent.  To stop, kill with ^C.
+// 'Tested' using 'telnet localhost 45678'
 func main() {
 	fmt.Println("Start .....")
 	//

@@ -3,8 +3,10 @@ package main
 import (
 	"fmt"
 	"net"
+	"strings"
 )
-
+// Demo reading from a goroutine, and waiting on completion.
+// 'Tested' using 'telnet localhost 45678'
 func getData(tcpConn *net.TCPConn, done chan bool) {
 	for {
 		var buffer = make([]byte, 256)
@@ -19,6 +21,10 @@ func getData(tcpConn *net.TCPConn, done chan bool) {
 		fmt.Println("Buffer", bufData)
 		var data = string(bufData)
 		fmt.Println("Data Read", data)
+		//
+		if strings.HasPrefix(data, "quit") {
+			break;
+		}
 	}
 	//
 	err := tcpConn.Close()
