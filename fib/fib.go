@@ -1,6 +1,8 @@
 package main
+
 // Import formatting package
 import "fmt"
+
 //
 // A somewhat classical recursive function to determine the n'th
 // fibonacci number.  This includes the definition of fibinacci 
@@ -25,6 +27,7 @@ func fib(i int) int {
 	// And for all other positives.
 	return fib(i-1) + fib(i-2)
 }
+
 //
 // Mainline.
 //

@@ -4,10 +4,9 @@ package main
 
 import (
 	"fmt"  //
-	"time" //
 	"sync" //
+	"time" //
 )
-
 
 type gdata struct {
 	id            string

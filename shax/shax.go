@@ -3,9 +3,9 @@
 package main
 
 import (
-	"fmt" //
 	"crypto/sha1"
 	"crypto/sha256"
+	"fmt" //
 )
 
 func main() {

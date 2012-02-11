@@ -4,8 +4,9 @@ package main
 
 import (
 	"fmt" //
-  "strings"
+	"strings"
 )
+
 //
 // An interesting exercise with UTF-8 and the concepts of upper/lower case.  
 // Triggered by this discussion:
@@ -33,30 +34,30 @@ import (
 func main() {
 	fmt.Println("Start...")
 
-  // Lower case sigma
-  lowsig := "σ"
-  fmt.Printf("Low Sig: %s\n", lowsig)
+	// Lower case sigma
+	lowsig := "σ"
+	fmt.Printf("Low Sig: %s\n", lowsig)
 
-  // Lower case C with cedilla
-  lowceeced := "ς"
-  fmt.Printf("Low Cee Ced: %s\n", lowceeced)
+	// Lower case C with cedilla
+	lowceeced := "ς"
+	fmt.Printf("Low Cee Ced: %s\n", lowceeced)
 
-  // Upper case sigma
-  hisig := "Σ"
-  fmt.Printf("High Sig: %s\n", hisig)
+	// Upper case sigma
+	hisig := "Σ"
+	fmt.Printf("High Sig: %s\n", hisig)
 
-  // Lower case sigma to upper
-  fmt.Printf("Toupper Sig: %s\n", strings.ToUpper(lowsig))
+	// Lower case sigma to upper
+	fmt.Printf("Toupper Sig: %s\n", strings.ToUpper(lowsig))
 
-  // Lower case C cedilla to upper
-  fmt.Printf("Toupper Cee Ced: %s\n", strings.ToUpper(lowceeced))
+	// Lower case C cedilla to upper
+	fmt.Printf("Toupper Cee Ced: %s\n", strings.ToUpper(lowceeced))
 
-  // Upper case sigma to lower
-  fmt.Printf("Tolower Cee: %s\n", strings.ToLower(hisig))
+	// Upper case sigma to lower
+	fmt.Printf("Tolower Cee: %s\n", strings.ToLower(hisig))
 
-  // The PHP example:
-  forgrins := "ΣΕΛΛΑΣ"
-  fmt.Printf("forgrins upper: %s forgrins lower %s\n", forgrins, strings.ToLower(forgrins))
+	// The PHP example:
+	forgrins := "ΣΕΛΛΑΣ"
+	fmt.Printf("forgrins upper: %s forgrins lower %s\n", forgrins, strings.ToLower(forgrins))
 
 	fmt.Println("End...")
 }

@@ -10,12 +10,12 @@ type hstr []string
 
 func pickem(iv interface{}) {
 	switch iv.(type) {
-		case hmap:
-			fmt.Println("is hmap")
-		case hstr:
-			fmt.Println("is hstr")
-		default:
-			fmt.Println("NOT!")
+	case hmap:
+		fmt.Println("is hmap")
+	case hstr:
+		fmt.Println("is hstr")
+	default:
+		fmt.Println("NOT!")
 	}
 }
 
@@ -30,18 +30,18 @@ func dumpem(iv interface{}) {
 
 func showdata(iv interface{}) {
 	switch w := iv.(type) {
-		case hmap:
-			fmt.Println("showdata hmap")
-			for k, v := range w {
-				fmt.Println("key:", k, "value:", v)
-			}
-		case hstr:
-			fmt.Println("showdata hstr")
-			for i, v := range w {
-				fmt.Println("index:", i, "value:", v)
-			}
-		default:
-			fmt.Println("SHOWDATA NOT!")
+	case hmap:
+		fmt.Println("showdata hmap")
+		for k, v := range w {
+			fmt.Println("key:", k, "value:", v)
+		}
+	case hstr:
+		fmt.Println("showdata hstr")
+		for i, v := range w {
+			fmt.Println("index:", i, "value:", v)
+		}
+	default:
+		fmt.Println("SHOWDATA NOT!")
 	}
 
 }

@@ -1,6 +1,7 @@
 package main
 
 import "fmt"
+
 /*
 From examples.  Interesting notes:
 
@@ -10,8 +11,10 @@ c) Can take address of an Array
 
 */
 func f(a [3]int) { fmt.Println(a) }
+
 // func f(a *[3]int) { fmt.Println(a) } // fails to compile
 func fp(a *[3]int) { fmt.Println(a) }
+
 /*
  */
 func main() {

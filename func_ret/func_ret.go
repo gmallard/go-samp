@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math"
 )
+
 //
 // As of Feb 2011, there is an additional difficulty with many of the
 // examples publushed in the gocourseday# PDFs (as well as many other
@@ -46,6 +47,7 @@ func MySqrt(f float64) (v float64, ok bool) {
 	}
 	return v, ok
 }
+
 //
 // And there are other, more or less suitable work arounds as well.
 //
@@ -65,6 +67,7 @@ func MySqrt3(f float64) (v float64, ok bool) {
 	} // error case
 	return math.Sqrt(f), true
 }
+
 // ----------------
 // Show function returns with multiple return values, and the use of
 // 'default' returns.

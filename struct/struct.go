@@ -1,6 +1,7 @@
 package main
 
 import "fmt"
+
 // Structs: semple declaration of data fields.  Like C.  Memory layout.
 
 // basic section:
@@ -8,12 +9,14 @@ import "fmt"
 var point struct {
 	x, y float32
 }
+
 // More usual
 type Point struct {
 	x, y float32
 }
 
 var pa Point
+
 // Or a pointer
 var paPtr *Point = new(Point)
 
@@ -26,6 +29,7 @@ type B struct {
 	A
 	bx, by float32
 }
+
 //
 type C struct {
 	x float32
@@ -59,6 +63,7 @@ var d CCSD
 //
 var la = CCSA{123}
 var lb = CCSB{456, 789}
+
 // Note: full definition of inners structs is required
 var lc = CCSC{CCSA{4}, CCSB{5, 6}}
 var ld = CCSD{CCSB{6, 7}, 1.618}

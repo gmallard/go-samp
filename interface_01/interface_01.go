@@ -8,6 +8,7 @@ import (
 type Point struct {
 	x, y float32
 }
+
 //
 func (p *Point) Abs() float32 {
 	x64 := float64(p.x)
@@ -23,7 +24,6 @@ func (p *Point) Abs() float32 {
 type AbsInterface interface {
 	Abs() float32 // receiver is implied
 }
-
 
 type MyFloat float32
 

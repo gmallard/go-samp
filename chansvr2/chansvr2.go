@@ -1,6 +1,7 @@
 package main
 
 import "fmt"
+
 //
 // Another example from the gocourseday3.pdf.
 //
@@ -14,16 +15,19 @@ type request struct {
 	a, b   int
 	replyc chan int
 }
+
 //
 // Operation type definition.
 //
 type binOp func(a, b int) int
+
 //
 // The low level 'runner'.
 //
 func run(op binOp, req *request) {
 	req.replyc <- op(req.a, req.b)
 }
+
 //
 // The server logic.
 //
@@ -38,6 +42,7 @@ func server(op binOp, service chan *request, quit chan bool) {
 		}
 	}
 }
+
 //
 // Server startup.
 //
@@ -47,12 +52,14 @@ func startServer(op binOp) (chan *request, chan bool) {
 	go server(op, service, quit)
 	return service, quit
 }
+
 //
 // Print requests nicely.
 //
 func (r *request) String() string {
 	return fmt.Sprintf("%d+%d=%d", r.a, r.b, <-r.replyc)
 }
+
 //
 // Mainline.
 //

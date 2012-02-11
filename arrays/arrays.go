@@ -1,6 +1,7 @@
 package main
 
 import "fmt"
+
 /*
 From examples.
 */
@@ -10,24 +11,28 @@ From examples.
 func f(a [3]int) {
 	fmt.Println(a)
 }
+
 //
 // Function parameter: an array of integers, any length
 //
 func fa(a []int) {
 	fmt.Println(a)
 }
+
 //
 // Function parameter: a pointer to an array of 3 integers.
 //
 func fp(a *[3]int) {
 	fmt.Println(a)
 }
+
 //
 // Function parameter: a pointer to an array of integers.
 //
 func fap(a *[]int) {
 	fmt.Println(a)
 }
+
 /*
 
 */

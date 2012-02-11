@@ -95,7 +95,7 @@ format:
 	@for i in $(dirs); do \
 	echo $$i; \
 	curd=`pwd`; \
-	cd $$i && gofmt -w -spaces -tabwidth=2 *.go; \
+	cd $$i && gofmt -w -tabwidth=2 *.go; \
 	cd $$curd; \
 	done
 

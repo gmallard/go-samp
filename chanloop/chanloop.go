@@ -1,9 +1,11 @@
 package main
+
 //
 import (
 	"fmt"
 	//	"time"
 )
+
 //
 func runner(inc chan int, wc chan bool) {
 	fmt.Println("runner starting")
@@ -24,6 +26,7 @@ func runner(inc chan int, wc chan bool) {
 	wc <- true // we are done
 	fmt.Println("runner ending")
 }
+
 //
 func main() {
 	fmt.Println("Start ....")

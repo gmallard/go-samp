@@ -1,10 +1,11 @@
 package main
+
 //
 // A text file reader.
 //
 import (
-	"fmt"
 	"bufio"
+	"fmt"
 	"io"
 	"os"
 	"strings"

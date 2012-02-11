@@ -1,9 +1,11 @@
 package main
+
 //
 import (
 	"fmt"
 	"math"
 )
+
 //
 // Methods can be attached to (almost?) any type.
 // Declared, separatey from the type, as methods with an explicit receiver.
@@ -26,10 +28,12 @@ import (
 type Point struct {
 	x, y float64
 }
+
 //
 func (p *Point) Abs() float64 {
 	return math.Sqrt(p.x*p.x + p.y*p.y)
 }
+
 //
 var pointa = Point{3.0, 4.0}
 var pp *Point = &pointa // OK, but not necessary.  See example code.
@@ -46,6 +50,7 @@ func (p Point3) Abs() float64 {
 }
 
 var pointb = Point3{3.0, 4.0, 5.0}
+
 //
 // A non-struct example.
 //
@@ -58,6 +63,7 @@ func (v IntVector) Sum() (s int) {
 	}
 	return
 }
+
 //
 // When an anonymous field is embedded in
 // a struct, the methods of that (anon field) type are embedded as

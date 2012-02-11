@@ -22,6 +22,7 @@ func trace(s string) string {
 	fmt.Println("entering: ", s)
 	return s
 }
+
 //
 func un(s string) {
 	fmt.Println("leaving: ", s)

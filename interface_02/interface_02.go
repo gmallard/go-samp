@@ -18,6 +18,7 @@ func (f MyFloat) Abs() MyFloat {
 	}
 	return f
 }
+
 //
 // And then the experiments with variable 'ftryb' below suggested this 
 // approach/technique.  Perhaps it is what is intended in the PDF.
@@ -28,6 +29,7 @@ func (f MyFloat) Abs2() float32 {
 	}
 	return float32(f)
 }
+
 //
 func main() {
 	fmt.Println("Start .....")

@@ -1,6 +1,7 @@
 package main
 
 import "fmt"
+
 /*
 From examples.
 */
@@ -12,6 +13,7 @@ func prtsl_int(a []int) {
 	fmt.Println(a)
 	fmt.Println()
 }
+
 //
 func appendToSlice(i int, sl []int) []int {
 	//
@@ -58,11 +60,11 @@ func main() {
 		fmt.Printf("Next: %d\n", n)
 	}
 	//
-  fmt.Println()
-	var ar = [10]int {1,2,3,4,5,6,7,8,9,10}	// An array, not a slice
+	fmt.Println()
+	var ar = [10]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10} // An array, not a slice
 	fmt.Println(ar)
 	//
-	var sld = ar[3:5]		//
+	var sld = ar[3:5] //
 	fmt.Println(sld)
 	//
 	var sl = make([]int, 0, 100) // len 0, cap 100

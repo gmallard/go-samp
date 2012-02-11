@@ -4,8 +4,8 @@ package main
 
 import (
 	"fmt"  //
-	"time" //
 	"sync" //
+	"time" //
 )
 
 var wg sync.WaitGroup

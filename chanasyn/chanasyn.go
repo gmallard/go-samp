@@ -1,9 +1,11 @@
 package main
+
 //
 import (
 	"fmt"
 	"time"
 )
+
 //
 // gocourseday3.pdf - simple asynchronous channel example.
 //

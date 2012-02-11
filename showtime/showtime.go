@@ -17,12 +17,12 @@ func runTicker(quit chan bool) {
 	for {
 		logger.Println("loop start")
 		select {
-			case ct := <- ticker.C:
-				logger.Println(ct)
-			case q = <- quit:
-				logger.Println("runTicker done")
-				ticker.Stop()
-				break
+		case ct := <-ticker.C:
+			logger.Println(ct)
+		case q = <-quit:
+			logger.Println("runTicker done")
+			ticker.Stop()
+			break
 		}
 		if q {
 			break
@@ -51,7 +51,7 @@ func main() {
 
 	time.Sleep(1e9) // 1 sec
 
-  lt := time.Now()
+	lt := time.Now()
 	ft := lt.Format(time.StampMicro)
 	logger.Println(ft)
 	logger.Println(time.Now().Format(time.StampMicro))

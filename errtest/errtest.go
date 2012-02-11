@@ -4,7 +4,6 @@ package main
 
 import "fmt" //
 
-
 type Error string
 
 func (e Error) Error() string {

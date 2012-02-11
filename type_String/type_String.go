@@ -1,4 +1,5 @@
 package main
+
 //
 // Methods are not just for structs. They can be
 // defined for any (non-pointer) type.
