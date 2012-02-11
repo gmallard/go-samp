@@ -2,7 +2,7 @@ package main
 //
 import (
 	"fmt"
-	"numbers"
+	"go-samp/numbers"
 )
 /*
 	Note: numbers is a locally built package, not part of the 'go' 
