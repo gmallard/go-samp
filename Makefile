@@ -59,6 +59,7 @@ dirs = 	testppack \
 	tcp03 \
 	tcp04 \
 	tcp05 \
+	tcp06 \
 	type_String \
 	unicloup \
 	uniques \
