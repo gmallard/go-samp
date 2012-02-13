@@ -15,6 +15,7 @@ dirs = 	testppack \
 	fib_embellished \
 	fib_userop \
 	fileread \
+	flagdemo \
   force_type \
 	func_lit \
 	func_ret \
