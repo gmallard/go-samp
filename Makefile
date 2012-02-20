@@ -37,7 +37,6 @@ dirs = 	testppack \
 	maps_ss \
 	maps_merge \
 	methods \
-	multisrc \
 	netcon \
 	numconv \
 	oltesta \
