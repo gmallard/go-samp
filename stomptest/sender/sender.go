@@ -8,7 +8,7 @@ import (
   "log"
 	"os"
 	"runtime"
-	"stomp"
+	"github.com/gmallard/stompngo"
 	"strconv"
 	"sync"
 	"time"

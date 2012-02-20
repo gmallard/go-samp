@@ -7,7 +7,7 @@ import (
   "log"
   "net"
   "os"
-	"stomp"
+	"github.com/gmallard/stompngo"
 )
 
 var nmsgs = 10

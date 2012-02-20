@@ -6,7 +6,7 @@ import (
 	"fmt" //
   "log"
 	"net"
-	"stomp"
+	"github.com/gmallard/stompngo"
 	"strconv"
 	"strings"
 	"sync"

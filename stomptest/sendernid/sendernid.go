@@ -8,7 +8,7 @@ import (
   "net"
   "os"
 	"runtime"
-  "stomp"
+	"github.com/gmallard/stompngo"
   "strconv"
 	"sync"
 	"time"
