@@ -5,6 +5,7 @@ import (
 	"net"
 	"strings"
 )
+
 // Demo reading from a goroutine, and waiting on completion.
 // 'Tested' using 'telnet localhost 45678'
 func getData(tcpConn *net.TCPConn, done chan bool) {
@@ -23,7 +24,7 @@ func getData(tcpConn *net.TCPConn, done chan bool) {
 		fmt.Println("Data Read", data)
 		//
 		if strings.HasPrefix(data, "quit") {
-			break;
+			break
 		}
 	}
 	//

@@ -26,7 +26,7 @@ func getData(tcpConn *net.TCPConn, done chan bool) {
 		fmt.Println("Data Read", tcpConn, data)
 		//
 		if strings.HasPrefix(data, "quit") {
-			break;
+			break
 		}
 	}
 	//
