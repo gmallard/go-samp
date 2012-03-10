@@ -88,7 +88,7 @@ func main() {
 
 	fmt.Println("done nc.Close()")
 
-	ngor := runtime.Goroutines()
+	ngor := runtime.NumGoroutine()
 	fmt.Printf("egor: %v\n", ngor)
 
 	select {

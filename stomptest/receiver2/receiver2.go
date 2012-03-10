@@ -93,7 +93,7 @@ func main() {
 	}
 	fmt.Println("done nc.Close()")
 	nc.Close()
-	ngor := runtime.Goroutines()
+	ngor := runtime.NumGoroutine()
 	fmt.Printf("egor: %v\n", ngor)
 	select {
 	case v := <-c.MessageData:
