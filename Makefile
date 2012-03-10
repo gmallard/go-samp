@@ -68,6 +68,14 @@ dirs = 	testppack \
 
 packlist =	numbers \
 
+stompdirs = stomptest/receiver1 \
+  stomptest/receiver2 \
+  stomptest/receivernid \
+  stomptest/sender \
+  stomptest/sendernid \
+  stomptest/sendrcv \
+  stomptest/subrecv_examp \
+
 .PHONY: $(dirs) $(packlist) packages clean format
 
 all: $(dirs)
@@ -98,6 +106,22 @@ format:
 	echo $$i; \
 	curd=`pwd`; \
 	cd $$i && gofmt -w -tabwidth=2 *.go; \
+	cd $$curd; \
+	done
+
+stomptest: $(stompdirs)
+	@for i in $(stompdirs); do \
+	echo $$i; \
+	curd=`pwd`; \
+	cd $$i && go build; \
+	cd $$curd; \
+	done
+
+stompclean:
+	@for i in $(stompdirs); do \
+	echo $$i; \
+	curd=`pwd`; \
+	cd $$i && go clean; \
 	cd $$curd; \
 	done
 
