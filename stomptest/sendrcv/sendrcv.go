@@ -35,13 +35,13 @@ const (
 	stagger = 1e9 / 4 // Consume some time building and processing messages
 )
 
-func recMessages(c *stomp.Connection, q string, k int) {
+func recMessages(c *stompngo.Connection, q string, k int) {
 
 	var error error
 	ks := fmt.Sprintf("%d", k)
 
 	// Receive phase
-	headers := stomp.Headers{"destination", q}
+	headers := stompngo.Headers{"destination", q}
 	sh := headers.Add("id", q)
   //
 	fmt.Println("start subscribe", q)
@@ -73,12 +73,12 @@ func recMessages(c *stomp.Connection, q string, k int) {
 	wgrecv.Done()
 }
 
-func sendMessages(c *stomp.Connection, q string, n int, k int) {
+func sendMessages(c *stompngo.Connection, q string, n int, k int) {
 
 	var error error
 	ks := fmt.Sprintf("%d", k)
 	// Send
-	eh := stomp.Headers{"destination", q} // Extra headers
+	eh := stompngo.Headers{"destination", q} // Extra headers
 	for i := 1; i <= n; i++ {
 		m := ks + " gostomp message #" + strconv.Itoa(i)
 		if printMsgs {
@@ -106,8 +106,8 @@ func BenchmarkMultipleGoRoutinesSend() {
 		log.Fatal(error)
 	}
 	// Connect
-	ch := stomp.Headers{"login", "guest", "passcode", "guest"}
-	c, error := stomp.Connect(nc, ch)
+	ch := stompngo.Headers{"login", "guest", "passcode", "guest"}
+	c, error := stompngo.Connect(nc, ch)
 	if error != nil {
 		log.Fatal(error)
 	}
@@ -119,7 +119,7 @@ func BenchmarkMultipleGoRoutinesSend() {
 	}
 	wgsend.Wait()
 	// Disconnect
-	nh := stomp.Headers{}
+	nh := stompngo.Headers{}
 	error = c.Disconnect(nh)
 	if error != nil {
 		log.Fatal(error)
@@ -138,8 +138,8 @@ func BenchmarkMultipleGoRoutinesRecv() {
 		log.Fatal(error)
 	}
 	// Connect
-	ch := stomp.Headers{"login", "guest", "passcode", "guest"}
-	c, error := stomp.Connect(nc2, ch)
+	ch := stompngo.Headers{"login", "guest", "passcode", "guest"}
+	c, error := stompngo.Connect(nc2, ch)
 	if error != nil {
 		log.Fatal(error)
 	}
@@ -150,7 +150,7 @@ func BenchmarkMultipleGoRoutinesRecv() {
 	}
 	wgrecv.Wait()
 	// Disconnect
-	nh := stomp.Headers{}
+	nh := stompngo.Headers{}
 	error = c.Disconnect(nh)
 	if error != nil {
 		log.Fatal(error)

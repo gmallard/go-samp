@@ -23,13 +23,13 @@ func main() {
 		// Handle error properly
 	}
   // Connect
-	ch := stomp.Headers{"login", "guest", "passcode", "guest",
+	ch := stompngo.Headers{"login", "guest", "passcode", "guest",
 		"accept-version","1.1","host",host}
-	c, error := stomp.Connect(nc, ch)
+	c, error := stompngo.Connect(nc, ch)
 	if error != nil {
 		log.Fatal(error)
 	}
-	sh := stomp.Headers{"destination", qname}
+	sh := stompngo.Headers{"destination", qname}
 	for i := 1; i <= nmsgs; i++ {
 		msg := "subrecv message " + fmt.Sprintf("%d", i)
 		error = c.Send(sh, msg)
@@ -69,13 +69,13 @@ func main() {
 			break
 		}
 	}
-	uh := stomp.Headers{"destination", qname, "id", subid}
+	uh := stompngo.Headers{"destination", qname, "id", subid}
 	error = c.Unsubscribe(uh)
 	if error != nil {
 		log.Fatal(error)
 	}
   // Disconnect
-  nh := stomp.Headers{}
+  nh := stompngo.Headers{}
 	error = c.Disconnect(nh)
 	if error != nil {
 		log.Fatal(error)

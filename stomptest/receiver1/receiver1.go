@@ -22,13 +22,13 @@ var hap = "localhost:"
 var incrCtl sync.Mutex
 var numRecv int
 
-func recMessages(c *stomp.Connection, q string) {
+func recMessages(c *stompngo.Connection, q string) {
 
 	var error error
 
 	fmt.Printf("Start for q: %s\n", q)
 	// Receive phase
-	headers := stomp.Headers{"destination", q}
+	headers := stompngo.Headers{"destination", q}
 	fmt.Printf("qhdrs: %v\n", headers)
 	_, error = c.Subscribe(headers)
 	if error != nil {
@@ -59,8 +59,8 @@ func main() {
 		log.Fatal(error)
 	}
 	// Connect
-	ch := stomp.Headers{"login", "getter", "passcode", "recv1234"}
-	c, error := stomp.Connect(nc, ch)
+	ch := stompngo.Headers{"login", "getter", "passcode", "recv1234"}
+	c, error := stompngo.Connect(nc, ch)
 	if error != nil {
 		log.Fatal(error)
 	}
@@ -79,7 +79,7 @@ func main() {
 	fmt.Println("unsubs: starts")
 	for i := 1; i <= mq; i++ {
 		qn := fmt.Sprintf("%d", i)
-		h := stomp.Headers{"destination", qname + qn}
+		h := stompngo.Headers{"destination", qname + qn}
 		fmt.Printf("unsubhdr: %v\n", h)
 		error = c.Unsubscribe(h)
 		if error != nil {
@@ -88,7 +88,7 @@ func main() {
 	}
 	fmt.Printf("Num received: %d\n", numRecv)
 	// Disconnect
-	nh := stomp.Headers{}
+	nh := stompngo.Headers{}
 	error = c.Disconnect(nh)
 	if error != nil {
  		log.Fatal(error)

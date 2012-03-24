@@ -23,12 +23,12 @@ var host = "localhost"
 var hap = host + ":"
 
 
-func sendMessages(c *stomp.Connection, q string, n int, k int) {
+func sendMessages(c *stompngo.Connection, q string, n int, k int) {
 
 	var error error
 
   // Send
-  eh := stomp.Headers{"destination", q} // Extra headers
+  eh := stompngo.Headers{"destination", q} // Extra headers
   for i := 1; i <= n; i++ {
 		m := q + " gostomp message #" + strconv.Itoa(i)
 		if printMsgs {
@@ -58,9 +58,9 @@ func main() {
 		// Handle error properly
 	}
   // Connect
-	ch := stomp.Headers{"login", "putter", "passcode", "send1234",
+	ch := stompngo.Headers{"login", "putter", "passcode", "send1234",
 		"accept-version","1.1", "host",host}
-	c, error := stomp.Connect(nc, ch)
+	c, error := stompngo.Connect(nc, ch)
 	if error != nil {
 		log.Fatal(error)
 	}
@@ -73,7 +73,7 @@ func main() {
 	wg.Wait()
 	fmt.Println("done with wait")
   // Disconnect
-  nh := stomp.Headers{}
+  nh := stompngo.Headers{}
 	error = c.Disconnect(nh)
 	if error != nil {
 		log.Fatalf("discerr %v\n", error)
