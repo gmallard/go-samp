@@ -61,6 +61,7 @@ dirs = 	testppack \
 	tcp04 \
 	tcp05 \
 	tcp06 \
+	testgreek \
 	type_String \
 	unicloup \
 	uniques \
