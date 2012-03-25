@@ -48,6 +48,7 @@ dirs = 	testppack \
 	showtime \
 	sliceappt \
 	slices \
+	sltricks \
 	stringlens \
 	strings_utils \
 	struct \
