@@ -64,6 +64,7 @@ dirs = 	testppack \
 	testgreek \
 	type_String \
 	unicloup \
+	unicode_what \
 	uniques \
 	utfconv \
 
