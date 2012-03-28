@@ -4,36 +4,34 @@ package main
 
 import (
 	"fmt" //
-  "log"
-	"net"
 	"github.com/gmallard/stompngo"
+	"log"
+	"math/rand"
+	"net"
 	"strconv"
 	"strings"
 	"sync"
+	"time"
 )
 
 var wgsend sync.WaitGroup
 var wgrecv sync.WaitGroup
 var wgboth sync.WaitGroup
 var printMsgs bool = true
+
 // var handp string = "localhost:61613"	// 1.0 server
 var handp string = "localhost:62613" // 1.1 server
 var nmsgs = 100
 var qname = "/queue/stompngo.sendrcv.seq"
-var mq = 10 //
+var nq = 10 //
 
-var msg_build_ms int64 = 50 // max ms to build a message
-var msg_proc_ms int64 = 259 // max ms to process a message
+var seed int64       // The seed value (time.Now().UnixNano())
+var src rand.Source  // The source
+var rgptr *rand.Rand // Pointer to the generator
 
-
-func getNanoSecondsFromMillis(m int64) (n int64) {
-	m = n * 1000000 // ms -> ns
-	return m
+func getStagger(minns, maxns int64) int64 {
+	return minns + rgptr.Int63n(maxns-minns)
 }
-
-const (
-	stagger = 1e9 / 4 // Consume some time building and processing messages
-)
 
 func recMessages(c *stompngo.Connection, q string, k int) {
 
@@ -43,30 +41,32 @@ func recMessages(c *stompngo.Connection, q string, k int) {
 	// Receive phase
 	headers := stompngo.Headers{"destination", q}
 	sh := headers.Add("id", q)
-  //
-	fmt.Println("start subscribe", q)
+	//
+	log.Println("start subscribe", q)
 	sc, error := c.Subscribe(sh)
-	fmt.Println("end subscribe", q)
+	log.Println("end subscribe", q)
 	if error != nil {
 		log.Fatal(error)
 	}
 	for input := range sc {
 		inmsg := input.Message.BodyString()
 		if printMsgs {
-			fmt.Println("Receive:", q, " / ", inmsg)
+			log.Println("Receive:", q, " / ", inmsg)
 		}
 		if inmsg == "***EOF***" {
 			break
 		}
 		if !strings.HasPrefix(inmsg, ks) {
-			fmt.Printf("bad prefix: [%v], [%v], [%v]\n", q, inmsg, ks)
+			log.Printf("bad prefix: [%v], [%v], [%v]\n", q, inmsg, ks)
 			log.Fatal("bad prefix ....")
 		}
-
+		//
+		d := time.Duration(getStagger(1e9/10, 1e9/5))
+		time.Sleep(d)
 	}
-	fmt.Println("quit for", q)
+	log.Println("quit for", q)
 	error = c.Unsubscribe(headers)
-	fmt.Println("end unsubscribe", q)
+	log.Println("end unsubscribe", q)
 	if error != nil {
 		log.Fatal(error)
 	}
@@ -82,12 +82,15 @@ func sendMessages(c *stompngo.Connection, q string, n int, k int) {
 	for i := 1; i <= n; i++ {
 		m := ks + " gostomp message #" + strconv.Itoa(i)
 		if printMsgs {
-			fmt.Println("Send:", q, " / ", m)
+			log.Println("Send:", q, " / ", m)
 		}
 		error = c.Send(eh, m)
 		if error != nil {
 			log.Fatal(error)
 		}
+		//
+		d := time.Duration(getStagger(1e9/20, 1e9/10))
+		time.Sleep(d)
 	}
 	error = c.Send(eh, "***EOF***")
 	if error != nil {
@@ -111,7 +114,7 @@ func BenchmarkMultipleGoRoutinesSend() {
 	if error != nil {
 		log.Fatal(error)
 	}
-	for i := 1; i <= mq; i++ {
+	for i := 1; i <= nq; i++ {
 		qn := fmt.Sprintf("%d", i)
 		wgsend.Add(1)
 		go sendMessages(c, qname+qn, nmsgs, i)
@@ -124,7 +127,7 @@ func BenchmarkMultipleGoRoutinesSend() {
 	if error != nil {
 		log.Fatal(error)
 	}
-	fmt.Println("Done with SENDs ....")
+	log.Println("Done with SENDs ....")
 	wgboth.Done()
 }
 
@@ -143,7 +146,7 @@ func BenchmarkMultipleGoRoutinesRecv() {
 	if error != nil {
 		log.Fatal(error)
 	}
-	for i := 1; i <= mq; i++ {
+	for i := 1; i <= nq; i++ {
 		qn := fmt.Sprintf("%d", i)
 		wgrecv.Add(1)
 		go recMessages(c, qname+qn, i)
@@ -159,6 +162,10 @@ func BenchmarkMultipleGoRoutinesRecv() {
 }
 
 func main() {
+
+	seed = time.Now().UnixNano()
+	src = rand.NewSource(seed)
+	rgptr = rand.New(src)
 
 	wgboth.Add(2)
 	go BenchmarkMultipleGoRoutinesRecv()
