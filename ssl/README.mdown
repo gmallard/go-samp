@@ -1,0 +1,64 @@
+SSL Examples
+============
+
+This directory and subdirectories contain data and code that demonstrate the
+use of SSL when connecting to a server.
+
+Subdirectories
+--------------
+
+* certinfo - Load a certificate and key into an tls.Certificate instance
+* certs - all SSL certificates which were used in these examples
+* client1 - demonstrate SSL use case 1
+* client2 - demonstrate SSL use case 2
+* client3 - demonstrate SSL use case 3
+* client4 - demonstrate SSL use case 4
+* pemload - Load a certificate into an x509.Certificate instance
+
+SSL Use Case 1
+--------------
+
+* Server does not authenticate client
+* Client does not authenticate server
+
+SSL Use Case 2
+--------------
+
+* Server does not authenticate client
+* Client does authenticate server
+
+SSL Use Case 3
+--------------
+
+* Server does authenticate client
+* Client does not authenticate server
+
+SSL Use Case 4
+--------------
+
+This is two-way or mutual authentication.
+
+* Server does authenticate client
+* Client does authenticate server
+
+Notes
+-----
+
+It is usually possible to configure a server in one of two ways:
+
+* Client MAY send a certificate to the server
+* Client MUST send a certificate to the server
+
+The behavior of the use cases will vary depending on this configuration
+setting.  See comments in the code for each use case.
+
+All certificates and keys were generated using openssl.
+
+The .store file included are Java keystores, of type JKS.  These were created
+by using keytool to import the PKCS12 format certificates.
+
+All passwords are the word password.
+
+
+
+
