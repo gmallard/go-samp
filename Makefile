@@ -30,6 +30,7 @@ dirs = 	testppack \
 	interface_01 \
 	interface_02 \
 	interface_03 \
+	interface_04 \
 	list \
 	list_struct \
 	loghello \
