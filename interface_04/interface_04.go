@@ -58,14 +58,14 @@ func main() {
 	fmt.Println("dTwo.its:", dTwo.its)
 
 	// ImpOne leaves data alone
-	_ = dOne.Put("newdone")
+	_ = dOne.Put("1time")
 	w, _ := dOne.Get()
-	fmt.Println("dOnePutGet", w)
+	fmt.Println("dOnePutGet", "1time", w)
 
 	// ImpTwo munges the data
-	_ = dTwo.Put("9999")
+	_ = dTwo.Put("1time")
 	w, _ = dTwo.Get()
-	fmt.Println("dTwoPutGet", w)
+	fmt.Println("dTwoPutGet", "1time", w)
 
 	// An array of Gaps
 	ga := [...]Gap{dOne, dTwo}
