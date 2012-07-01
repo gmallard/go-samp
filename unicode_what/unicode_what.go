@@ -1,3 +1,6 @@
+/*
+Demonstrate UTF-8 oddities with characters "σ" and "ς".
+*/
 package main
 
 import "fmt"
@@ -10,7 +13,7 @@ func main() {
 	fmt.Println()
 	fmt.Println(strings.ToLower(g))
 	fmt.Println()
-	
+
 	// But what about the ς versus σ thing?
 	v := "ς"
 	fmt.Println("c-cedilla", v)
@@ -22,4 +25,3 @@ func main() {
 	fmt.Println("sigma UPPER", strings.ToUpper(v))
 	fmt.Println("sigma flip", strings.ToLower(strings.ToUpper(v)))
 }
-

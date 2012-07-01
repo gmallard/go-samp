@@ -1,9 +1,10 @@
+/*
+A simple server using channels.  Another example from the gocourseday3.pdf.
+*/
 package main
 
 import "fmt"
 
-//
-// Another example from the gocourseday3.pdf.
 //
 // This example works as presented in the PDF.  This is mostly cut and 
 // paste.
@@ -46,9 +47,9 @@ func startServer(op binOp) chan *request {
 	return req
 }
 
-//
-// Print requests nicely.
-//
+/*
+Print requests nicely.
+*/
 func (r *request) String() string {
 	return fmt.Sprintf("%d+%d=%d", r.a, r.b, <-r.replyc)
 }

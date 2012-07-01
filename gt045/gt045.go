@@ -1,3 +1,6 @@
+/*
+Go tour, number 45.
+*/
 package main
 
 // go tour #45: http://tour.golang.org/#45
@@ -7,7 +10,7 @@ package main
 // Install by e.g.:
 //
 // unset GOPATH # YMMV
-// goinstall code.google.com/p/go-tour/gotour
+// go get code.google.com/p/go-tour/gotour
 //
 
 import (

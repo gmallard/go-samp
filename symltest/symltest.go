@@ -1,5 +1,6 @@
-//
-
+/*
+More symbolic link fun.
+*/
 package main
 
 import (

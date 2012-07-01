@@ -1,3 +1,6 @@
+/*
+Go tour, number 44.
+*/
 package main
 
 // go tour #44: http://tour.golang.org/#44

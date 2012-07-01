@@ -1,3 +1,6 @@
+/*
+Display some information about an SSL certificate.
+*/
 package main
 
 import (

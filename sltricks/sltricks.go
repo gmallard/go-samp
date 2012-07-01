@@ -1,3 +1,6 @@
+/*
+Demonstrate all the tricks from http://code.google.com/p/go-wiki/wiki/SliceTricks
+*/
 package main
 
 // http://code.google.com/p/go-wiki/wiki/SliceTricks

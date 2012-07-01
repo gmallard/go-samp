@@ -1,3 +1,6 @@
+/*
+A demonstration of methods.
+*/
 package main
 
 //

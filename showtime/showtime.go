@@ -1,5 +1,6 @@
-// time package, short demo
-
+/*
+Demonstrate using the time package.
+*/
 package main
 
 import (

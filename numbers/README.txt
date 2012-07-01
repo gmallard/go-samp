@@ -8,17 +8,14 @@
 #
 # To test this package enter the command:
 #
-# * gotest
-#
-# Note: it is not necessary to build using 'make/gmake' before testing like
-# this.
+# * go test
 #
 # == Installation
 #
 # To install this package to your local go package directory enter the 
 # command:
 #
-# * gomake install
+# * go install
 #
 # == Notes
 #

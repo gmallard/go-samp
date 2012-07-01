@@ -1,5 +1,6 @@
-// A conundrum in UTF-8 upper/lower case .........
-
+/*
+Demonstrate UTF-8 oddities with characters "σ" and "ς".
+*/
 package main
 
 import (

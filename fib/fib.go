@@ -1,3 +1,6 @@
+/*
+The obligatory Fibonacci number example.
+*/
 package main
 
 // Import formatting package

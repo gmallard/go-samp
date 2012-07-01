@@ -1,3 +1,6 @@
+/*
+Yet another Fibonacci number example using a user defined operator.
+*/
 package main
 
 import "fmt"

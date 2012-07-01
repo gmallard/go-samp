@@ -1,3 +1,6 @@
+/*
+Display PEM file information.
+*/
 package main
 
 import (

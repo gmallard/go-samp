@@ -1,10 +1,10 @@
+/*
+A demonstration of using go arrays and slices.
+*/
 package main
 
 import "fmt"
 
-/*
-From examples.
-*/
 //
 // Function parameter: an array of 3 integers.
 //
@@ -27,7 +27,7 @@ func fp(a *[3]int) {
 }
 
 //
-// Function parameter: a pointer to an array of integers.
+// Function parameter: a pointer to an slice of integers.
 //
 func fap(a *[]int) {
 	fmt.Println(a)

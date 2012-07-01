@@ -1,5 +1,6 @@
-// Hello world, and pattern for project starts.
-
+/*
+Generate long sequences of unique values.
+*/
 package main
 
 import (

@@ -1,5 +1,6 @@
-// 
-
+/*
+Brief slice of strings demonstration.
+*/
 package main
 
 import (

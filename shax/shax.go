@@ -1,5 +1,6 @@
-// Create a sha1 and sha256 sums of a string.
-
+/*
+Generating sha1 and sha256 sums.
+*/
 package main
 
 import (

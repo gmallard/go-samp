@@ -1,30 +1,32 @@
-// stompngo example
-
+/*
+Send and receive STOMP messages using https://github.com/gmallard/stompngo using
+a STOMP 1.0 broker.
+*/
 package main
 
 import (
 	"fmt" //
-  "log"
-  "net"
-  "os"
 	"github.com/gmallard/stompngo"
+	"log"
+	"net"
+	"os"
 )
 
 var nmsgs = 10
-var	qname = "/queue/stompngo.subrecv_examp"
+var qname = "/queue/stompngo.subrecv_examp"
 var host = "localhost"
 var hap = host + ":"
 
 func main() {
 
-  // create a net.Conn, and pass that into Connect
-	nc, error := net.Dial("tcp", hap + os.Getenv("STOMP_PORT"))
+	// create a net.Conn, and pass that into Connect
+	nc, error := net.Dial("tcp", hap+os.Getenv("STOMP_PORT"))
 	if error != nil {
 		// Handle error properly
 	}
-  // Connect
+	// Connect
 	ch := stompngo.Headers{"login", "guest", "passcode", "guest",
-		"accept-version","1.1","host",host}
+		"accept-version", "1.1", "host", host}
 	c, error := stompngo.Connect(nc, ch)
 	if error != nil {
 		log.Fatal(error)
@@ -47,13 +49,13 @@ func main() {
 	for {
 		// Sanity check.  Any unanticipated ERROR frames?
 		select {
-			case v := <- c.MessageData:
-				log.Fatalf("frame1: %v\n", v)
-			default:
-				fmt.Println("Nothing to show - 1")
+		case v := <-c.MessageData:
+			log.Fatalf("frame1: %v\n", v)
+		default:
+			fmt.Println("Nothing to show - 1")
 		}
 		fmt.Println("Start receive ....")
-		d := <- sc
+		d := <-sc
 		// fmt.Printf("d: %v\n", d)
 		if d.Error != nil {
 			log.Fatal(d.Error)
@@ -74,22 +76,21 @@ func main() {
 	if error != nil {
 		log.Fatal(error)
 	}
-  // Disconnect
-  nh := stompngo.Headers{}
+	// Disconnect
+	nh := stompngo.Headers{}
 	error = c.Disconnect(nh)
 	if error != nil {
 		log.Fatal(error)
 	}
 	// Sanity check.  Any unanticipated ERROR frames?
 	select {
-		case v := <- c.MessageData:
-			log.Fatalf("frame2: %v\n", v)
-		default:
-			fmt.Println("Nothing to show - 2")
+	case v := <-c.MessageData:
+		log.Fatalf("frame2: %v\n", v)
+	default:
+		fmt.Println("Nothing to show - 2")
 	}
 	fmt.Println("done disconnect, start nc.Close()")
 	nc.Close()
 	fmt.Println("done nc.Close()")
 
 }
-

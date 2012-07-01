@@ -1,5 +1,6 @@
-// Demo completion channel synchronization of go routines.
-
+/*
+Using channels for synchronization of go routines.
+*/
 package main
 
 import (

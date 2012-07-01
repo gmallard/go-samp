@@ -1,5 +1,6 @@
-// flag package, a short demo
-
+/*
+Flag package, a short demo.
+*/
 package main
 
 import (

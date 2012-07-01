@@ -1,5 +1,6 @@
 /*
- */
+Merging two maps, with optional overwrite.
+*/
 package main
 
 import "fmt"

@@ -1,3 +1,6 @@
+/*
+Interface example from the gocourse PDFs.
+*/
 package main
 
 import (
@@ -54,8 +57,6 @@ func main() {
 
 	ai = pp               // OK: *Point has Abs()
 	fmt.Println(ai.Abs()) // method call
-
-	// ai = 7.; // compile-time err: float has no Abs()
 
 	ai = MyFloat(-7.)     // OK, MyFloat has Abs()
 	fmt.Println(ai.Abs()) // method call

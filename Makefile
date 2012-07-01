@@ -112,6 +112,14 @@ format:
 	cd $$curd; \
 	done
 
+stompfmt: $(stompdirs)
+	@for i in $(stompdirs); do \
+	echo $$i; \
+	curd=`pwd`; \
+	cd $$i && gofmt -w -tabwidth=2 *.go; \
+	cd $$curd; \
+	done
+
 stomptest: $(stompdirs)
 	@for i in $(stompdirs); do \
 	echo $$i; \
@@ -119,6 +127,7 @@ stomptest: $(stompdirs)
 	cd $$i && go build; \
 	cd $$curd; \
 	done
+
 
 stompclean:
 	@for i in $(stompdirs); do \

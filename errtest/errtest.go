@@ -1,5 +1,6 @@
-// Fiddling with Error types .....
-
+/*
+Fiddling with Error types.
+*/
 package main
 
 import "fmt" //

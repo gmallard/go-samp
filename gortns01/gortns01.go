@@ -1,3 +1,6 @@
+/*
+Using sleep, and example from gocourseday3.pdf. 
+*/
 package main
 
 //

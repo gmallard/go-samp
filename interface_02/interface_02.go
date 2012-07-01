@@ -1,3 +1,6 @@
+/*
+Interface example from gocourseday2.pdf.
+*/
 package main
 
 import (

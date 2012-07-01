@@ -1,3 +1,6 @@
+/*
+A simple TCP reader server, with system controlled read timeout.
+*/
 package main
 
 import (

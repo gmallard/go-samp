@@ -1,3 +1,6 @@
+/*
+An interesting demo of types and methods.
+*/
 package main
 
 //

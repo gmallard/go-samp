@@ -1,14 +1,16 @@
-// stompngo demo
-
+/*
+Send STOMP messages using https://github.com/gmallard/stompngo and a STOMP 
+1.1 broker.
+*/
 package main
 
 import (
 	"fmt" //
+	"github.com/gmallard/stompngo"
+	"log"
 	"net"
-  "log"
 	"os"
 	"runtime"
-	"github.com/gmallard/stompngo"
 	"strconv"
 	"sync"
 	"time"

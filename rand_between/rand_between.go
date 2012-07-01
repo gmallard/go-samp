@@ -1,5 +1,6 @@
-// Generate a random int64 number between min and max
-
+/*
+Generate a random int64 number between min and max bounds.
+*/
 package main
 
 import (

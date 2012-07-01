@@ -1,3 +1,6 @@
+/*
+Using maps, from the gocourse PDFs.
+*/
 package main
 
 import "fmt"

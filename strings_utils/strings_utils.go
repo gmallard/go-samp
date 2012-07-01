@@ -1,4 +1,6 @@
-//
+/*
+Experiments with utilities from package strings.
+*/
 package main
 
 import (

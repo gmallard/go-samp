@@ -1,3 +1,6 @@
+/*
+Loop and receive values from a buffered channel.
+*/
 package main
 
 //

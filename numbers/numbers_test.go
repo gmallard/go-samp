@@ -1,9 +1,8 @@
-//
-// Package: numbers
-//
+/*
+*/
 package numbers
 //
-// Could import multiple packages here.  And also 'rename' the for local
+// Could import multiple packages here.  And also 'rename' the package for local
 // use.
 //
 import (

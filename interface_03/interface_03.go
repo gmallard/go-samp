@@ -1,3 +1,6 @@
+/*
+Interface example, using interface{}.
+*/
 package main
 
 import (

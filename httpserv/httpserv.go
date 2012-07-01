@@ -1,3 +1,6 @@
+/*
+A very simple HTTP server.
+*/
 package main
 
 import (

@@ -1,5 +1,6 @@
-// Simple list demo.
-
+/*
+Demonstrate using the List container.
+*/
 package main
 
 import (

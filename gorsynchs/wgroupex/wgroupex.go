@@ -1,5 +1,6 @@
-// Demo a wait group synchronization of go routines.
-
+/*
+Using a wait group for go routine synchronization.
+*/
 package main
 
 import (

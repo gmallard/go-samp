@@ -1,14 +1,16 @@
-// stompngo demo
-
+/*
+Receive STOMP messages using https://github.com/gmallard/stompngo and a STOMP 
+1.0 broker.
+*/
 package main
 
 import (
 	"fmt" //
-  "log"
+	"github.com/gmallard/stompngo"
+	"log"
 	"net"
 	"os"
 	"runtime"
-	"github.com/gmallard/stompngo"
 	"strings"
 	"sync"
 )
@@ -83,7 +85,7 @@ func main() {
 		fmt.Printf("unsubhdr: %v\n", h)
 		error = c.Unsubscribe(h)
 		if error != nil {
-  		log.Fatal(error)
+			log.Fatal(error)
 		}
 	}
 	fmt.Printf("Num received: %d\n", numRecv)
@@ -91,7 +93,7 @@ func main() {
 	nh := stompngo.Headers{}
 	error = c.Disconnect(nh)
 	if error != nil {
- 		log.Fatal(error)
+		log.Fatal(error)
 	}
 	fmt.Println("done nc.Close()")
 	nc.Close()

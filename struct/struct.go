@@ -1,3 +1,6 @@
+/*
+Demonstration of structs, based on the gocourse PDFs.
+*/
 package main
 
 import "fmt"

@@ -1,3 +1,6 @@
+/*
+Using multiple return values.
+*/
 package main
 
 import (

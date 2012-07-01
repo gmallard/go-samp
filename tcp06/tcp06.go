@@ -1,3 +1,6 @@
+/*
+TCP demonstration, multiple clients using go routines.
+*/
 package main
 
 import (

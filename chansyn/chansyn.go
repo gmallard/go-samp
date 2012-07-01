@@ -1,3 +1,6 @@
+/*
+Example of using an unbuffered channel, based on gocourseday3.pdf.
+*/
 package main
 
 //

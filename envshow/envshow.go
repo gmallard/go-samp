@@ -1,5 +1,6 @@
-// Demo os environment variables
-
+/*
+Using OS environment variables.
+*/
 package main
 
 import (

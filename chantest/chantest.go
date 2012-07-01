@@ -1,3 +1,6 @@
+/*
+A demonstration of blocking when using an unbuffered channel.
+*/
 package main
 
 import (

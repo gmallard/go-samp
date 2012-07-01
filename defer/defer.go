@@ -1,5 +1,6 @@
-// Demonstrate defer.
-
+/*
+A contrived example of using defer.
+*/
 package main
 
 import (

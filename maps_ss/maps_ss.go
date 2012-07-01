@@ -1,5 +1,6 @@
 /*
- */
+Simple play with map[string]string.
+*/
 package main
 
 import "fmt"

@@ -1,5 +1,6 @@
-// Use a net conn connection
-
+/*
+Use a net.Conn connection, which is an interface.
+*/
 package main
 
 import (
@@ -11,14 +12,14 @@ import (
 
 func main() {
 	fmt.Println("Start...")
-	conn, err := net.Dial("tcp", "localhost:51613")
+	conn, err := net.Dial("tcp", "localhost:54321")
 	//
 	if err != nil {
 		fmt.Printf("Dial Error received: %v\n", err)
 		os.Exit(4)
 	}
 	//
-	time.Sleep(5 * 1e9) // 5 seconds
+	time.Sleep(5 * time.Second) // 5 seconds
 	//
 	err = conn.Close()
 	if err != nil {

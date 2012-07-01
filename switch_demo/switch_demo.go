@@ -1,3 +1,6 @@
+/*
+A basic demonstration of the switch statement.
+*/
 package main
 
 import (

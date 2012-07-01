@@ -1,3 +1,6 @@
+/*
+An embellished Fibinacci number example.
+*/
 package main
 
 //
@@ -10,9 +13,12 @@ a) multiple return values
 b) use of := in functions
 
 */
+
 //
 //         -6 -5 -4 -3 -2 -1  0  1  2  3  4  5  6
 //     ...,-8, 5,-3, 2,-1, 1, 0, 1, 1, 2, 3, 5, 8,...
+//
+// Reference: http://en.wikipedia.org/wiki/Fibonacci_number
 //
 func fib(i int) (result int, flag bool) {
 	// The basics:  0 and 1
@@ -35,8 +41,8 @@ func fib(i int) (result int, flag bool) {
 }
 
 func main() {
-	fmt.Printf("n tfib(n)tCheckn")
-	fmt.Printf("==t======t=====n")
+	fmt.Printf("n \tfib(n)\tCheck\n")
+	fmt.Printf("==\t======\t=====\n")
 	//
 	for ni := -7; ni <= 6; ni++ {
 		result, flag := fib(ni)

@@ -1,5 +1,6 @@
-// Hello world, and pattern for project starts.
-
+/*
+Hello world program, and pattern for project starts.
+*/
 package main
 
 import (

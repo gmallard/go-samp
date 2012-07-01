@@ -1,3 +1,6 @@
+/*
+Test using the numbers package.
+*/
 package main
 
 //

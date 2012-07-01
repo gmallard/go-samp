@@ -1,5 +1,6 @@
-// Brief demo of how the go supplied logger works.
-
+/*
+Using the log package.
+*/
 package main
 
 import (

@@ -1,3 +1,6 @@
+/*
+Experiment with string lengths and character sequences.
+*/
 package main
 
 import "fmt"

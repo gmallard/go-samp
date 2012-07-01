@@ -1,3 +1,6 @@
+/*
+A simple server using channels, with client controlled shutdown.
+*/
 package main
 
 import "fmt"

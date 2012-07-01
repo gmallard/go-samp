@@ -1,5 +1,7 @@
-// stompngo demo
-
+/*
+Send and receive STOMP messages using https://github.com/gmallard/stompngo using multiple
+go routines.
+*/
 package main
 
 import (

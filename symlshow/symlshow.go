@@ -1,3 +1,6 @@
+/*
+Test if a path is a symbolic link.
+*/
 package main
 
 // Show if a given path is actually a symbolic link

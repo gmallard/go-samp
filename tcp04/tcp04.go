@@ -1,3 +1,6 @@
+/*
+How not to use go routines for reading.
+*/
 package main
 
 import (
@@ -71,7 +74,7 @@ func main() {
 	fmt.Printf("connection = %v\n", tcpConn)
 	waitFor := make(chan bool)
 	go getData(tcpConn, waitFor)
-	// Do note wait ......
+	// Do not wait ......
 	// <- waitFor
 	//
 	fmt.Println("Starting Close() 2")

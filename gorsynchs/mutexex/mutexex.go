@@ -1,5 +1,6 @@
-// Demo a mutex synchronization of go routines.
-
+/*
+Using a mutex for synchronization of go routines.
+*/
 package main
 
 import (

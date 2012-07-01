@@ -1,3 +1,6 @@
+/*
+Originally meant to be a test of overloading, which of course is not implemented.
+*/
 package main
 
 import "fmt"

@@ -1,3 +1,6 @@
+/*
+Demonstrate type coercion with numbers.
+*/
 package main
 
 // Demo basic coercion of numbers from one type to another

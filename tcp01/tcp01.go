@@ -1,4 +1,6 @@
-//
+/*
+A simple TCP echo server.
+*/
 package main
 
 import (

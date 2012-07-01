@@ -1,5 +1,6 @@
-// Function literals.
-
+/*
+Using function literals.
+*/
 package main
 
 import (

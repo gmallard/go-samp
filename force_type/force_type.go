@@ -1,5 +1,6 @@
-// Type coercion with automatic declares
-
+/*
+Using type coercion with automatic declares.
+*/
 package main
 
 import (

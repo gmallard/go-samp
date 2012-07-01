@@ -1,14 +1,16 @@
-// stompngo demo
-
+/*
+Receive STOMP messages using https://github.com/gmallard/stompngo and a STOMP 
+1.0 broker, verify library added subscription ID.
+*/
 package main
 
 import (
 	"fmt" //
-  "log"
+	"github.com/gmallard/stompngo"
+	"log"
 	"net"
 	"os"
 	"runtime"
-	"github.com/gmallard/stompngo"
 	"strings"
 	"sync"
 	"time"
@@ -83,8 +85,8 @@ func recMessages(c *stompngo.Connection, q string) {
 			fmt.Println("Nothing to show")
 		}
 	}
-	uh := stompngo.Headers{"id",firstSub,
-    "destination", q}
+	uh := stompngo.Headers{"id", firstSub,
+		"destination", q}
 	error = c.Unsubscribe(uh)
 	if error != nil {
 		log.Fatalf("unsub error: %v\n", error)
@@ -102,8 +104,8 @@ func main() {
 	}
 	// Connect
 	ch := stompngo.Headers{"login", "getter", "passcode", "recv1234"}
-	ch = ch.Add("accept-version","1.1")
-	ch = ch.Add("host",host)
+	ch = ch.Add("accept-version", "1.1")
+	ch = ch.Add("host", host)
 	c, error := stompngo.Connect(nc, ch)
 	if error != nil {
 		log.Fatal(error)

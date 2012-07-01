@@ -1,3 +1,6 @@
+/*
+Hello world, no imports.
+*/
 package main
 
 //

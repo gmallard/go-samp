@@ -1,3 +1,7 @@
+/*
+A simple TCP reader, with shutdown capability.
+*/
+
 package main
 
 import (

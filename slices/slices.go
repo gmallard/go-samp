@@ -1,3 +1,6 @@
+/*
+Slice demonstration from the gocourse PDFs.
+*/
 package main
 
 import "fmt"

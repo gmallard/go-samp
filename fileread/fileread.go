@@ -1,3 +1,6 @@
+/*
+A text file reader.
+*/
 package main
 
 //
@@ -23,8 +26,7 @@ func main() {
 	}
 
 	// Read lines
-	//  f must also implement io.Reader I think ???
-	reader := bufio.NewReader(f) //Buffered reader
+	reader := bufio.NewReader(f) // Buffered reader
 	for true {
 		line, errr := reader.ReadString('\n')
 		if errr == io.EOF {

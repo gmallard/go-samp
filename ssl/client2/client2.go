@@ -1,3 +1,6 @@
+/*
+SSL Use Case 2.
+*/
 package main
 
 import (

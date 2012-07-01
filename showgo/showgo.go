@@ -1,3 +1,6 @@
+/*
+Display go information.
+*/
 package main
 
 import (

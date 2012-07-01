@@ -1,5 +1,6 @@
-// Show MAC interfaces on this system
-
+/*
+Show MAC / NIC information for this system.
+*/
 package main
 
 import (

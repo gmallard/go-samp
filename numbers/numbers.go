@@ -1,6 +1,6 @@
-//
-// The package name.  This name will become a .a file in $(GOROOT)/pkg.
-//
+/*
+Demonstrate implementing a package.
+*/
 package numbers
 //
 // Note function with name that is capitalized.  It _is_ exported.
