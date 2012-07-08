@@ -28,6 +28,11 @@ dirs = 	testppack \
   force_type \
 	func_lit \
 	func_ret \
+	gio12gs01 \
+	gio12gs02 \
+	gio12gs03 \
+	gio12gs04 \
+	gio12gs05 \
 	gorsynchs/chanex \
 	gorsynchs/mutexex \
 	gorsynchs/wgroupex \
