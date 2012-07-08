@@ -2,6 +2,14 @@
 dirs = 	testppack \
 	arrays \
 	chanasyn \
+	chanfan01 \
+	chanfan02 \
+	chanfan03 \
+	chanfan04 \
+	chanfan05 \
+	chanfan06 \
+	chanfan07 \
+	chanfan08 \
 	chanloop \
 	chanrange \
 	chanshunt \

@@ -4,6 +4,7 @@ An example taken from: https://groups.google.com/forum/?fromgroups#!topic/golang
 package main
 
 import "fmt"
+
 //
 // See:
 // https://groups.google.com/forum/?fromgroups#!topic/golang-nuts/VdmoZ59jjoE
@@ -13,10 +14,10 @@ import "fmt"
 //
 func shunt(input <-chan int, output chan<- int) {
 	var (
-		i	int
-		ok	bool
-		in	= input
-		out	chan<- int
+		i   int
+		ok  bool
+		in  = input
+		out chan<- int
 	)
 	for {
 		select {
@@ -40,18 +41,17 @@ func shunt(input <-chan int, output chan<- int) {
 
 func main() {
 	input := make(chan int, 100)
-	go func() {	// Simulate a sender to input in another part of the program
+	go func() { // Simulate a sender to input in another part of the program
 		for i := 0; i < 1000; i++ {
 			input <- i
 		}
 		close(input)
 	}()
 
-	acc := make(chan int, 10)	// accumulator channel
+	acc := make(chan int, 10) // accumulator channel
 	go shunt(input, acc)
 	for i := range acc {
 		fmt.Println("acc read:", i)
 	}
 	fmt.Println("exit")
 }
-
