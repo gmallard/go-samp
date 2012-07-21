@@ -84,7 +84,7 @@ dirs = 	testppack \
 	unicode_what \
 	uniques \
 	utfconv \
-
+	xmlshow01 \
 
 packlist =	numbers \
 
