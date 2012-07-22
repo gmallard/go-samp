@@ -66,6 +66,12 @@ dirs = 	testppack \
 	sliceappt \
 	slices \
 	sltricks \
+	ssl/certinfo \
+	ssl/client1 \
+	ssl/client2 \
+	ssl/client3 \
+	ssl/client4 \
+	ssl/pemload \
 	stringlens \
 	strings_utils \
 	struct \
