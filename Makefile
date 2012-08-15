@@ -60,6 +60,7 @@ dirs = 	testppack \
 	ranges \
 	rand_between \
 	shax \
+  shifter \
 	showgo \
 	showmac \
 	showtime \
