@@ -70,6 +70,7 @@ func showXml() {
 		fmt.Printf("error: %v", err)
 		return
 	}
+	fmt.Printf("Configs: %+v\n", ctx)
 	// The main element name
 	fmt.Printf("XMLName: %#v\n", ctx.XMLName)
 	// Trim, because there will usually be leading and maybe trailing whitespace
