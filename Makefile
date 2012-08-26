@@ -17,6 +17,7 @@ dirs = 	testppack \
 	chansvr2 \
 	chansyn \
 	chantest \
+  dateshow \
   defer \
   envshow \
   errtest \
