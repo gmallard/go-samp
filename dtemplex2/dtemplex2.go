@@ -37,8 +37,8 @@ const td = `{{.Command}}
 `
 
 var Datum = Data{Command: "ACOMMAND",
-  Headers: Headers{"K1", "v1", "K2", "v2"},
-  Body: []uint8("test")}
+	Headers: Headers{"K1", "v1", "K2", "v2"},
+	Body:    []uint8("test")}
 
 func main() {
 	// fmt.Println("Datum:", Datum)
