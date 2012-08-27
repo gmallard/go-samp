@@ -19,6 +19,8 @@ dirs = 	testppack \
 	chantest \
   dateshow \
   defer \
+  dtemplex1 \
+  dtemplex2 \
   envshow \
   errtest \
 	fib \
