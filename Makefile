@@ -17,6 +17,7 @@ dirs = 	testppack \
 	chansvr2 \
 	chansyn \
 	chantest \
+	charshow \
   dateshow \
   defer \
   dtemplex1 \
@@ -40,6 +41,7 @@ dirs = 	testppack \
 	gorsynchs/mutexex \
 	gorsynchs/wgroupex \
 	gortns01 \
+	greddit \
 	gt044 \
 	hello \
 	hello_small \
@@ -64,8 +66,10 @@ dirs = 	testppack \
 	rand_between \
 	shax \
   shifter \
+	showallocs \
 	showgo \
 	showmac \
+	showsetcpus \
 	showtime \
 	sliceappt \
 	slices \
