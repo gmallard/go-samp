@@ -32,6 +32,11 @@ func main() {
 	}
 	fmt.Println("somei3", someInts[0], someInts[1]) // Not modified
 
+	for i := range someInts { // A slight surprize
+		someInts[i] = someInts[i] + 1
+	}
+	fmt.Println("somei3B", someInts[0], someInts[1]) // Modified
+
 	for i := 0; i < len(someInts); i++ {
 		someInts[i] = someInts[i] + 1
 	}
@@ -60,6 +65,11 @@ func main() {
 		z.a = z.a + 1
 	}
 	fmt.Println("somex3", someFoos[0].a, someFoos[1].a) // Not modified
+
+	for i := range someFoos {
+		someFoos[i].a = someFoos[i].a + 1
+	}
+	fmt.Println("somex3B", someFoos[0].a, someFoos[1].a) // Modified
 
 	for i := 0; i < len(someFoos); i++ {
 		someFoos[i].a = someFoos[i].a + 1
