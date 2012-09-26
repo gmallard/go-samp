@@ -62,6 +62,7 @@ dirs = 	testppack \
 	netcon \
 	numconv \
 	oltesta \
+	rangecopy \
 	ranges \
 	rand_between \
 	shax \
