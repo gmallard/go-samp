@@ -15,7 +15,8 @@ import (
 
 var testConfig *tls.Config
 
-var hap = "tjjackson:61612"
+// var hap = "tjjackson:61612"	// ActiveMQ
+var hap = "tjjackson:62614"	// Apollo
 
 var file_name = "../certs/server/ServerTJCA.crt"
 

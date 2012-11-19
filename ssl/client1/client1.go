@@ -11,7 +11,8 @@ import (
 
 var testConfig *tls.Config
 
-var hap = "tjjackson:61612"
+// var hap = "tjjackson:61612"	// ActiveMQ
+var hap = "tjjackson:62614"	// Apollo
 
 func dumpState(s tls.ConnectionState) {
   log.Printf("Handshake Complete: %v\n", s.HandshakeComplete)
