@@ -24,4 +24,18 @@ func main() {
 	fmt.Println("sigma", v)
 	fmt.Println("sigma UPPER", strings.ToUpper(v))
 	fmt.Println("sigma flip", strings.ToLower(strings.ToUpper(v)))
+
+	fmt.Println()
+
+	// But what about the Ç versus σ thing?
+	v = "Ç"
+	fmt.Println("c-cedilla", v)
+	fmt.Println("c-cedilla UPPER", strings.ToUpper(v))
+	fmt.Println("c-cedilla flip", strings.ToLower(strings.ToUpper(v)))
+	//
+	v = "σ"
+	fmt.Println("sigma", v)
+	fmt.Println("sigma UPPER", strings.ToUpper(v))
+	fmt.Println("sigma flip", strings.ToLower(strings.ToUpper(v)))
+
 }
