@@ -26,6 +26,8 @@ func main() {
 	ps = ps.Add("k3", "v3").Add("k4", "v4")
 	fmt.Println("ps04:", ps)
 	//
-	fmt.Println("ps90:", paired_slice{}.Add("ak1", "av1").Add("ak2", "av2"))
+	fmt.Println("ps90:", paired_slice{}.
+		Add("ak1", "av1").
+		Add("ak2", "av2"))
 	fmt.Println("End...")
 }
