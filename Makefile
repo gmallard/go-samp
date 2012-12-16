@@ -73,6 +73,7 @@ dirs = 	testppack \
 	showsetcpus \
 	showtime \
 	sliceappt \
+	slappmult \
 	slices \
 	sltricks \
 	ssl/certinfo \
