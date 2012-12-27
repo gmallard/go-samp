@@ -72,6 +72,7 @@ dirs = 	testppack \
 	showmac \
 	showsetcpus \
 	showtime \
+	sigshow \
 	sliceappt \
 	slappmult \
 	slices \
