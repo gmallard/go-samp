@@ -66,7 +66,8 @@ dirs = 	testppack \
 	ranges \
 	rand_between \
 	shax \
-  shifter \
+	shifter \
+	show64 \
 	showallocs \
 	showgo \
 	showmac \
