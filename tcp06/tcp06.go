@@ -16,6 +16,8 @@ var shutdown = false
 // 'Test' using 'telnet localhost 45678' from multiple open terminals.
 func getData(c *net.TCPConn) {
 	var buffer = make([]byte, 4096)
+	a := c.RemoteAddr()
+	fmt.Printf("Net: %s, Remote: %s\n", a.Network(), a.String())
 	for {
 		if shutdown {
 			fmt.Println(c, "Shutdown")
