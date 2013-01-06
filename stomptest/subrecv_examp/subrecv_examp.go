@@ -1,6 +1,6 @@
 /*
 Send and receive STOMP messages using https://github.com/gmallard/stompngo using
-a STOMP 1.0 broker.
+a STOMP 1.1 broker.
 */
 package main
 
@@ -20,7 +20,7 @@ var hap = host + ":"
 func main() {
 
 	// create a net.Conn, and pass that into Connect
-	nc, error := net.Dial("tcp", hap+os.Getenv("STOMP_PORT"))
+	nc, error := net.Dial("tcp", hap+os.Getenv("STOMP_PORT")) // Use a 1.1 compliant broker here
 	if error != nil {
 		// Handle error properly
 	}
@@ -40,6 +40,8 @@ func main() {
 		}
 		fmt.Printf("Sent message: %s\n", msg)
 	}
+	// No 'id' header is present -> the stompngo client library creates one.
+	// The assigned subscription id must be determined from subsequent traffic.
 	sc, error := c.Subscribe(sh)
 	if error != nil {
 		log.Fatal(error)
@@ -60,6 +62,7 @@ func main() {
 		if d.Error != nil {
 			log.Fatal(d.Error)
 		}
+		// Save the subscription id in use for the eventual UNSUBSCRIBE.
 		if i == 1 {
 			subid = d.Message.Headers.Value("subscription")
 			fmt.Printf("Subscription is: %s\n", subid)
@@ -71,7 +74,7 @@ func main() {
 			break
 		}
 	}
-	uh := stompngo.Headers{"destination", qname, "id", subid}
+	uh := stompngo.Headers{"destination", qname, "id", subid} // Unsubscribe headers
 	error = c.Unsubscribe(uh)
 	if error != nil {
 		log.Fatal(error)

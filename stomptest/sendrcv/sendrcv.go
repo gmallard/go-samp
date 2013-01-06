@@ -21,8 +21,8 @@ var wgrecv sync.WaitGroup
 var wgboth sync.WaitGroup
 var printMsgs bool = true
 
-// var handp string = "localhost:61613"	// 1.0 server
-var handp string = "localhost:62613" // 1.1 server
+// var handp string = "localhost:61613"	// AMQ locally
+var handp string = "localhost:62613" // Apollo locally
 var nmsgs = 100
 var qname = "/queue/stompngo.sendrcv.seq"
 var nq = 10 //
@@ -119,6 +119,7 @@ func BenchmarkMultipleGoRoutinesSend() {
 	for i := 1; i <= nq; i++ {
 		qn := fmt.Sprintf("%d", i)
 		wgsend.Add(1)
+		// All sending go routines share the same connection in this example
 		go sendMessages(c, qname+qn, nmsgs, i)
 
 	}
@@ -151,6 +152,7 @@ func BenchmarkMultipleGoRoutinesRecv() {
 	for i := 1; i <= nq; i++ {
 		qn := fmt.Sprintf("%d", i)
 		wgrecv.Add(1)
+		// All receiving go routines share the same connection in this example
 		go recMessages(c, qname+qn, i)
 	}
 	wgrecv.Wait()
