@@ -24,6 +24,9 @@ var mq = 2
 var host = "localhost"
 var hap = host + ":"
 
+var incrCtl sync.Mutex
+var numSend int
+
 func sendMessages(c *stompngo.Connection, q string, n int, k int) {
 
 	var error error
@@ -41,17 +44,23 @@ func sendMessages(c *stompngo.Connection, q string, n int, k int) {
 		}
 		//
 		time.Sleep(1e9 / 100) // Simulate message build
+		incrCtl.Lock()
+		numSend++
+		incrCtl.Unlock()
 	}
 	error = c.Send(eh, "***EOF*** "+q)
+	incrCtl.Lock()
+	numSend++
+	incrCtl.Unlock()
 	if error != nil {
 		log.Fatal(error)
 	}
 	wg.Done()
-
+	fmt.Println("Sends complete for:", q)
 }
 
 func main() {
-	fmt.Println("Start...")
+	fmt.Println("Sender Start...")
 
 	//
 	nc, error := net.Dial("tcp", hap+os.Getenv("STOMP_PORT"))
@@ -72,23 +81,25 @@ func main() {
 
 	}
 	wg.Wait()
-	fmt.Println("done with wait")
+	fmt.Println("Sender done with wait")
 	// Disconnect
 	nh := stompngo.Headers{}
 	error = c.Disconnect(nh)
 	if error != nil {
-		log.Fatalf("discerr %v\n", error)
+		log.Fatalf("Sender discerr %v\n", error)
 	}
-	fmt.Println("done disconnect, start nc.Close()")
-	nc.Close()
-	fmt.Println("done nc.Close()")
-	ngor := runtime.NumGoroutine()
-	fmt.Printf("egor: %v\n", ngor)
+	// Sanity check for spurious errors.
 	select {
 	case v := <-c.MessageData:
 		fmt.Printf("frame2: %v\n", v)
 	default:
-		fmt.Println("Nothing to show")
+		fmt.Println("Sender Nothing to show")
 	}
-	fmt.Println("End... ngor:", mq, " nmsgs:", nmsgs)
+	fmt.Println("Sender done disconnect, start nc.Close()")
+	// Network close
+	nc.Close()
+	fmt.Println("Sender done nc.Close()")
+	ngor := runtime.NumGoroutine()
+	fmt.Printf("Sender ngor: %v\n", ngor)
+	fmt.Println("Sender End... numq:", mq, "Num sent:", numSend)
 }

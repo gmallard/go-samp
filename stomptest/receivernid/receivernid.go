@@ -46,10 +46,10 @@ func recMessages(c *stompngo.Connection, q string) {
 	for input := range sc {
 		inmsg := string(input.Message.Body)
 		if printHdrs {
-			fmt.Println("queue:", q, "Next Receive: ", input.Message.Headers)
+			fmt.Println("Headers for queue:", q, "Next Receive: ", input.Message.Headers)
 		}
 		if printMsgs {
-			fmt.Println("queue:", q, "Next Receive: ", inmsg)
+			fmt.Println("Message for queue:", q, "Next Receive: ", inmsg)
 		}
 
 		firstSub = input.Message.Headers.Value("subscription")
@@ -57,7 +57,7 @@ func recMessages(c *stompngo.Connection, q string) {
 			if firstSub == "" {
 				panic("first subscription header is empty")
 			}
-			fmt.Println("queue:", q, "FirstSub: ", firstSub)
+			fmt.Println("queue:", q, "FirstSub1: ", firstSub)
 			first = false
 		} else {
 			if firstSub != input.Message.Headers.Value("subscription") {
@@ -69,7 +69,7 @@ func recMessages(c *stompngo.Connection, q string) {
 		numRecv++
 		incrCtl.Unlock()
 		if strings.HasPrefix(inmsg, "***EOF***") {
-			fmt.Println("queue:", q, "FirstSub:", firstSub, "goteof")
+			fmt.Println("queue:", q, "FirstSub2:", firstSub, "goteof")
 			break
 		}
 		if !strings.HasPrefix(inmsg, q) {
@@ -92,10 +92,11 @@ func recMessages(c *stompngo.Connection, q string) {
 		log.Fatalf("unsub error: %v\n", error)
 	}
 	wg.Done()
+	fmt.Println("Receives complete for:", q)
 }
 
 func main() {
-	fmt.Println("Start...")
+	fmt.Println("Receiver Start...")
 
 	// create a net.Conn, and pass that into Connect
 	nc, error := net.Dial("tcp", hap+os.Getenv("STOMP_PORT"))
@@ -116,24 +117,26 @@ func main() {
 		go recMessages(c, qname+qn)
 	}
 	wg.Wait()
-	fmt.Printf("Num received: %d\n", numRecv)
+	fmt.Println("Receiver done with wait")
 	// Disconnect
 	nh := stompngo.Headers{}
 	error = c.Disconnect(nh)
 	if error != nil {
-		log.Fatalf("discerr %v\n", error)
+		log.Fatalf("Receiver discerr %v\n", error)
 	}
-	fmt.Println("done nc.Close()")
-	nc.Close()
-	ngor := runtime.NumGoroutine()
-	fmt.Printf("egor: %v\n", ngor)
+	// Sanity check for spurious errors
 	select {
 	case v := <-c.MessageData:
-		fmt.Printf("frame2: %s\n", v.Message.Command)
-		fmt.Printf("header2: %v\n", v.Message.Headers)
-		fmt.Printf("data2: %s\n", string(v.Message.Body))
+		fmt.Printf("Receiver frame2: %s\n", v.Message.Command)
+		fmt.Printf("Receiver header2: %v\n", v.Message.Headers)
+		fmt.Printf("Receiver data2: %s\n", string(v.Message.Body))
 	default:
-		fmt.Println("Nothing to show")
+		fmt.Println("Receiver Nothing to show")
 	}
-	fmt.Println("End... mq:", mq)
+	// Network close
+	nc.Close()
+	fmt.Println("Receiver done nc.Close()")
+	ngor := runtime.NumGoroutine()
+	fmt.Printf("Receiver ngor: %v\n", ngor)
+	fmt.Println("Receiver End... numq:", mq, "Num received:", numRecv)
 }
