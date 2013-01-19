@@ -62,9 +62,10 @@ dirs = 	testppack \
 	netcon \
 	numconv \
 	oltesta \
+	rand_between \
 	rangecopy \
 	ranges \
-	rand_between \
+	recover \
 	shax \
 	shifter \
 	show64 \
