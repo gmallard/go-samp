@@ -37,6 +37,7 @@ dirs = 	testppack \
 	gio12gs03 \
 	gio12gs04 \
 	gio12gs05 \
+	gobdemo \
 	gorsynchs/chanex \
 	gorsynchs/mutexex \
 	gorsynchs/wgroupex \
