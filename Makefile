@@ -73,6 +73,7 @@ dirs = 	testppack \
 	showallocs \
 	showgo \
 	showmac \
+	showpprof \
 	showsetcpus \
 	showtime \
 	sigshow \
