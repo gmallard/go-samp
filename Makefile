@@ -28,6 +28,7 @@ dirs = 	testppack \
 	fib_embellished \
 	fib_userop \
 	fileread \
+	filescan \
 	flagdemo \
   force_type \
 	func_lit \
