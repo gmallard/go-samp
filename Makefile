@@ -64,6 +64,7 @@ dirs = 	testppack \
 	netcon \
 	numconv \
 	oltesta \
+  panrecov \
 	rand_between \
 	rangecopy \
 	ranges \
