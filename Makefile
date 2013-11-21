@@ -109,6 +109,7 @@ dirs = 	testppack \
 	utfconv \
 	xmlshow01 \
 	xmlshow02 \
+	xmlshow03 \
 
 packlist =	numbers \
 

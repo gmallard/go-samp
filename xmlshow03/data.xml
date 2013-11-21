@@ -1,0 +1,14 @@
+<configs>
+	<cars>
+		<car>
+			Ford
+		</car>
+		<car>
+			Chevy
+		</car>
+		<car>
+			Dodge
+		</car>
+	</cars>
+</configs>
+
