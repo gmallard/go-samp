@@ -11,15 +11,18 @@ import (
 	"fmt"
 	"io"
 	"os"
-	"strings"
 )
 
 func main() {
 	fmt.Println("Start....")
 
+	fname := "./data.txt"
+	if os.Getenv("INFILE") != "" {
+		fname = os.Getenv("INFILE")
+	}
 	// Open
 	// f is *File.
-	f, err := os.OpenFile("./data.txt", os.O_RDONLY, 0644)
+	f, err := os.OpenFile(fname, os.O_RDONLY, 0644)
 	if err != nil {
 		fmt.Printf("\nOpen Error => %s\n\n", err)
 		os.Exit(1)
@@ -27,22 +30,19 @@ func main() {
 
 	// Read lines
 	reader := bufio.NewReader(f) // Buffered reader
-	for true {
-		line, errr := reader.ReadString('\n')
-		if errr == io.EOF {
+	for {
+		line, err := reader.ReadString('\n')
+		if err == io.EOF {
 			break
 		}
-		line = strings.Replace(line, "\n", "", -1) // chomp, sort of ....
-		if line == "" {
-			break
-		}
-		fmt.Printf("Next Line Read: |%s|\n", line)
+		fmt.Printf("Line Detail: |%q|\n", line)
+		fmt.Printf("Line as a string: |%s|\n", line)
 	}
 
 	// Close
-	errc := f.Close()
-	if errc != nil {
-		fmt.Printf("\nClose Error => %s\n\n", errc)
+	err = f.Close()
+	if err != nil {
+		fmt.Printf("\nClose Error => %s\n\n", err)
 		os.Exit(1)
 	}
 	//
