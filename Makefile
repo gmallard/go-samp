@@ -69,6 +69,7 @@ dirs = 	testppack \
 	rangecopy \
 	ranges \
 	recover \
+	runpprof \
 	shax \
 	shifter \
 	show64 \
