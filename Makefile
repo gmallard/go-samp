@@ -80,6 +80,7 @@ dirs = 	testppack \
 	showsetcpus \
 	showtime \
 	sigshow \
+	sl3index \
 	sliceappt \
 	slappmult \
 	slices \
