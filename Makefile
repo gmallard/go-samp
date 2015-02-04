@@ -10,6 +10,8 @@ dirs = 	testppack \
 	chanfan06 \
 	chanfan07 \
 	chanfan08 \
+	chanfanout \
+	chanfanout2 \
 	chanloop \
 	chanrange \
 	chanshunt \
