@@ -110,6 +110,7 @@ dirs = 	testppack \
 	unicloup \
 	unicode_what \
 	uniques \
+	urlshow \
 	utfconv \
 	xmlshow01 \
 	xmlshow02 \
