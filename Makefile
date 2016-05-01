@@ -115,6 +115,7 @@ dirs = 	testppack \
 	xmlshow01 \
 	xmlshow02 \
 	xmlshow03 \
+	zip_test \
 
 packlist =	numbers \
 
@@ -183,4 +184,3 @@ stompclean:
 	cd $$i && go clean; \
 	cd $$curd; \
 	done
-
