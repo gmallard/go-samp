@@ -35,23 +35,10 @@ func main() {
 		// printing some of their contents.
 		for _, f := range r.File {
 			alog.Println(pref, "======Next File/Directory======")
-			fhp := &f.FileHeader
-			fi := fhp.FileInfo()
+			fi := (&f.FileHeader).FileInfo()
 			dumpFileData(f, fi)
-			//alog.Println("zip_test: ", "Name:", f.Name)
-			// alog.Printf("Contents of %s:\n", f.Name)
-			/*
-			   rc, err := f.Open()
-			   if err != nil {
-			       alog.Fatal(err)
-			   }
-			   _, err = io.CopyN(os.Stdout, rc, 68)
-			   if err != nil {
-			       alog.Fatal(err)
-			   }
-			   rc.Close()
-			*/
 		}
+		// Done with a particular file
 		alog.Println()
 		alog.Println(pref, "Done", "Compressed File:", zfn)
 		alog.Println()
