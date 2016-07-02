@@ -60,6 +60,7 @@ dirs = 	testppack \
 	list \
 	list_struct \
 	loghello \
+	mapptrs \
 	maps \
 	maps_ss \
 	maps_merge \
