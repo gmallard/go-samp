@@ -1,6 +1,7 @@
 
 dirs = 	testppack \
 	arrays \
+	chaint1 \
 	chanasyn \
 	chanfan01 \
 	chanfan02 \
