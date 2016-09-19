@@ -1,6 +1,7 @@
 
 dirs = 	testppack \
 	arrays \
+	chaint1 \
 	chanasyn \
 	chanfan01 \
 	chanfan02 \
@@ -89,6 +90,7 @@ dirs = 	testppack \
 	sliceappt \
 	slappmult \
 	slices \
+	slofsl \
 	sltricks \
 	ssl/certinfo \
 	ssl/client1 \
