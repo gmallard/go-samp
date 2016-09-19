@@ -90,6 +90,7 @@ dirs = 	testppack \
 	sliceappt \
 	slappmult \
 	slices \
+	slofsl \
 	sltricks \
 	ssl/certinfo \
 	ssl/client1 \
