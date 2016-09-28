@@ -23,19 +23,19 @@ dirs = 	testppack \
 	chansyn \
 	chantest \
 	charshow \
-  dateshow \
-  defer \
-  dtemplex1 \
-  dtemplex2 \
-  envshow \
-  errtest \
+	dateshow \
+	defer \
+	dtemplex1 \
+	dtemplex2 \
+	envshow \
+	errtest \
 	fib \
 	fib_embellished \
 	fib_userop \
 	fileread \
 	filescan \
 	flagdemo \
-  force_type \
+	force_type \
 	func_lit \
 	func_ret \
 	gio12gs01 \
@@ -70,7 +70,7 @@ dirs = 	testppack \
 	netcon \
 	numconv \
 	oltesta \
-  panrecov \
+	panrecov \
 	rand_between \
 	rangecopy \
 	ranges \
@@ -117,9 +117,11 @@ dirs = 	testppack \
 	uniques \
 	urlshow \
 	utfconv \
+	walker \
 	xmlshow01 \
 	xmlshow02 \
 	xmlshow03 \
+	xmlshow04 \
 	zip_test \
 
 packlist =	numbers \
