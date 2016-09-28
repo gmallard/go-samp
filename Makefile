@@ -121,6 +121,7 @@ dirs = 	testppack \
 	xmlshow01 \
 	xmlshow02 \
 	xmlshow03 \
+	xmlshow04 \
 	zip_test \
 
 packlist =	numbers \
