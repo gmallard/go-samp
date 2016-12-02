@@ -61,7 +61,8 @@ dirs = 	testppack \
 	interface_04b \
 	list \
 	list_struct \
-	loghello \
+	mapmapstr \
+		loghello \
 	mapptrs \
 	maps \
 	maps_ss \
