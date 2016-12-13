@@ -59,6 +59,7 @@ dirs = 	testppack \
 	interface_04 \
 	interface_04a \
 	interface_04b \
+	interface_05 \
 	list \
 	list_struct \
 	mapmapstr \
