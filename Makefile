@@ -15,6 +15,7 @@ dirs = 	testppack \
 	chanfanout2 \
 	chanloop \
 	channelLock \
+	channelLock/fastQuit \
 	chanokt \
 	chanrange \
 	chanshunt \

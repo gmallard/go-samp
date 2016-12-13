@@ -8,6 +8,9 @@
 	This version eliminates hard coding each worker functionality as an
 	individual function.  The maximum number of workers can be changed
 	by a variable before a compile.
+
+	It was hoped that this version whould take less total time than previous
+	version(s).  To date that hope has *not* been realized.
 */
 package main
 
@@ -23,10 +26,11 @@ var (
 	startchan = make(chan struct{})  // A global channel to signal start
 	reqlock   = make(chan chan bool) // Requests for the lock are sent on this channel
 	freelock  = make(chan bool)      // A channel to signal that the lock is freed (unlocked)
+	workerfin = make(chan bool)      // A channel to signal that each worker is done
 
 	//
-	wanted  = 25 // An arbitrary number we want
-	current = 0  // The shared resource. All quit when current == wanted
+	wanted  = 1337 // An arbitrary number we want
+	current = 0    // The shared resource. All quit when current == wanted
 
 	// Change number of workers here
 	maxworkers = 5      // max number of worker goroutines
@@ -46,29 +50,27 @@ const (
 func worker(r, wc int) {
 	_ = <-startchan // Wait for the starting gun
 	log.Printf("worker%d starts\n", r)
-	var lc = 0    // Local update count
-	var q = false // Quit flag
+	var lc = 0               // Local update count
+	var rp = make(chan bool) // reply channel, worker has lock
 runLoop:
 	for {
 		select {
 		case _ = <-donechan: // Check for quit
-			q = true
+			break runLoop
 		default:
 		}
-		if q {
-			break runLoop // Quit when main signals we are done
-		}
-		rp := make(chan bool)
 		log.Printf("worker%d requests lock %d\n", r, lc)
 
 		// Lock request
-		reqlock <- rp // Request the lock
-		_ = <-rp      // Wait for the lock
+		reqlock <- rp // Request the lock, send reply channel to lm
+		_ = <-rp      // Worker has the lock
 		// Lock obtained, critical section start
 		log.Printf("worker%d has lock\n", r)
 		if current == wanted {
-			// We are done here.  No sense hanging around.
-			freelock <- true // Free the lock for others
+			// doSleep("is EQ", r, wc) // wc is max sleep for this go routine
+			freelock <- true // Free the lock
+			log.Printf("worker%d lock is free - worker done %d\n", r, lc)
+			// continue runLoop
 			break runLoop
 		}
 		doSleep("after eqcheck", r, wc) // wc is max sleep for this go routine
@@ -77,7 +79,9 @@ runLoop:
 			current++
 			log.Printf("worker%d bumped %d\n", r, current)
 		} else {
-			log.Printf("worker%d run skips\n", r)
+			log.Printf("worker%d run is done\n", r, current)
+			freelock <- true
+			break runLoop
 		}
 		freelock <- true // Free the lock
 		// critical section end
@@ -85,6 +89,7 @@ runLoop:
 		log.Printf("worker%d lock is free - A %d\n", r, lc)
 		doSleep("otherwork", r, maxothersleep) // Do other things besides updating the shared resource
 	}
+	workerfin <- true
 	log.Printf("worker%d ends %d", r, lc)
 }
 
@@ -106,9 +111,6 @@ lmLoop:
 		log.Printf("lm sent locked OK %d\n", lc)
 		_ = <-freelock
 		log.Printf("lm lock is freed %d\n", lc)
-		if current == wanted {
-			break lmLoop
-		}
 	}
 	log.Printf("lm ends %d\n", lc)
 }
@@ -122,8 +124,9 @@ func main() {
 		go worker(i, wcs[i-1]) // next worker
 	}
 	log.Printf("%s\n", "main workers started")
-	close(startchan) // Pull the trigger
+	close(startchan)
 	log.Printf("%s\n", "main workers notified to start")
+	// time.Sleep(1000 * time.Millisecond)
 	var rp = make(chan bool)
 mainLoop:
 	for {
@@ -136,16 +139,19 @@ mainLoop:
 		// critical section start
 		log.Printf("main loop has lock %d %d\n", current, wanted)
 		if current == wanted {
-			freelock <- true // Free the lock for others
+			freelock <- true
 			break mainLoop
 		}
 		log.Printf("main loop will free lock %d %d\n", current, wanted)
 		freelock <- true // Free the lock
 		// critical section end
+
 	}
 	log.Printf("main loop finished %d %d\n", current, wanted)
 	close(donechan)
-	time.Sleep(waitatend * time.Millisecond)
+	for i := 1; i <= maxworkers; i++ {
+		_ = <-workerfin
+	}
 	log.Printf("%s %d\n", "main current at end", current)
 	log.Printf("%s\n", "main ends")
 }
