@@ -1,12 +1,11 @@
 /*
-Receive STOMP messages using https://github.com/gmallard/stompngo and a STOMP 
+Receive STOMP messages using https://github.com/gmallard/stompngo and a STOMP
 1.0 broker, verify library added subscription ID.
 */
 package main
 
 import (
 	"fmt" //
-	"github.com/gmallard/stompngo"
 	"log"
 	"net"
 	"os"
@@ -14,6 +13,8 @@ import (
 	"strings"
 	"sync"
 	"time"
+
+	"github.com/gmallard/stompngo"
 )
 
 var printMsgs bool = true
@@ -99,13 +100,17 @@ func main() {
 	fmt.Println("Receiver Start...")
 
 	// create a net.Conn, and pass that into Connect
-	nc, error := net.Dial("tcp", hap+os.Getenv("STOMP_PORT"))
+	p := os.Getenv("STOMP_PORT")
+	if p == "" {
+		p = "61613"
+	}
+	nc, error := net.Dial("tcp", hap+p)
 	if error != nil {
 		log.Fatal(error)
 	}
 	// Connect
 	ch := stompngo.Headers{"login", "getter", "passcode", "recv1234"}
-	ch = ch.Add("accept-version", "1.1")
+	ch = ch.Add("accept-version", "1.0") // 1.0 only
 	ch = ch.Add("host", host)
 	c, error := stompngo.Connect(nc, ch)
 	if error != nil {

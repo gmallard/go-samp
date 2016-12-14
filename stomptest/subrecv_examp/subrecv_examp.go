@@ -6,10 +6,11 @@ package main
 
 import (
 	"fmt" //
-	"github.com/gmallard/stompngo"
 	"log"
 	"net"
 	"os"
+
+	"github.com/gmallard/stompngo"
 )
 
 var nmsgs = 10
@@ -20,7 +21,11 @@ var hap = host + ":"
 func main() {
 
 	// create a net.Conn, and pass that into Connect
-	nc, error := net.Dial("tcp", hap+os.Getenv("STOMP_PORT")) // Use a 1.1 compliant broker here
+	p := os.Getenv("STOMP_PORT")
+	if p == "" {
+		p = "61613"
+	}
+	nc, error := net.Dial("tcp", hap+p)
 	if error != nil {
 		// Handle error properly
 	}

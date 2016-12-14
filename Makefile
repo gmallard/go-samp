@@ -130,7 +130,6 @@ dirs = 	testppack \
 packlist =	numbers \
 
 stompdirs = stomptest/receiver1 \
-  stomptest/receiver2 \
   stomptest/receivernid \
   stomptest/sender \
   stomptest/sendernid \

@@ -6,14 +6,16 @@ package main
 
 import (
 	"fmt" //
-	"github.com/gmallard/stompngo"
 	"log"
 	"math/rand"
 	"net"
+	"os"
 	"strconv"
 	"strings"
 	"sync"
 	"time"
+
+	"github.com/gmallard/stompngo"
 )
 
 var wgsend sync.WaitGroup
@@ -21,8 +23,8 @@ var wgrecv sync.WaitGroup
 var wgboth sync.WaitGroup
 var printMsgs bool = true
 
-// var handp string = "localhost:61613"	// AMQ locally
-var handp string = "localhost:62613" // Apollo locally
+var host = "localhost"
+var hap = host + ":" //
 var nmsgs = 100
 var qname = "/queue/stompngo.sendrcv.seq"
 var nq = 10 //
@@ -106,7 +108,11 @@ func BenchmarkMultipleGoRoutinesSend() {
 
 	// SEND Phase
 	// create a net.Conn, and pass that into Connect
-	nc, error := net.Dial("tcp", handp)
+	p := os.Getenv("STOMP_PORT")
+	if p == "" {
+		p = "61613"
+	}
+	nc, error := net.Dial("tcp", hap+p)
 	if error != nil {
 		log.Fatal(error)
 	}
@@ -138,7 +144,11 @@ func BenchmarkMultipleGoRoutinesSend() {
 func BenchmarkMultipleGoRoutinesRecv() {
 
 	// RECEIVE Phase
-	nc2, error := net.Dial("tcp", handp)
+	p := os.Getenv("STOMP_PORT")
+	if p == "" {
+		p = "61613"
+	}
+	nc2, error := net.Dial("tcp", hap+p)
 	if error != nil {
 		// Handle error properly
 		log.Fatal(error)

@@ -1,18 +1,19 @@
 /*
-Receive STOMP messages using https://github.com/gmallard/stompngo and a STOMP 
+Receive STOMP messages using https://github.com/gmallard/stompngo and a STOMP
 1.0 broker.
 */
 package main
 
 import (
 	"fmt" //
-	"github.com/gmallard/stompngo"
 	"log"
 	"net"
 	"os"
 	"runtime"
 	"strings"
 	"sync"
+
+	"github.com/gmallard/stompngo"
 )
 
 var printMsgs bool = true
@@ -32,13 +33,20 @@ func recMessages(c *stompngo.Connection, q string) {
 	// Receive phase
 	headers := stompngo.Headers{"destination", q}
 	fmt.Printf("qhdrs: %v\n", headers)
-	_, error = c.Subscribe(headers)
+	sc, error := c.Subscribe(headers)
 	if error != nil {
 		// Handle error properly
 		log.Fatalf("sub error: %v\n", error)
 	}
-	for input := range c.MessageData {
-		inmsg := input.Message.BodyString()
+	var md stompngo.MessageData
+	var inmsg string
+	for {
+		select {
+		case md = <-c.MessageData:
+			log.Fatalf("unexpected message: %v\n", md)
+		case md = <-sc:
+			inmsg = md.Message.BodyString()
+		}
 		if printMsgs {
 			fmt.Println("queue:", q, "Next Receive: ", inmsg)
 		}
@@ -56,7 +64,11 @@ func recMessages(c *stompngo.Connection, q string) {
 func main() {
 	fmt.Println("Start...")
 
-	nc, error := net.Dial("tcp", hap+os.Getenv("STOMP_PORT"))
+	p := os.Getenv("STOMP_PORT")
+	if p == "" {
+		p = "61613"
+	}
+	nc, error := net.Dial("tcp", hap+p)
 	if error != nil {
 		log.Fatal(error)
 	}

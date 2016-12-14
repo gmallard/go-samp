@@ -1,12 +1,11 @@
 /*
-Send STOMP messages using https://github.com/gmallard/stompngo and a STOMP 
+Send STOMP messages using https://github.com/gmallard/stompngo and a STOMP
 1.1 broker.
 */
 package main
 
 import (
 	"fmt" //
-	"github.com/gmallard/stompngo"
 	"log"
 	"net"
 	"os"
@@ -14,6 +13,8 @@ import (
 	"strconv"
 	"sync"
 	"time"
+
+	"github.com/gmallard/stompngo"
 )
 
 var wg sync.WaitGroup
@@ -63,7 +64,11 @@ func main() {
 	fmt.Println("Sender Start...")
 
 	//
-	nc, error := net.Dial("tcp", hap+os.Getenv("STOMP_PORT"))
+	p := os.Getenv("STOMP_PORT")
+	if p == "" {
+		p = "61613"
+	}
+	nc, error := net.Dial("tcp", hap+p)
 	if error != nil {
 		// Handle error properly
 	}
