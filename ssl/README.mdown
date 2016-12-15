@@ -54,11 +54,7 @@ setting.  See comments in the code for each use case.
 
 All certificates and keys were generated using openssl.
 
-The .store file included are Java keystores, of type JKS.  These were created
-by using keytool to import the PKCS12 format certificates.
+The .store file(s) included are Java keystores, of type JKS.  These were created
+by using keytool to import PKCS12 format certificates.
 
 All passwords are the word password.
-
-
-
-
