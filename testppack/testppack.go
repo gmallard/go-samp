@@ -6,7 +6,7 @@ package main
 //
 import (
 	"fmt"
-	"go-samp/numbers"
+	"github.com/gmallard/go-samp/numbers"
 )
 
 /*
