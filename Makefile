@@ -101,6 +101,7 @@ dirs = 	testppack \
 	ssl/client3 \
 	ssl/client4 \
 	ssl/pemload \
+	stacktrace \
 	stringlens \
 	strings_utils \
 	struct \
