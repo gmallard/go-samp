@@ -39,6 +39,7 @@ dirs = 	testppack \
 	force_type \
 	func_lit \
 	func_ret \
+	fwalker \
 	gio12gs01 \
 	gio12gs02 \
 	gio12gs03 \

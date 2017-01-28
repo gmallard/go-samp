@@ -8,4 +8,6 @@ _*
 .idea
 # Log files
 *.log
+# temp files
+temp*
 
