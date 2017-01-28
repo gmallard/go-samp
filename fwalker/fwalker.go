@@ -56,7 +56,7 @@ func main() {
 	log.Printf("Start")
 	seltype = os.Getenv("SELTYPE") // Use this to 'select' a file extension
 	log.Printf("Select Type:%s\n", seltype)
-	walkbase := os.Getenv("WALKDIR") // Supply your own temp subdirectoy here
+	walkbase := os.Getenv("WALKDIR") // Supply your own start subdirectoy here
 	e := os.Chdir(walkbase)
 	if e != nil {
 		log.Fatalln("Chdir error:", e)
