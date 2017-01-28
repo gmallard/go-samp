@@ -6,4 +6,6 @@
 main
 _*
 .idea
+# Log files
+*.log
 
