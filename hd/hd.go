@@ -40,6 +40,7 @@ func init() {
 func checkError(e error, ds string) {
 	if e != nil {
 		fmt.Printf("\n%s %s\n\n", ds, e)
+		fmt.Println("DumpFile Ends, RC:", 1)
 		os.Exit(1)
 	}
 }
@@ -68,7 +69,6 @@ func setFileLen(f *os.File) {
 }
 
 func getReader() io.Reader {
-	fmt.Printf("Args: %v\n", os.Args)
 	fa := flag.Args()
 	if len(fa) >= 1 {
 		argFname = fa[0]
@@ -80,12 +80,20 @@ func getReader() io.Reader {
 		f, err := os.OpenFile(inFile, os.O_RDONLY, 0644)
 		checkError(err, "inFile Open Error ==>")
 		setFileLen(f)
+		if offBegin > 0 {
+			_, err := f.Seek(int64(offBegin), io.SeekStart)
+			checkError(err, "Seek Error ==>")
+		}
 		return f
 	}
 	if argFname != "" {
 		f, err := os.OpenFile(argFname, os.O_RDONLY, 0644)
 		checkError(err, "argFname Open Error ==>")
 		setFileLen(f)
+		if offBegin > 0 {
+			_, err := f.Seek(int64(offBegin), io.SeekStart)
+			checkError(err, "Seek Error ==>")
+		}
 		return f
 	}
 	// Never get here ......
@@ -101,17 +109,17 @@ func goFormatDump(r io.Reader) {
 	return
 }
 
-func prtOff(o int) {
+func printOffset(o int) {
 	had := fmt.Sprintf("%016x", o)
 	fmt.Printf("%s  ", had[16-addrFlen:])
 }
 
-func blankBuf() []byte {
-	s := strings.Repeat(" ", lineLen)
+func blankBuf(l int) []byte {
+	s := strings.Repeat(" ", l)
 	return []byte(s)
 }
 
-func prtLeft(br int, ib []byte) {
+func printLeftBuffer(br int, ib []byte) {
 	nol := lineLen / innerLen
 	os := ""
 	noff := 0
@@ -131,9 +139,9 @@ func prtLeft(br int, ib []byte) {
 	fmt.Print(" * ")
 }
 
-func prtRight(ib []byte) {
-	bb := blankBuf()
-	for i := 0; i < lineLen; i++ {
+func printRightBuffer(br int, ib []byte) {
+	bb := blankBuf(br)
+	for i := 0; i < br; i++ {
 		bb[i] = ib[i]
 		if bb[i] < byte(0x20) {
 			bb[i] = byte('.')
@@ -153,21 +161,35 @@ func main() {
 		fmt.Println("DumpFile Ends....")
 		return
 	}
+	if offEnd > 0 && offEnd <= offBegin {
+		fmt.Printf("Offset Error: offEnd(%d) must be > offBegin(%d)\n",
+			offEnd, offBegin)
+		fmt.Println("DumpFile Ends, RC:", 2)
+		os.Exit(2)
+	}
 	//
 	roff := offBegin
 	for {
-		ib := blankBuf()
-		br, _ := io.ReadAtLeast(r, ib, lineLen)
-		// fmt.Println("Read Length:", br)
+		readLen := lineLen
+		if offEnd > 0 && roff+readLen > offEnd {
+			readLen = offEnd - roff + 1
+		}
+		ib := blankBuf(readLen)
+		// fmt.Println("ReadLen is now:", readLen)
+		br, _ := io.ReadAtLeast(r, ib, readLen)
+		// fmt.Println("Actual Read Length:", br)
 		if br == 0 {
 			fmt.Println()
 			break
 		}
-		prtOff(roff)
-		prtLeft(br, ib)
-		prtRight(ib)
+		printOffset(roff)
+		printLeftBuffer(br, ib)
+		printRightBuffer(br, ib)
 		fmt.Println()
 		roff += lineLen
+		if offEnd > 0 && roff > offEnd {
+			break
+		}
 	}
 	fmt.Println("DumpFile Ends....")
 }
