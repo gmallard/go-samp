@@ -52,6 +52,7 @@ dirs = 	testppack \
 	gortns01 \
 	greddit \
 	gt044 \
+	hd \
 	hello \
 	hello_small \
 	httpserv \
@@ -65,7 +66,7 @@ dirs = 	testppack \
 	list \
 	list_struct \
 	mapmapstr \
-		loghello \
+	loghello \
 	mapptrs \
 	maps \
 	maps_ss \
