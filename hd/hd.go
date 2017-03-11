@@ -74,7 +74,7 @@ func getReader() io.Reader {
 		argFname = fa[0]
 	}
 	if inFile == "" && argFname == "" {
-		addrFlen = 8 // Arbitrary, file size is inknown
+		addrFlen = 8 // Arbitrary, file size is unknown
 		return os.Stdin
 	}
 	if inFile != "" {
