@@ -179,17 +179,16 @@ func main() {
 		br, _ := io.ReadAtLeast(r, ib, readLen)
 		// fmt.Println("Actual Read Length:", br)
 		if br == 0 {
-			fmt.Println()
 			break
 		}
 		printOffset(roff)
 		printLeftBuffer(br, ib)
 		printRightBuffer(br, ib)
-		fmt.Println()
 		roff += lineLen
 		if offEnd > 0 && roff > offEnd {
 			break
 		}
+		fmt.Println()
 	}
 	fmt.Println("DumpFile Ends....")
 }
