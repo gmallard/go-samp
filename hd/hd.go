@@ -74,6 +74,7 @@ func getReader() io.Reader {
 		argFname = fa[0]
 	}
 	if inFile == "" && argFname == "" {
+		addrFlen = 8 // Arbitrary, file size is inknown
 		return os.Stdin
 	}
 	if inFile != "" {
@@ -111,6 +112,7 @@ func goFormatDump(r io.Reader) {
 
 func printOffset(o int) {
 	had := fmt.Sprintf("%016x", o)
+	// fmt.Println("AddrFlen", addrFlen)
 	fmt.Printf("%s  ", had[16-addrFlen:])
 }
 
