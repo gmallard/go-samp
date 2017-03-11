@@ -21,6 +21,7 @@ var (
 	lineLen  int
 	innerLen int
 	goDump   bool
+	quiet    bool
 	//
 	argFname string
 	fileLen  = -1
@@ -35,12 +36,15 @@ func init() {
 	flag.IntVar(&lineLen, "lineLen", 16, "dump line byte count")
 	flag.IntVar(&innerLen, "innerLen", 4, "dump line inner area byte count")
 	flag.BoolVar(&goDump, "goDump", false, "if true, use standard go dump")
+	flag.BoolVar(&quiet, "quiet", false, "if true, no informational output")
 }
 
 func checkError(e error, ds string) {
 	if e != nil {
 		fmt.Printf("\n%s %s\n\n", ds, e)
-		fmt.Println("DumpFile Ends, RC:", 1)
+		if !quiet {
+			fmt.Println("DumpFile Ends, RC:", 1)
+		}
 		os.Exit(1)
 	}
 }
@@ -68,6 +72,17 @@ func setFileLen(f *os.File) {
 	// fmt.Printf("Hex Digit Count: %d\n", addrFlen)
 }
 
+func fileInit(fn, ed string) io.Reader {
+	f, err := os.OpenFile(fn, os.O_RDONLY, 0644)
+	checkError(err, ed+" Open Error ==>")
+	setFileLen(f)
+	if offBegin > 0 {
+		_, err := f.Seek(int64(offBegin), io.SeekStart)
+		checkError(err, "Seek Error ==>")
+	}
+	return f
+}
+
 func getReader() io.Reader {
 	fa := flag.Args()
 	if len(fa) >= 1 {
@@ -78,24 +93,10 @@ func getReader() io.Reader {
 		return os.Stdin
 	}
 	if inFile != "" {
-		f, err := os.OpenFile(inFile, os.O_RDONLY, 0644)
-		checkError(err, "inFile Open Error ==>")
-		setFileLen(f)
-		if offBegin > 0 {
-			_, err := f.Seek(int64(offBegin), io.SeekStart)
-			checkError(err, "Seek Error ==>")
-		}
-		return f
+		return fileInit(inFile, "inFile")
 	}
 	if argFname != "" {
-		f, err := os.OpenFile(argFname, os.O_RDONLY, 0644)
-		checkError(err, "argFname Open Error ==>")
-		setFileLen(f)
-		if offBegin > 0 {
-			_, err := f.Seek(int64(offBegin), io.SeekStart)
-			checkError(err, "Seek Error ==>")
-		}
-		return f
+		return fileInit(argFname, "argFname")
 	}
 	// Never get here ......
 	return nil
@@ -138,7 +139,7 @@ func printLeftBuffer(br int, ib []byte) {
 		os = os + " "
 	}
 	fmt.Print(os)
-	fmt.Print(" * ")
+	fmt.Print(" |")
 }
 
 func printRightBuffer(br int, ib []byte) {
@@ -150,23 +151,29 @@ func printRightBuffer(br int, ib []byte) {
 		}
 	}
 	fmt.Print(string(bb))
-	fmt.Print(" *")
+	fmt.Print("|")
 }
 
 func main() {
-	fmt.Println("DumpFile Starts....")
 	flag.Parse() // Parse all flags
+	if !quiet {
+		fmt.Println("DumpFile Starts....")
+	}
 	// fmt.Println("Line Length:", lineLen)
 	r := getReader()
 	if goDump {
 		goFormatDump(r)
-		fmt.Println("DumpFile Ends....")
+		if !quiet {
+			fmt.Println("DumpFile Ends....")
+		}
 		return
 	}
 	if offEnd > 0 && offEnd <= offBegin {
 		fmt.Printf("Offset Error: offEnd(%d) must be > offBegin(%d)\n",
 			offEnd, offBegin)
-		fmt.Println("DumpFile Ends, RC:", 2)
+		if !quiet {
+			fmt.Println("DumpFile Ends, RC:", 2)
+		}
 		os.Exit(2)
 	}
 	//
@@ -192,5 +199,7 @@ func main() {
 		}
 		fmt.Println()
 	}
-	fmt.Println("DumpFile Ends....")
+	if !quiet {
+		fmt.Println("DumpFile Ends....")
+	}
 }
