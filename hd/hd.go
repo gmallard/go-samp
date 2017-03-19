@@ -22,6 +22,7 @@ var (
 	innerLen int
 	goDump   bool
 	quiet    bool
+	h        bool
 	//
 	argFname string
 	fileLen  = -1
@@ -30,13 +31,21 @@ var (
 
 // Main initialization, a convenient place to set flags up
 func init() {
-	flag.StringVar(&inFile, "inFile", "", "input file name")
-	flag.IntVar(&offBegin, "offBegin", 0, "begin dump at offset")
-	flag.IntVar(&offEnd, "offEnd", -1, "end dump at offset")
-	flag.IntVar(&lineLen, "lineLen", 16, "dump line byte count")
-	flag.IntVar(&innerLen, "innerLen", 4, "dump line inner area byte count")
-	flag.BoolVar(&goDump, "goDump", false, "if true, use standard go dump")
-	flag.BoolVar(&quiet, "quiet", false, "if true, no informational output")
+	flag.StringVar(&inFile, "inFile", "",
+		"input file name.  Argument 0 may also be used.")
+	flag.IntVar(&offBegin, "offBegin", 0,
+		"begin dump at file offset.")
+	flag.IntVar(&offEnd, "offEnd", -1,
+		"end dump at file offset.")
+	flag.IntVar(&lineLen, "lineLen", 16,
+		"dump line byte count.")
+	flag.IntVar(&innerLen, "innerLen", 4,
+		"dump line inner area byte count.")
+	flag.BoolVar(&goDump, "goDump", false,
+		"if true, use standard go encoding/hex/Dump.")
+	flag.BoolVar(&quiet, "quiet", false,
+		"if true, suppress informational output.")
+	flag.BoolVar(&h, "h", false, "print usage message.")
 }
 
 func checkError(e error, ds string) {
@@ -156,6 +165,10 @@ func printRightBuffer(br int, ib []byte) {
 
 func main() {
 	flag.Parse() // Parse all flags
+	if h {
+		flag.PrintDefaults()
+		return
+	}
 	if !quiet {
 		fmt.Println("DumpFile Starts....")
 	}
