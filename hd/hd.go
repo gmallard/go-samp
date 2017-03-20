@@ -132,9 +132,11 @@ func blankBuf(l int) []byte {
 }
 
 func printLeftBuffer(br int, ib []byte) {
-	nol := lineLen / innerLen
+	nol := (lineLen / innerLen) + 1
 	os := ""
 	noff := 0
+	//	for no := 0; no < nol; no++ {
+leftFor:
 	for no := 0; no < nol; no++ {
 		for ni := 0; ni < innerLen; ni++ {
 			if noff < br {
@@ -144,11 +146,15 @@ func printLeftBuffer(br int, ib []byte) {
 				os = os + "  " // Add two blanks here
 			}
 			noff++
+			if noff > br {
+				break leftFor
+			}
 		}
-		os = os + " "
+		os = os + " " // Blank at end of inner
 	}
+	// fmt.Println("<", os, ">")
 	fmt.Print(os)
-	fmt.Print(" |")
+	fmt.Print("|")
 }
 
 func printRightBuffer(br int, ib []byte) {
