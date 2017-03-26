@@ -23,6 +23,8 @@ var (
 	goDump   bool
 	quiet    bool
 	h        bool
+	hexUpper bool
+	edgeMark string
 	//
 	argFname string
 	fileLen  = -1
@@ -33,6 +35,8 @@ var (
 func init() {
 	flag.StringVar(&inFile, "inFile", "",
 		"input file name.  Argument 0 may also be used.")
+	flag.StringVar(&edgeMark, "edgeMark", "|",
+		"single character at edges if the right hand side.")
 	flag.IntVar(&offBegin, "offBegin", 0,
 		"begin dump at file offset.")
 	flag.IntVar(&offEnd, "offEnd", -1,
@@ -43,8 +47,8 @@ func init() {
 		"dump line inner area byte count.")
 	flag.BoolVar(&goDump, "goDump", false,
 		"if true, use standard go encoding/hex/Dump.")
-	flag.BoolVar(&quiet, "quiet", false,
-		"if true, suppress informational output.")
+	flag.BoolVar(&hexUpper, "hexUpper", false,
+		"if true, print upper case hex.")
 	flag.BoolVar(&h, "h", false, "print usage message.")
 }
 
@@ -121,8 +125,11 @@ func goFormatDump(r io.Reader) {
 }
 
 func printOffset(o int) {
-	had := fmt.Sprintf("%016x", o)
-	// fmt.Println("AddrFlen", addrFlen)
+	hexFmt := "%016x"
+	if hexUpper {
+		hexFmt = "%016X"
+	}
+	had := fmt.Sprintf(hexFmt, o)
 	fmt.Printf("%s  ", had[16-addrFlen:])
 }
 
@@ -135,13 +142,16 @@ func printLeftBuffer(br int, ib []byte) {
 	nol := (lineLen / innerLen) + 1
 	os := ""
 	noff := 0
-	//	for no := 0; no < nol; no++ {
+	hexFmt := "%s%02x"
+	if hexUpper {
+		hexFmt = "%s%02X"
+	}
 leftFor:
 	for no := 0; no < nol; no++ {
 		for ni := 0; ni < innerLen; ni++ {
 			if noff < br {
 				nbi := int(ib[noff])
-				os = fmt.Sprintf("%s%02x", os, nbi)
+				os = fmt.Sprintf(hexFmt, os, nbi)
 			} else {
 				os = os + "  " // Add two blanks here
 			}
@@ -152,9 +162,8 @@ leftFor:
 		}
 		os = os + " " // Blank at end of inner
 	}
-	// fmt.Println("<", os, ">")
 	fmt.Print(os)
-	fmt.Print("|")
+	fmt.Print(edgeMark)
 }
 
 func printRightBuffer(br int, ib []byte) {
@@ -166,7 +175,7 @@ func printRightBuffer(br int, ib []byte) {
 		}
 	}
 	fmt.Print(string(bb))
-	fmt.Print("|")
+	fmt.Print(edgeMark)
 }
 
 func main() {
