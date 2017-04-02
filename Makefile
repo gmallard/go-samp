@@ -52,7 +52,6 @@ dirs = 	testppack \
 	gortns01 \
 	greddit \
 	gt044 \
-	hd \
 	hello \
 	hello_small \
 	httpserv \
