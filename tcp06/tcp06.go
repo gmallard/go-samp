@@ -27,6 +27,7 @@ func getData(c *net.TCPConn) {
 		_ = c.SetReadDeadline(time.Now().Add(1 * time.Minute))
 		bytesRead, err := c.Read(buffer)
 		if err != nil && err.(net.Error).Timeout() {
+			fmt.Printf("Timeout Read: %v\n", err)
 			continue
 		}
 		if err != nil {
@@ -95,6 +96,7 @@ func main() {
 		_ = l.SetDeadline(time.Now().Add(2 * time.Minute))
 		c, err := l.AcceptTCP()
 		if err != nil && err.(net.Error).Timeout() {
+			fmt.Printf("Timeout Accept: %v\n", err)
 			continue
 		}
 		if err != nil {
