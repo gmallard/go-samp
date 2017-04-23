@@ -1,5 +1,5 @@
 /*
-Demonstrate using a slice of slicess.
+Demonstrate using a slice of slices.
 
 This example uses an anonymous struct for the demonstration.  This is
 like table driven tests are frequently accomplished in the go standard library.
