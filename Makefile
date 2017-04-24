@@ -93,6 +93,7 @@ dirs = 	testppack \
 	sl3index \
 	sliceappt \
 	slappmult \
+	slblog \
 	slices \
 	slofsl \
 	sltricks \
