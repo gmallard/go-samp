@@ -31,6 +31,7 @@ dirs = 	testppack \
 	demo_templates/insdata \
 	demo_templates/must \
 	demo_templates/nestedfields \
+	demo_templates/nestedtemplates \
 	demo_templates/pipelines \
 	dtemplex1 \
 	dtemplex2 \
