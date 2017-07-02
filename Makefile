@@ -27,7 +27,9 @@ dirs = 	testppack \
 	dateshow \
 	defer \
 	demo_templates/conditions \
+	demo_templates/functions \
 	demo_templates/insdata \
+	demo_templates/must \
 	demo_templates/nestedfields \
 	demo_templates/pipelines \
 	dtemplex1 \
