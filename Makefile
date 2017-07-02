@@ -26,6 +26,10 @@ dirs = 	testppack \
 	charshow \
 	dateshow \
 	defer \
+	demo_templates/conditions \
+	demo_templates/insdata \
+	demo_templates/nestedfields \
+	demo_templates/pipelines \
 	dtemplex1 \
 	dtemplex2 \
 	envshow \
