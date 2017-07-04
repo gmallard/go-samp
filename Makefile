@@ -28,6 +28,7 @@ dirs = 	testppack \
 	defer \
 	demo_templates/conditions \
 	demo_templates/functions \
+	demo_templates/golangtutorials/fieldname \
 	demo_templates/insdata \
 	demo_templates/jst \
 	demo_templates/must \
