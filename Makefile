@@ -30,6 +30,7 @@ dirs = 	testppack \
 	demo_templates/functions \
 	demo_templates/golangtutorials/fieldname \
 	demo_templates/golangtutorials/revquotes \
+	demo_templates/golangtutorials/tvars \
 	demo_templates/golangtutorials/twithend \
 	demo_templates/insdata \
 	demo_templates/jst \
