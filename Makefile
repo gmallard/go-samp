@@ -26,6 +26,7 @@ dirs = 	testppack \
 	charshow \
 	dateshow \
 	defer \
+	demo_templates/call \
 	demo_templates/conditions \
 	demo_templates/functions \
 	demo_templates/golangtutorials/fieldname \
