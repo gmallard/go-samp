@@ -13,8 +13,8 @@ func main() {
 	fmt.Println("start")
 	pipedemo1()
 	fmt.Println()
-	// pipedemo2()
-	// fmt.Println()
+	pipedemo2()
+	fmt.Println()
 	pipedemo3()
 	fmt.Println()
 	pipedemo4()
@@ -50,14 +50,17 @@ func pipedemo1() {
 	}
 }
 
-// var pipel2 = `{{`"output"`}}` // I do not understand this examle.
-// How to get this to compile?
-
-/*
+// This example is a bit different than what is shown in the godoc .......
+// Break this text up and embellish it in order to get clean compile,
+// execute, and produce correct(?) output
+var pipel2beg = "{{"
+var pipel2main = `"\"output2\"\n"`
+var pipel2end = "}}"
+var pipel2all = pipel2beg + pipel2main + pipel2end
 
 func pipedemo2() {
 	t1 := template.New("T1")
-	t1, err := t1.Parse(pipel2)
+	t1, err := t1.Parse(pipel2all)
 	if err != nil {
 		fmt.Println("err1", err)
 	}
@@ -66,8 +69,6 @@ func pipedemo2() {
 		fmt.Println("err2", err)
 	}
 }
-
-*/
 
 var pipel3 = `{{printf "%q" "output3"}}
 `
