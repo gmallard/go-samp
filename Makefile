@@ -93,6 +93,7 @@ dirs = 	testppack \
 	rangecopy \
 	ranges \
 	recover \
+	reflmem \
 	runpprof \
 	shax \
 	shifter \
