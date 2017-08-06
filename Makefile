@@ -109,6 +109,7 @@ dirs = 	testppack \
 	sliceappt \
 	slappmult \
 	slblog \
+	sldemo \
 	slices \
 	slofsl \
 	sltricks \
