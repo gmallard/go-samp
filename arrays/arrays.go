@@ -13,7 +13,8 @@ func f(a [3]int) {
 }
 
 //
-// Function parameter: an array of integers, any length
+// Function parameter: slice of integers, any length
+// Note that slices are not arrays.  More like a view onto an array.
 //
 func fa(a []int) {
 	fmt.Println(a)
@@ -28,14 +29,16 @@ func fp(a *[3]int) {
 
 //
 // Function parameter: a pointer to an slice of integers.
+// As noted above, this is really a pointer to a slice, *not* a pointer
+// to an array.
 //
-func fap(a *[]int) {
+func fsp(a *[]int) {
 	fmt.Println(a)
 }
 
 /*
 
-*/
+ */
 func main() {
 	//
 	// Declared array
@@ -54,7 +57,7 @@ func main() {
 	//
 	var arc = []int{1, 2, 3, 4, 5}
 	fa(arc)   // Note, different function needed (signature)
-	fap(&arc) // ....
+	fsp(&arc) // ....
 	//
 	// ------------------------------------------------------------------------
 	//
@@ -71,7 +74,7 @@ func main() {
 	//
 	// This fails to compile:
 	//
-	// fap(&ard)
+	// fsp(&ard)
 	//
 	// with error messages:
 	// ..... cannot use &ard (type *[5]int) as type *[]int in function argument
@@ -85,9 +88,10 @@ func main() {
 		fmt.Printf("%d\n", arb[i])
 	}
 	//
-	// Loop through array - two
+	// Loop through array - two - using range
 	//
 	for _, narb := range arb {
+		// narb is a copy of the element
 		fmt.Printf("%d\n", narb)
 	}
 }
