@@ -18,7 +18,8 @@ const (
 
 func Sqrt(x float64) float64 {
 	r := x // First guess
-	for i := 1; i <= m; i++ {
+	var i int
+	for i = 1; i <= m; i++ {
 		l := r                // Previous result
 		r = r - (r*r-x)/(2*r) // New result
 		// fmt.Println("l:", l, "r:", r)
@@ -26,6 +27,7 @@ func Sqrt(x float64) float64 {
 			break
 		}
 	}
+	fmt.Println("Number of loops was:", i)
 	return r
 }
 
