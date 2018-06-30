@@ -113,6 +113,7 @@ dirs = 	testppack \
 	slices \
 	slofsl \
 	sltricks \
+	sqlex \
 	ssl/certinfo \
 	ssl/client1 \
 	ssl/client2 \
