@@ -80,6 +80,7 @@ dirs = 	testppack \
 	list_struct \
 	mapmapstr \
 	loghello \
+	mapcaph \
 	mapptrs \
 	maps \
 	maps_ss \
