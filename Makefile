@@ -90,6 +90,7 @@ dirs = 	testppack \
 	numconv \
 	oltesta \
 	panrecov \
+	pgmdir \
 	rand_between \
 	rangecopy \
 	ranges \
