@@ -35,6 +35,7 @@ func main() {
 		if err == io.EOF {
 			break
 		}
+		line = line[0 : len(line)-1]
 		fmt.Printf("Line Detail: |%q|\n", line)
 		fmt.Printf("Line as a string: |%s|\n", line)
 	}
