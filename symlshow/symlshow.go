@@ -13,7 +13,11 @@ import (
 
 func main() {
 	fmt.Println(os.Args[1])
-	p, _ := filepath.EvalSymlinks(os.Args[1])
+	p, e := filepath.EvalSymlinks(os.Args[1])
+	if e != nil {
+		fmt.Println("Error:", e)
+		os.Exit(2)
+	}
 	fmt.Println(p)
 	fmt.Printf("SYMBOLIC=%v\n", os.Args[1] != p)
 }
