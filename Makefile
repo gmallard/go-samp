@@ -104,6 +104,7 @@ dirs = 	testppack \
 	showgo \
 	showmac \
 	showpprof \
+	showrtc \
 	showsetcpus \
 	showtime \
 	sigshow \
