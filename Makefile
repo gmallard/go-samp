@@ -115,6 +115,7 @@ dirs = 	testppack \
 	sldemo \
 	slices \
 	slofsl \
+	slofsl2 \
 	sltricks \
 	sqlex \
 	ssl/certinfo \
