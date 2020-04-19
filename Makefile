@@ -117,6 +117,7 @@ dirs = 	testppack \
 	slofsl \
 	slofsl2 \
 	sltricks \
+	sortex \
 	sqlex \
 	ssl/certinfo \
 	ssl/client1 \
